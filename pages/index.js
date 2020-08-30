@@ -2,8 +2,10 @@ import Head from "next/head";
 
 import { FrontmatterForm } from "../components/FrontmatterForm";
 import { Frontmatter } from "../components/Frontmatter";
-import { Container } from "theme-ui";
+import { SocialCardImage } from "../components/SocialCardImage";
+import { Container, Box } from "theme-ui";
 import { useState } from "react";
+import { ReactQueryDevtools } from "react-query-devtools";
 
 export default function Home() {
     const [frontmatter, setFrontmatter] = useState(null);
@@ -22,8 +24,14 @@ export default function Home() {
 
                 <FrontmatterForm onSubmit={setFrontmatter} />
 
-                {frontmatter ? <Frontmatter {...frontmatter} /> : null}
+                <Box sx={{ p: 4 }}>
+                    {frontmatter ? <SocialCardImage {...frontmatter} /> : null}
+
+                    {frontmatter ? <Frontmatter {...frontmatter} /> : null}
+                </Box>
             </Container>
+
+            <ReactQueryDevtools />
         </>
     );
 }

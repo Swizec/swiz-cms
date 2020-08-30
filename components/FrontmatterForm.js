@@ -12,7 +12,7 @@ export const FrontmatterForm = ({ onSubmit }) => {
             <Label>Description</Label>
             <Textarea name="description" ref={register} />
 
-            <Button type="submit" variant="primary">
+            <Button type="submit" bg="secondary">
                 Submit
             </Button>
         </form>
