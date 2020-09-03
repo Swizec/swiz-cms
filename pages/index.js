@@ -1,15 +1,17 @@
 import Head from "next/head";
 
-import { FrontmatterForm } from "../components/FrontmatterForm";
+import { Container, Box, Heading } from "theme-ui";
+import { useState } from "react";
+import { ReactQueryDevtools } from "react-query-devtools";
+
+import { ArticleForm } from "../components/ArticleForm";
 import { Frontmatter } from "../components/Frontmatter";
 import {
     SocialCardImage,
     useSocialCardQuery,
 } from "../components/SocialCardImage";
-import { Container, Box, Heading } from "theme-ui";
-import { useState } from "react";
-import { ReactQueryDevtools } from "react-query-devtools";
 import { CLICopyPasta } from "../components/CLICopyPasta";
+import { LetterRender } from "markdown-email-converter";
 
 export default function Home() {
     const [frontmatter, setFrontmatter] = useState(null);
@@ -27,7 +29,7 @@ export default function Home() {
 
                 <p>Use this to setup your copypasta for a new article</p>
 
-                <FrontmatterForm onSubmit={setFrontmatter} />
+                <ArticleForm onSubmit={setFrontmatter} />
 
                 {frontmatter ? (
                     <Box sx={{ p: 4 }}>
@@ -46,6 +48,9 @@ export default function Home() {
                             {...frontmatter}
                             heroURL={cardQuery.data?.url}
                         />
+
+                        <Heading>This is your email</Heading>
+                        <LetterRender markdown={frontmatter.markdown} />
                     </Box>
                 ) : null}
             </Container>
