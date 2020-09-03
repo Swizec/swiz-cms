@@ -16,6 +16,7 @@
         "react-hook-form": "^6.7.0",
         "react-query": "^2.12.1",
         "react-query-devtools": "^2.4.4",
+        "slugify": "^1.4.5",
         "theme-ui": "^0.3.1"
     }
 }

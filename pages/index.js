@@ -2,13 +2,18 @@ import Head from "next/head";
 
 import { FrontmatterForm } from "../components/FrontmatterForm";
 import { Frontmatter } from "../components/Frontmatter";
-import { SocialCardImage } from "../components/SocialCardImage";
-import { Container, Box } from "theme-ui";
+import {
+    SocialCardImage,
+    useSocialCardQuery,
+} from "../components/SocialCardImage";
+import { Container, Box, Heading } from "theme-ui";
 import { useState } from "react";
 import { ReactQueryDevtools } from "react-query-devtools";
+import { CLICopyPasta } from "../components/CLICopyPasta";
 
 export default function Home() {
     const [frontmatter, setFrontmatter] = useState(null);
+    const cardQuery = useSocialCardQuery(frontmatter?.title);
 
     return (
         <>
@@ -24,11 +29,25 @@ export default function Home() {
 
                 <FrontmatterForm onSubmit={setFrontmatter} />
 
-                <Box sx={{ p: 4 }}>
-                    {frontmatter ? <SocialCardImage {...frontmatter} /> : null}
+                {frontmatter ? (
+                    <Box sx={{ p: 4 }}>
+                        <Heading>
+                            1. Run these commands to create an article
+                        </Heading>
+                        <CLICopyPasta {...frontmatter} />
 
-                    {frontmatter ? <Frontmatter {...frontmatter} /> : null}
-                </Box>
+                        <Heading>
+                            2. Right click save image to directory
+                        </Heading>
+                        <SocialCardImage {...frontmatter} />
+
+                        <Heading>3. Paste this into index.mdx</Heading>
+                        <Frontmatter
+                            {...frontmatter}
+                            heroURL={cardQuery.data?.url}
+                        />
+                    </Box>
+                ) : null}
             </Container>
 
             <ReactQueryDevtools />
