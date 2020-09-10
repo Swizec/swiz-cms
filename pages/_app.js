@@ -1,4 +1,5 @@
 import { ThemeProvider } from "theme-ui";
+import regeneratorRuntime from "regenerator-runtime";
 import theme from "../styles/theme";
 
 function MyApp({ Component, pageProps }) {

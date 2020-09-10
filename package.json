@@ -10,12 +10,14 @@
     "dependencies": {
         "@theme-ui/presets": "^0.3.0",
         "date-fns": "^2.16.0",
+        "markdown-email-converter": "^0.0.7",
         "next": "9.5.2",
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-hook-form": "^6.7.0",
         "react-query": "^2.12.1",
         "react-query-devtools": "^2.4.4",
+        "regenerator-runtime": "^0.13.7",
         "slugify": "^1.4.5",
         "theme-ui": "^0.3.1"
     }

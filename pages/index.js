@@ -13,7 +13,15 @@ import {
 import { CLICopyPasta } from "../components/CLICopyPasta";
 import { LetterRender } from "markdown-email-converter";
 
-export default function Home() {
+export async function getStaticProps() {
+    return {
+        props: {
+            giphyAPIKey: process.env.GIPHY_API_KEY,
+        },
+    };
+}
+
+export default function Home({ giphyAPIKey }) {
     const [frontmatter, setFrontmatter] = useState(null);
     const cardQuery = useSocialCardQuery(frontmatter?.title);
 
@@ -50,7 +58,10 @@ export default function Home() {
                         />
 
                         <Heading>This is your email</Heading>
-                        <LetterRender markdown={frontmatter.markdown} />
+                        <LetterRender
+                            markdown={frontmatter.markdown}
+                            giphyAPIKey={giphyAPIKey}
+                        />
                     </Box>
                 ) : null}
             </Container>
