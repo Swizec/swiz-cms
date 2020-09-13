@@ -14,7 +14,9 @@ async function fetchSocialCard(key, title) {
 }
 
 export function useSocialCardQuery(title) {
-    return useQuery(["social-card", title], fetchSocialCard);
+    return useQuery(["social-card", title], fetchSocialCard, {
+        staleTime: 5000,
+    });
 }
 
 export const SocialCardImage = ({ title }) => {
