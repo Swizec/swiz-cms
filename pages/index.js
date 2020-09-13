@@ -12,6 +12,7 @@ import {
 } from "../components/SocialCardImage";
 import { CLICopyPasta } from "../components/CLICopyPasta";
 import { LetterRender } from "markdown-email-converter";
+import { ShipIt } from "../components/ShipIt";
 
 export async function getStaticProps() {
     return {
@@ -22,8 +23,8 @@ export async function getStaticProps() {
 }
 
 export default function Home({ giphyAPIKey }) {
-    const [frontmatter, setFrontmatter] = useState(null);
-    const cardQuery = useSocialCardQuery(frontmatter?.title);
+    const [article, setArticle] = useState(null);
+    const cardQuery = useSocialCardQuery(article?.title);
 
     return (
         <>
@@ -37,31 +38,33 @@ export default function Home({ giphyAPIKey }) {
 
                 <p>Use this to setup your copypasta for a new article</p>
 
-                <ArticleForm onSubmit={setFrontmatter} />
+                <ArticleForm onSubmit={setArticle} />
 
-                {frontmatter ? (
+                {article ? (
                     <Box sx={{ p: 4 }}>
                         <Heading>
                             1. Run these commands to create an article
                         </Heading>
-                        <CLICopyPasta {...frontmatter} />
+                        <CLICopyPasta {...article} />
 
                         <Heading>
                             2. Right click save image to directory
                         </Heading>
-                        <SocialCardImage {...frontmatter} />
+                        <SocialCardImage {...article} />
 
                         <Heading>3. Paste this into index.mdx</Heading>
                         <Frontmatter
-                            {...frontmatter}
+                            {...article}
                             heroURL={cardQuery.data?.url}
                         />
 
                         <Heading>This is your email</Heading>
                         <LetterRender
-                            markdown={frontmatter.markdown}
+                            markdown={article.markdown}
                             giphyAPIKey={giphyAPIKey}
                         />
+
+                        <ShipIt article={article} />
                     </Box>
                 ) : null}
             </Container>

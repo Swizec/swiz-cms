@@ -1,7 +1,7 @@
 import slugify from "slugify";
 
 export const CLICopyPasta = ({ title }) => {
-    const slug = slugify(title);
+    const slug = slugify(title).toLowerCase();
 
     return (
         <pre>{`
