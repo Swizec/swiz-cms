@@ -1,13 +1,14 @@
-import { ThemeProvider } from "theme-ui";
-import regeneratorRuntime from "regenerator-runtime";
-import theme from "../styles/theme";
+import * as React from "react";
 
-function MyApp({ Component, pageProps }) {
+import { ThemeProvider } from "theme-ui";
+import theme from "../lib/theme";
+
+const App = ({ Component, pageProps }) => {
     return (
         <ThemeProvider theme={theme}>
             <Component {...pageProps} />
         </ThemeProvider>
     );
-}
+};
 
-export default MyApp;
+export default App;

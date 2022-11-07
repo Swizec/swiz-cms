@@ -22,6 +22,10 @@ export async function getStaticProps() {
     };
 }
 
+// export default function Home({ giphyAPIKey }) {
+//     return <p>{giphyAPIKey}</p>;
+// }
+
 export default function Home({ giphyAPIKey }) {
     const [article, setArticle] = useState(null);
     const cardQuery = useSocialCardQuery(article?.title);
