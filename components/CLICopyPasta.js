@@ -1,7 +1,5 @@
-import slugify from "slugify";
-
 export const CLICopyPasta = ({ title }) => {
-    const slug = slugify(title).toLowerCase();
+    const slug = title.replace(/\W+/g, "-").replace(/[-]+$/, "").toLowerCase();
 
     return (
         <pre>{`

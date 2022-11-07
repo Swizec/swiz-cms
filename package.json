@@ -21,7 +21,6 @@
         "react-query": "^2.12.1",
         "react-query-devtools": "^2.4.4",
         "regenerator-runtime": "^0.13.7",
-        "slugify": "^1.4.5",
         "theme-ui": "^0.15.1"
     }
 }
