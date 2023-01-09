@@ -42,10 +42,10 @@ export default async (req, res) => {
 
     const completion = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `You are a blogger trying to promote their latest article on social media. The title is "${title}". Write a twitter thread summarizing the following text in 6 numbered tweets: ${cleanContent}`,
-        temperature: 0.6,
-        max_tokens: 400,
-        best_of: 2,
+        prompt: `You are a blogger trying to promote their latest article on social media. The title is "${title}". Write a twitter thread summarizing the following text in 6 numbered tweets. Keep tweets under 200 characters: ${cleanContent}`,
+        temperature: 0.4,
+        max_tokens: 500,
+        best_of: 3,
     });
 
     res.status(200).send(completion.data.choices[0].text.trim());

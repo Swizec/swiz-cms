@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { useQuery } from "react-query";
-import { Spinner } from "theme-ui";
+import { Box, Button, Spinner } from "theme-ui";
 
 async function createDescription(title, content) {
     const res = await fetch("/api/createDescription", {
@@ -25,7 +25,12 @@ export const Frontmatter = ({ title, description, markdown, heroURL }) => {
     const date = format(new Date(), "yyyy-MM-dd");
     const heroName = heroURL?.split("/").pop();
 
-    const { data: generatedDescription, isLoading } = useQuery(
+    const {
+        data: generatedDescription,
+        isLoading,
+        isFetching,
+        refetch,
+    } = useQuery(
         ["description", title, markdown],
         async () => createDescription(title, markdown),
         {
@@ -33,12 +38,13 @@ export const Frontmatter = ({ title, description, markdown, heroURL }) => {
         }
     );
 
-    if (isLoading) {
+    if (isLoading || isFetching) {
         return <Spinner />;
     }
 
     return (
-        <pre style={{ whiteSpace: "pre-wrap" }}>{`
+        <Box sx={{ mb: 4 }}>
+            <pre style={{ whiteSpace: "pre-wrap" }}>{`
 ---
 title: "${title}" 
 description: "${generatedDescription || description}" 
@@ -46,5 +52,7 @@ published: ${date}
 hero: ./img/${heroName}
 ---
         `}</pre>
+            <Button onClick={refetch}>Recreate description</Button>
+        </Box>
     );
 };
