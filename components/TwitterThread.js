@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { Spinner } from "theme-ui";
 
 async function createTwitterThread(title, content) {
     const res = await fetch("/api/createTwitterThread", {
@@ -20,7 +21,7 @@ async function createTwitterThread(title, content) {
 }
 
 export const TwitterThread = ({ title, markdown }) => {
-    const { data: thread } = useQuery(
+    const { data: thread, isLoading } = useQuery(
         ["twitter-thread", title, markdown],
         async () => createTwitterThread(title, markdown),
         {
@@ -28,9 +29,13 @@ export const TwitterThread = ({ title, markdown }) => {
         }
     );
 
+    if (isLoading) {
+        return <Spinner />;
+    }
+
     return (
         <pre style={{ whiteSpace: "pre-wrap" }}>{`
-${thread}
+${thread.replaceAll("\n", "\n\n")}
         `}</pre>
     );
 };
