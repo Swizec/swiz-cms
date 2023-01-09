@@ -62,13 +62,13 @@ export default function Home({ giphyAPIKey }) {
                             heroURL={cardQuery.data?.url}
                         />
 
-                        <Heading>This is your email</Heading>
+                        {/* <Heading>This is your email</Heading>
                         <LetterRender
                             markdown={article.markdown}
                             giphyAPIKey={giphyAPIKey}
                         />
 
-                        <ShipIt article={article} />
+                        <ShipIt article={article} /> */}
                     </Box>
                 ) : null}
             </Container>
