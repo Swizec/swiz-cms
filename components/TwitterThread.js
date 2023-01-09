@@ -35,7 +35,7 @@ export const TwitterThread = ({ title, markdown }) => {
 
     return (
         <pre style={{ whiteSpace: "pre-wrap" }}>{`
-${thread.replaceAll("\n", "\n\n")}
+${thread?.replaceAll("\n", "\n\n")}
         `}</pre>
     );
 };
