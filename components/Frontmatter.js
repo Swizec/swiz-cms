@@ -30,7 +30,7 @@ export const Frontmatter = ({ title, description, markdown, heroURL }) => {
     );
 
     return (
-        <pre>{`
+        <pre style={{ whiteSpace: "pre-wrap" }}>{`
 ---
 title: "${title}" 
 description: "${generatedDescription}" 

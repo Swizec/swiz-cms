@@ -48,7 +48,5 @@ export default async (req, res) => {
         best_of: 3,
     });
 
-    console.log(completion.data);
-
     res.status(200).send(completion.data.choices[0].text.trim());
 };
