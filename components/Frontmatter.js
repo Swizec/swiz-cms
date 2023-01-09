@@ -1,10 +1,16 @@
 import { format } from "date-fns";
 import { useQuery } from "react-query";
 
-async function createDescription(markdown) {
+async function createDescription(title, content) {
     const res = await fetch("/api/createDescription", {
         method: "POST",
-        body: markdown,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            title,
+            content,
+        }),
     });
 
     if (!res.ok) {
@@ -19,8 +25,8 @@ export const Frontmatter = ({ title, description, markdown, heroURL }) => {
     const heroName = heroURL?.split("/").pop();
 
     const { data: generatedDescription } = useQuery(
-        ["description", markdown],
-        () => createDescription(markdown)
+        ["description", title, markdown],
+        () => createDescription(title, markdown)
     );
 
     return (
