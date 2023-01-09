@@ -26,7 +26,10 @@ export const Frontmatter = ({ title, description, markdown, heroURL }) => {
 
     const { data: generatedDescription } = useQuery(
         ["description", title, markdown],
-        () => createDescription(title, markdown)
+        async () => createDescription(title, markdown),
+        {
+            staleTime: Infinity,
+        }
     );
 
     return (

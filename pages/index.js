@@ -13,6 +13,7 @@ import {
 import { CLICopyPasta } from "../components/CLICopyPasta";
 import { LetterRender } from "markdown-email-converter";
 import { ShipIt } from "../components/ShipIt";
+import { TwitterThread } from "../components/TwitterThread";
 
 export async function getStaticProps() {
     return {
@@ -61,6 +62,9 @@ export default function Home({ giphyAPIKey }) {
                             {...article}
                             heroURL={cardQuery.data?.url}
                         />
+
+                        <Heading>4. Here's a possible twitter thread</Heading>
+                        <TwitterThread {...article} />
 
                         {/* <Heading>This is your email</Heading>
                         <LetterRender
