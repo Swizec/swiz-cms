@@ -42,8 +42,8 @@ export default async (req, res) => {
 
     const completion = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `You are a blogger trying to promote their latest article on social media. The title is "${title}". Write a twitter thread summarizing the following text in 6 numbered tweets: ${cleanContent}`,
-        temperature: 0.4,
+        prompt: `You are a blogger trying to promote their latest article on twitter. The title is "${title}". Write an engaging twitter thread summarizing the following article in 6 numbered tweets using a similar writing style as the article: ${cleanContent}`,
+        temperature: 0.6,
         max_tokens: 800,
         best_of: 2,
     });
