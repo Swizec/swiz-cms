@@ -20,7 +20,10 @@ export default async (req, res) => {
         best_of: 2,
     });
 
-    const thread = threadCompletion.data.choices[0].text.trim().split("\n\n");
+    const thread = threadCompletion.data.choices[0].text
+        .trim()
+        .split("\n")
+        .filter((t) => t.trim().length > 0);
 
     const hookCompletion = await openai.createCompletion({
         model: "text-davinci-003",
