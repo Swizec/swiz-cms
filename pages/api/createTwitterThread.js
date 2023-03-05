@@ -12,34 +12,38 @@ export default async (req, res) => {
 
     const cleanContent = await cleanArticle(content);
 
-    const threadCompletion = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `You are a blogger promoting their latest article on twitter. The title is "${title}". Write an engaging twitter thread summarizing the following article in 6 numbered tweets using a similar writing style as the article: ${cleanContent}`,
+    const messages = [
+        {
+            role: "system",
+            content:
+                "You are a blogger who just wrote a new article and needs to write a twitter thread to share the article",
+        },
+        {
+            role: "system",
+            content: `The article's title is: ${title}`,
+        },
+        {
+            role: "system",
+            content: `The article's content is: ${cleanContent}`,
+        },
+        {
+            role: "user",
+            content:
+                "Write a twitter thread summarizing this article in 6 tweets. It should deliver the key points and make people want to read the full article",
+        },
+    ];
+
+    const threadCompletion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages,
         temperature: 0.6,
         max_tokens: 800,
-        best_of: 2,
     });
 
-    const thread = threadCompletion.data.choices[0].text
+    const thread = threadCompletion.data.choices[0].message.content
         .trim()
         .split("\n")
         .filter((t) => t.trim().length > 0);
-
-    const hookCompletion = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `You just wrote this twitter thread to share an article titled "${title}". Rewrite the first tweet to work as a viral hook: ${thread.join(
-            "\n\n"
-        )}`,
-        temperature: 0.6,
-        max_tokens: 800,
-    });
-
-    const hook = hookCompletion.data.choices[0].text
-        .trim()
-        .replace(/^(Rewrite|Hook|Rewrite the first tweet|Revised tweet):/i, "")
-        .trim();
-
-    thread[0] = hook;
 
     res.status(200).send(
         thread

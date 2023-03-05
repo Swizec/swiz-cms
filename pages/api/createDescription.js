@@ -64,8 +64,6 @@ export default async (req, res) => {
         const completion = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
             messages,
-
-            // prompt: `You are a blogger trying to promote their latest article to search engines. The title is "${title}". Write the shortest possible summary of the following text in a way that looks good in search results: ${cleanContent}`,
             temperature: 0.6,
             max_tokens: 200,
         });
