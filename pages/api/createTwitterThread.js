@@ -51,6 +51,7 @@ export default async (req, res) => {
                 t
                     .trim()
                     .replace(/^\d+\W\d*/, "")
+                    .replace(/^[\s\W]+/, "")
                     .trim()
             )
             .map((t, i) => `${i + 1}. ${t}`)
