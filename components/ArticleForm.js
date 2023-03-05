@@ -9,9 +9,6 @@ export const ArticleForm = ({ onSubmit }) => {
             <Label>Title</Label>
             <Input name="title" ref={register} />
 
-            <Label>Description</Label>
-            <Textarea name="description" ref={register} />
-
             <Label>Markdown sauce 🍝</Label>
             <Textarea name="markdown" ref={register} />
 

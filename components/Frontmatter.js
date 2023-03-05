@@ -21,7 +21,7 @@ async function createDescription(title, content) {
     return res.text();
 }
 
-export const Frontmatter = ({ title, description, markdown, heroURL }) => {
+export const Frontmatter = ({ title, markdown, heroURL }) => {
     const date = format(new Date(), "yyyy-MM-dd");
     const heroName = heroURL?.split("/").pop();
 
@@ -47,7 +47,7 @@ export const Frontmatter = ({ title, description, markdown, heroURL }) => {
             <pre style={{ whiteSpace: "pre-wrap" }}>{`
 ---
 title: "${title}" 
-description: "${generatedDescription || description}" 
+description: "${generatedDescription}" 
 published: ${date}
 hero: ./img/${heroName}
 ---
