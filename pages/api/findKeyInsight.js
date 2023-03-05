@@ -8,28 +8,49 @@ const openai = new OpenAIApi(
 );
 
 export default async (req, res) => {
-    const { content } = req.body;
+    const { content, title } = req.body;
 
     const cleanContent = await cleanArticle(content);
 
-    const insight1 = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `What is the most surprising insight in this article: ${cleanContent}`,
+    let messages = [
+        {
+            role: "system",
+            content: `You just read an article titled ${title}`,
+        },
+        {
+            role: "system",
+            content: `The article content is: ${cleanContent}`,
+        },
+        {
+            role: "user",
+            content: "What is the core insight of that article?",
+        },
+    ];
+
+    const insight1 = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages,
         temperature: 0.6,
         max_tokens: 800,
     });
 
-    const insight2 = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `Turn this description into a viral tweet: ${insight1.data.choices[0].text.trim()}`,
+    messages.push(insight1.data.choices[0].message);
+    messages.push({
+        role: "user",
+        content: "Turn that insight into a pithy tweet",
+    });
+
+    const insight2 = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages,
         temperature: 0.6,
         max_tokens: 800,
     });
 
     res.status(200).send(
         [
-            insight1.data.choices[0].text.trim(),
-            insight2.data.choices[0].text.trim(),
+            insight1.data.choices[0].message.content.trim(),
+            insight2.data.choices[0].message.content.trim(),
         ].join("\n\n")
     );
 };
