@@ -40,13 +40,53 @@ export default async (req, res) => {
         .use(remarkStrip)
         .process(content);
 
-    const completion = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `You are a blogger trying to promote their latest article to search engines. The title is "${title}". Write the shortest possible summary of the following text in a way that looks good in search results: ${cleanContent}`,
-        temperature: 0.6,
-        max_tokens: 100,
-        best_of: 3,
-    });
+    const messages = [
+        {
+            role: "system",
+            content: `You are a blogger who just wrote a new article and needs to write an SEO description to put in your CMS.`,
+        },
+        {
+            role: "system",
+            content: `The article's title is: ${title}`,
+        },
+        {
+            role: "system",
+            content: `The article's content is: ${cleanContent}`,
+        },
+        {
+            role: "user",
+            content:
+                "Write a description for that article that inspires curiosity in your target audience and ranks well on search engines",
+        },
+    ];
 
-    res.status(200).send(completion.data.choices[0].text.trim());
+    try {
+        const completion = await openai.createChatCompletion({
+            model: "gpt-3.5-turbo",
+            messages,
+
+            // prompt: `You are a blogger trying to promote their latest article to search engines. The title is "${title}". Write the shortest possible summary of the following text in a way that looks good in search results: ${cleanContent}`,
+            temperature: 0.6,
+            max_tokens: 200,
+        });
+
+        messages.push(completion.data.choices[0].message);
+        messages.push({
+            role: "user",
+            content: "Shorten that to max 2 sentences",
+        });
+
+        const completion2 = await openai.createChatCompletion({
+            model: "gpt-3.5-turbo",
+            messages,
+            temperature: 0.6,
+            max_tokens: 200,
+        });
+
+        res.status(200).send(
+            completion2.data.choices[0].message.content.trim()
+        );
+    } catch (e) {
+        res.status(200).send(e.message);
+    }
 };
