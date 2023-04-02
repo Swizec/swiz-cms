@@ -28,7 +28,7 @@ export default async (req, res) => {
     ];
 
     const insight1 = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4",
         messages,
         temperature: 0.6,
         max_tokens: 800,
@@ -41,7 +41,7 @@ export default async (req, res) => {
     });
 
     const insight2 = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4",
         messages,
         temperature: 0.6,
         max_tokens: 800,
