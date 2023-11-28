@@ -10,6 +10,8 @@
     "dependencies": {
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
+        "@fontsource/inter": "^5.0.15",
+        "@mui/joy": "^5.0.0-beta.15",
         "@theme-ui/mdx": "^0.15.3",
         "@theme-ui/presets": "^0.15.3",
         "date-fns": "^2.16.0",
@@ -24,6 +26,7 @@
         "remark": "^14.0.2",
         "strip-markdown": "^5.0.0",
         "theme-ui": "^0.15.1",
+        "tss-react": "^4.9.3",
         "unist-util-visit": "^4.1.1"
     }
 }

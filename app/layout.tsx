@@ -1,5 +1,8 @@
 import React from "react";
 import { Metadata } from "next";
+import { NextAppDirEmotionCacheProvider } from "tss-react/next/appDir";
+import Grid from "@mui/joy/Grid";
+import "@fontsource/inter";
 
 export default function RootLayout({
     children,
@@ -8,7 +11,24 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body>{children}</body>
+            <head>
+                <meta
+                    name="viewport"
+                    content="initial-scale=1, width=device-width"
+                />
+            </head>
+            <body>
+                <NextAppDirEmotionCacheProvider options={{ key: "css" }}>
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        {children}
+                    </Grid>
+                </NextAppDirEmotionCacheProvider>
+            </body>
         </html>
     );
 }
