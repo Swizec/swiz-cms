@@ -1,10 +1,7 @@
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Stack from "@mui/joy/Stack";
-import FormLabel from "@mui/joy/FormLabel";
-import Input from "@mui/joy/Input";
-import Textarea from "@mui/joy/Textarea";
-import Button from "@mui/joy/Button";
+import { ArticleForm } from "./ArticleForm";
 
 const Header = () => (
     <Box sx={{ pt: 2 }}>
@@ -16,29 +13,17 @@ const Header = () => (
     </Box>
 );
 
-const ArticleForm = () => (
-    <form>
-        <Stack spacing={2}>
-            <Box>
-                <FormLabel>Title</FormLabel>
-                <Input name="title" />
-            </Box>
+export default function Page({ searchParams }) {
+    const { title, markdown } = searchParams as {
+        title?: string;
+        markdown?: string;
+    };
 
-            <Box>
-                <FormLabel>Markdown sauce 🍝</FormLabel>
-                <Textarea name="markdown" minRows={10} />
-            </Box>
-
-            <Button type="submit">Submit</Button>
-        </Stack>
-    </form>
-);
-
-export default function Page() {
     return (
         <Stack spacing={2}>
             <Header />
-            <ArticleForm />
+
+            <ArticleForm title={title} markdown={markdown} />
         </Stack>
     );
 }
