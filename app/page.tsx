@@ -3,6 +3,7 @@ import Box from "@mui/joy/Box";
 import Stack from "@mui/joy/Stack";
 import { ArticleForm } from "./ArticleForm";
 import { CLICopyPasta } from "./CLICopyPasta";
+import { SocialCardImage } from "./SocialCardImage";
 
 const Header = () => (
     <Box sx={{ pt: 2 }}>
@@ -27,6 +28,7 @@ export default function Page({ searchParams }) {
             <ArticleForm title={title} markdown={markdown} />
 
             {title ? <CLICopyPasta title={title} /> : null}
+            {title ? <SocialCardImage title={title} /> : null}
         </Stack>
     );
 }
