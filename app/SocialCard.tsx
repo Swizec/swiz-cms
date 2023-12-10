@@ -1,7 +1,8 @@
 import Card from "@mui/joy/Card";
 import Typography from "@mui/joy/Typography";
 import AspectRatio from "@mui/joy/AspectRatio";
-import { FC } from "react";
+import Skeleton from "@mui/joy/Skeleton";
+import { FC, Suspense } from "react";
 
 async function fetchSocialCard(
     title: string
@@ -18,7 +19,7 @@ async function fetchSocialCard(
     return res.json();
 }
 
-export const SocialCardImage: FC<{ title: string }> = async ({ title }) => {
+const SocialCardImage: FC<{ title: string }> = async ({ title }) => {
     const socialCard = await fetchSocialCard(title);
 
     return (
@@ -26,9 +27,26 @@ export const SocialCardImage: FC<{ title: string }> = async ({ title }) => {
             <Typography level="title-lg">
                 Right click save image into /img
             </Typography>{" "}
-            <AspectRatio objectFit="contain">
+            <AspectRatio objectFit="contain" minHeight={400}>
                 <img src={socialCard.url} />
             </AspectRatio>
         </Card>
+    );
+};
+
+const Loading = () => (
+    <Card>
+        <Skeleton variant="text" level="title-lg" />
+        <AspectRatio minHeight={400}>
+            <Skeleton />
+        </AspectRatio>
+    </Card>
+);
+
+export const SocialCard: FC<{ title: string }> = async ({ title }) => {
+    return (
+        <Suspense fallback={<Loading />}>
+            <SocialCardImage title={title} />
+        </Suspense>
     );
 };
