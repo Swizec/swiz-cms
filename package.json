@@ -29,5 +29,10 @@
         "theme-ui": "^0.15.1",
         "tss-react": "^4.9.3",
         "unist-util-visit": "^4.1.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.4",
+        "@types/react": "^18.2.43",
+        "typescript": "^5.3.3"
     }
 }
