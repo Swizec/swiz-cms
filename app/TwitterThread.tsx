@@ -8,7 +8,7 @@ import Box from "@mui/joy/Box";
 
 const Loading = () => (
     <Card>
-        <Skeleton variant="text" level="title-lg" />
+        <Typography level="title-lg">A possible twitter thread</Typography>
         <Skeleton variant="rectangular" height={350} />
     </Card>
 );
@@ -21,12 +21,12 @@ const TwitterThreadContent: FC<{ title: string; markdown: string }> = async ({
 
     return (
         <Typography level="body-sm">
-            {thread.map((tweet) => (
-                <>
+            {thread.map((tweet, i) => (
+                <Box key={i}>
                     {tweet}
                     <br />
                     <br />
-                </>
+                </Box>
             ))}
         </Typography>
     );

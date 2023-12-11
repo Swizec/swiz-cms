@@ -39,10 +39,13 @@ hero: ./img/${heroURL}
 
 const Loading = () => (
     <Card>
-        <Skeleton variant="text" level="title-lg" />
+        <Typography level="title-lg">
+            Copy frontmatter into ./index.mdx to set meta data
+        </Typography>
         <Skeleton variant="text" level="body-md" />
         <Skeleton variant="text" level="body-md" />
-        <Skeleton variant="text" level="body-md" />
+        <Skeleton variant="text" level="body-md" width="30%" />
+        <Skeleton variant="text" level="body-md" width="60%" />
     </Card>
 );
 
@@ -52,7 +55,7 @@ export const Frontmatter: FC<{ title: string; markdown: string }> = ({
 }) => {
     return (
         <Suspense fallback={<Loading />}>
-            <CopyableCard title="Copy into ./index.mdx to set meta data">
+            <CopyableCard title="Copy frontmatter into ./index.mdx to set meta data">
                 <FrontmatterContent title={title} markdown={markdown} />
             </CopyableCard>
         </Suspense>

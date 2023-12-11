@@ -10,7 +10,7 @@ const openai = new OpenAIApi(
 export async function createTwitterThread(
     title: string,
     content: string
-): string[] {
+): Promise<string[]> {
     const cleanContent = await cleanArticle(content);
 
     const messages: ChatCompletionRequestMessage[] = [
