@@ -8,16 +8,18 @@
         "start": "next start"
     },
     "dependencies": {
-        "@emotion/react": "^11.10.4",
-        "@emotion/styled": "^11.10.4",
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "@fontsource/inter": "^5.0.15",
+        "@mui/joy": "^5.0.0-beta.15",
+        "@sindresorhus/slugify": "^2.2.1",
         "@theme-ui/mdx": "^0.15.3",
         "@theme-ui/presets": "^0.15.3",
-        "date-fns": "^2.16.0",
-        "markdown-email-converter": "^0.0.7",
-        "next": "13.0.2",
+        "date-fns": "^2.30.0",
+        "next": "^14.0.3",
         "openai": "^3.2.1",
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "react-hook-form": "^6.7.0",
         "react-query": "^2.12.1",
         "react-query-devtools": "^2.4.4",
@@ -25,6 +27,12 @@
         "remark": "^14.0.2",
         "strip-markdown": "^5.0.0",
         "theme-ui": "^0.15.1",
+        "tss-react": "^4.9.3",
         "unist-util-visit": "^4.1.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.4",
+        "@types/react": "^18.2.43",
+        "typescript": "^5.3.3"
     }
 }
