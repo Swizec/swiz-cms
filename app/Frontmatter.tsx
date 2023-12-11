@@ -1,11 +1,11 @@
 import Card from "@mui/joy/Card";
 import Skeleton from "@mui/joy/Skeleton";
-
 import Typography from "@mui/joy/Typography";
 import { format } from "date-fns";
 import { FC, Suspense } from "react";
 import { fetchSocialCard } from "./SocialCard";
 import { CopyableCard } from "../components/CopyableCard";
+import { createDescription } from "../aistuff/createDescription";
 
 const FrontmatterContent: FC<{ title: string; markdown: string }> = async ({
     title,
@@ -13,6 +13,7 @@ const FrontmatterContent: FC<{ title: string; markdown: string }> = async ({
 }) => {
     const date = format(new Date(), "yyyy-MM-dd");
     const socialCard = await fetchSocialCard(title);
+    const description = await createDescription(title, markdown);
 
     const heroURL = socialCard.url.split("/").pop();
     const frontmatter = `---
