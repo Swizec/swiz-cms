@@ -13,7 +13,8 @@ const Header = () => (
         <Typography level="h1">Swiz CMS is where articles are born</Typography>
 
         <Typography level="body-lg">
-            Use this to setup your copypasta for a new article
+            Use this to setup copypasta for a new article and get writing
+            feedback from GPT-4
         </Typography>
     </Box>
 );
@@ -29,6 +30,7 @@ export default function Page({ searchParams }) {
             <Header />
 
             <ArticleForm title={title} markdown={markdown} />
+            <Box />
 
             {title && markdown ? (
                 <Feedback title={title} markdown={markdown} />
