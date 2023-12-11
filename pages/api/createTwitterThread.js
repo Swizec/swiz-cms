@@ -1,5 +1,5 @@
 import { Configuration, OpenAIApi } from "openai";
-import { cleanArticle } from "./_cleanArticle";
+import { cleanArticle } from "../../aistuff/_cleanArticle";
 
 const openai = new OpenAIApi(
     new Configuration({
