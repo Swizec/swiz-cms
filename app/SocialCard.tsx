@@ -4,7 +4,7 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Skeleton from "@mui/joy/Skeleton";
 import { FC, Suspense } from "react";
 
-async function fetchSocialCard(
+export async function fetchSocialCard(
     title: string
 ): Promise<{ status: string; url: string }> {
     const res = await fetch(
@@ -27,7 +27,7 @@ const SocialCardImage: FC<{ title: string }> = async ({ title }) => {
             <Typography level="title-lg">
                 Right click save image into /img
             </Typography>{" "}
-            <AspectRatio objectFit="contain" minHeight={400}>
+            <AspectRatio objectFit="contain" maxHeight={300}>
                 <img src={socialCard.url} />
             </AspectRatio>
         </Card>
@@ -37,7 +37,7 @@ const SocialCardImage: FC<{ title: string }> = async ({ title }) => {
 const Loading = () => (
     <Card>
         <Skeleton variant="text" level="title-lg" />
-        <AspectRatio minHeight={400}>
+        <AspectRatio maxHeight={300}>
             <Skeleton />
         </AspectRatio>
     </Card>

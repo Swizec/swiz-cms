@@ -15,7 +15,7 @@
         "@sindresorhus/slugify": "^2.2.1",
         "@theme-ui/mdx": "^0.15.3",
         "@theme-ui/presets": "^0.15.3",
-        "date-fns": "^2.16.0",
+        "date-fns": "^2.30.0",
         "next": "^14.0.3",
         "openai": "^3.2.1",
         "react": "^18.2.0",
