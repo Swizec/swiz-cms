@@ -18,17 +18,17 @@ const FrontmatterContent: FC<{ title: string; markdown: string }> = async ({
     const heroURL = socialCard.url.split("/").pop();
     const frontmatter = `---
 title: "${title}"
+description: "${description}"
 published: ${date}
 hero: ./img/${heroURL}
 ---`;
 
     return (
-        <pre>
+        <pre style={{ whiteSpace: "pre-wrap" }}>
             <Typography
                 level="body-md"
                 sx={{
                     fontFamily: "monospace",
-                    whiteSpace: "pre-wrap",
                 }}
             >
                 {frontmatter}

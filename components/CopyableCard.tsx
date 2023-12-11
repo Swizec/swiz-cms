@@ -22,7 +22,7 @@ export const CopyableCard: FC<PropsWithChildren<{ title: string }>> = ({
     }
 
     return (
-        <>
+        <Box>
             <Card variant="solid" color="neutral" invertedColors>
                 <CardContent>
                     <Typography level="title-lg">
@@ -43,6 +43,6 @@ export const CopyableCard: FC<PropsWithChildren<{ title: string }>> = ({
             >
                 Copied to clipboard
             </Snackbar>
-        </>
+        </Box>
     );
 };

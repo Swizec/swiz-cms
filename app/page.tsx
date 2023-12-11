@@ -23,7 +23,7 @@ export default function Page({ searchParams }) {
     };
 
     return (
-        <Stack spacing={2}>
+        <Stack spacing={2} maxWidth={900}>
             <Header />
 
             <ArticleForm title={title} markdown={markdown} />
@@ -33,7 +33,7 @@ export default function Page({ searchParams }) {
             {title && markdown ? (
                 <Frontmatter title={title} markdown={markdown} />
             ) : null}
-            <Box p={5} />
+            <Box p={5}></Box>
         </Stack>
     );
 }
