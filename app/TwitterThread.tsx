@@ -22,11 +22,11 @@ const TwitterThreadContent: FC<{ title: string; markdown: string }> = async ({
     return (
         <Typography level="body-sm">
             {thread.map((tweet, i) => (
-                <Box key={i}>
+                <Typography key={i}>
                     {tweet}
                     <br />
                     <br />
-                </Box>
+                </Typography>
             ))}
         </Typography>
     );

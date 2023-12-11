@@ -42,7 +42,8 @@ export async function getKeyInsight(
     messages.push(insight1.data.choices[0].message);
     messages.push({
         role: "user",
-        content: "Turn that insight into a pithy tweet",
+        content:
+            "Turn that insight into a pithy tweet in the style of Swizec Teller",
     });
 
     const insight2 = await openai.createChatCompletion({

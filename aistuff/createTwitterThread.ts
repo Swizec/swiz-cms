@@ -17,7 +17,7 @@ export async function createTwitterThread(
         {
             role: "system",
             content:
-                "You are a blogger who just wrote a new article and needs to write a twitter thread to share the article",
+                "You are a Swizec's assistant. He wrote a new article and needs to write a twitter thread to share the key insights",
         },
         {
             role: "system",
@@ -30,7 +30,7 @@ export async function createTwitterThread(
         {
             role: "user",
             content:
-                "Write a twitter thread summarizing this article in 6 tweets. It should deliver the key points and make people want to read the full article",
+                "Write a twitter thread summarizing this article in 6 tweets. Write in the style of Swizec Teller. Make sure to include key insights that would appeal to software engineers in the startup space.",
         },
     ];
 

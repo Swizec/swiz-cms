@@ -19,8 +19,7 @@ export const CopyableCard: FC<
     const ref = useRef<HTMLElement>(null);
 
     async function copy() {
-        console.log(ref.current?.textContent);
-        await navigator.clipboard.writeText(ref.current?.textContent ?? "");
+        await navigator.clipboard.writeText(ref.current?.innerText ?? "");
         setSnackbarOpen(true);
     }
 
