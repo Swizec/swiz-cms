@@ -33,6 +33,7 @@ export default function Page({ searchParams }) {
             {title && markdown ? (
                 <Frontmatter title={title} markdown={markdown} />
             ) : null}
+            <Box p={5} />
         </Stack>
     );
 }
