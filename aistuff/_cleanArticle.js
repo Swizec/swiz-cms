@@ -25,9 +25,11 @@ function remarkSparkJoy() {
 }
 
 export async function cleanArticle(content) {
-    return remark()
-        .use(remarkNameOrFriend)
-        .use(remarkSparkJoy)
-        .use(remarkStrip)
-        .process(content);
+    return (
+        remark()
+            .use(remarkNameOrFriend)
+            .use(remarkSparkJoy)
+            // .use(remarkStrip)
+            .process(content)
+    );
 }

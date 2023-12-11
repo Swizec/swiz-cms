@@ -13,7 +13,7 @@ export async function createDescription(title: string, content: string) {
     const messages: ChatCompletionRequestMessage[] = [
         {
             role: "system",
-            content: `You are a blogger who just wrote a new article and needs to write an SEO description to put in your CMS.`,
+            content: `You are a Swizec's assistant. He just wrote a new article and needs an SEO description to put in the CMS.`,
         },
         {
             role: "system",
@@ -26,7 +26,7 @@ export async function createDescription(title: string, content: string) {
         {
             role: "user",
             content:
-                "Write a description for that article that inspires curiosity in your target audience and ranks well on search engines",
+                "Summarize the article in 2 sentences that pique a reader's curiosity to learn more. Write in the same style as the article as if you are the author. Include a key insight in your summary.",
         },
     ];
 
