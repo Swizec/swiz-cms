@@ -1,11 +1,9 @@
 import Card from "@mui/joy/Card";
-import CardContent from "@mui/joy/CardContent";
-import Link from "@mui/joy/Link";
 import Skeleton from "@mui/joy/Skeleton";
-import Snackbar from "@mui/joy/Snackbar";
+
 import Typography from "@mui/joy/Typography";
 import { format } from "date-fns";
-import { FC, Suspense, useState } from "react";
+import { FC, Suspense } from "react";
 import { fetchSocialCard } from "./SocialCard";
 import { CopyableCard } from "../components/CopyableCard";
 
@@ -22,11 +20,6 @@ title: "${title}"
 published: ${date}
 hero: ./img/${heroURL}
 ---`;
-
-    async function copy() {
-        // await navigator.clipboard.writeText(frontmatter);
-        // setSnackbarOpen(true);
-    }
 
     return (
         <pre>
