@@ -5,11 +5,11 @@ import { CssVarsProvider } from "@mui/joy/styles";
 import CssBaseline from "@mui/joy/CssBaseline";
 import Grid from "@mui/joy/Grid";
 import "@fontsource/inter";
+import Stack from "@mui/joy/Stack";
 
-export default function RootLayout({
-    children,
-}: {
+export default function RootLayout(props: {
     children: React.ReactNode;
+    feedback: React.ReactNode;
 }) {
     return (
         <html lang="en">
@@ -29,7 +29,11 @@ export default function RootLayout({
                             justifyContent="center"
                             alignItems="center"
                         >
-                            {children}
+                            <Stack spacing={2} maxWidth={900}>
+                                {props.children}
+                                {props.feedback}
+                                {props.clicopypasta}
+                            </Stack>
                         </Grid>
                     </CssVarsProvider>
                 </NextAppDirEmotionCacheProvider>

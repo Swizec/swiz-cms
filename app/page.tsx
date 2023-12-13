@@ -6,7 +6,6 @@ import { CLICopyPasta } from "./CLICopyPasta";
 import { SocialCard } from "./SocialCard";
 import { Frontmatter } from "./Frontmatter";
 import { TwitterThread } from "./TwitterThread";
-import { Feedback } from "./Feedback";
 
 const Header = () => (
     <Box sx={{ pt: 2 }}>
@@ -26,24 +25,25 @@ export default function Page({ searchParams }) {
     };
 
     return (
-        <Stack spacing={2} maxWidth={900}>
+        <>
             <Header />
 
             <ArticleForm title={title} markdown={markdown} />
             <Box />
+        </>
 
-            {title && markdown ? (
+        /* {title && markdown ? (
                 <Feedback title={title} markdown={markdown} />
-            ) : null}
-            {title ? <CLICopyPasta title={title} /> : null}
-            {title ? <SocialCard title={title} /> : null}
-            {title && markdown ? (
-                <Frontmatter title={title} markdown={markdown} />
-            ) : null}
-            {title && markdown ? (
-                <TwitterThread title={title} markdown={markdown} />
-            ) : null}
-            <Box p={5}></Box>
-        </Stack>
+            ) : null} */
+        //     {title ? <CLICopyPasta title={title} /> : null}
+        //     {title ? <SocialCard title={title} /> : null}
+        //     {title && markdown ? (
+        //         <Frontmatter title={title} markdown={markdown} />
+        //     ) : null}
+        //     {title && markdown ? (
+        //         <TwitterThread title={title} markdown={markdown} />
+        //     ) : null}
+        //     <Box p={5}></Box>
+        // </Stack>
     );
 }
