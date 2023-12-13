@@ -1,7 +1,6 @@
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import { ArticleForm } from "./ArticleForm";
-import { Frontmatter } from "./Frontmatter";
 import { TwitterThread } from "./TwitterThread";
 
 const Header = () => (
@@ -29,9 +28,6 @@ export default function Page({ searchParams }) {
             <Box />
         </>
 
-        //     {title && markdown ? (
-        //         <Frontmatter title={title} markdown={markdown} />
-        //     ) : null}
         //     {title && markdown ? (
         //         <TwitterThread title={title} markdown={markdown} />
         //     ) : null}
