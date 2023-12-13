@@ -3,9 +3,9 @@ import Skeleton from "@mui/joy/Skeleton";
 import Typography from "@mui/joy/Typography";
 import { format } from "date-fns";
 import { FC, Suspense } from "react";
-import { fetchSocialCard } from "./SocialCard";
-import { CopyableCard } from "../components/CopyableCard";
-import { createDescription } from "../aistuff/createDescription";
+import { fetchSocialCard } from "../@socialcard/page";
+import { CopyableCard } from "../../components/CopyableCard";
+import { createDescription } from "../../aistuff/createDescription";
 
 const FrontmatterContent: FC<{ title: string; markdown: string }> = async ({
     title,
@@ -37,27 +37,19 @@ hero: ./img/${heroURL}
     );
 };
 
-const Loading = () => (
-    <Card>
-        <Typography level="title-lg">
-            Copy frontmatter into ./index.mdx to set meta data
-        </Typography>
-        <Skeleton variant="text" level="body-md" />
-        <Skeleton variant="text" level="body-md" />
-        <Skeleton variant="text" level="body-md" width="30%" />
-        <Skeleton variant="text" level="body-md" width="60%" />
-    </Card>
-);
+export default function Frontmatter({ searchParams }) {
+    const { title, markdown } = searchParams as {
+        title?: string;
+        markdown?: string;
+    };
 
-export const Frontmatter: FC<{ title: string; markdown: string }> = ({
-    title,
-    markdown,
-}) => {
-    return (
-        <Suspense fallback={<Loading />}>
+    if (title && markdown) {
+        return (
             <CopyableCard title="Copy frontmatter into ./index.mdx to set meta data">
                 <FrontmatterContent title={title} markdown={markdown} />
             </CopyableCard>
-        </Suspense>
-    );
-};
+        );
+    } else {
+        return null;
+    }
+}

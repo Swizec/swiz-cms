@@ -5,9 +5,9 @@ import { FC, Suspense } from "react";
 import Box from "@mui/joy/Box";
 import CardContent from "@mui/joy/CardContent";
 import Markdown from "react-markdown";
-import { getKeyInsight } from "../aistuff/getKeyInsight";
-import { CopyableCard } from "../components/CopyableCard";
-import { askForFeedback } from "../aistuff/askForFeedback";
+import { getKeyInsight } from "../../aistuff/getKeyInsight";
+import { CopyableCard } from "../../components/CopyableCard";
+import { askForFeedback } from "../../aistuff/askForFeedback";
 
 const Loading: FC<{ title: string }> = ({ title }) => (
     <Card>
@@ -68,18 +68,28 @@ const Improvements: FC<{ title: string; markdown: string }> = async ({
     );
 };
 
-export const Feedback: FC<{ title: string; markdown: string }> = ({
-    title,
-    markdown,
-}) => {
-    return (
-        <>
-            <Suspense fallback={<Loading title="Did you make a point?" />}>
-                <KeyInsight title={title} markdown={markdown} />
-            </Suspense>
-            <Suspense fallback={<Loading title="What can be improved?" />}>
-                <Improvements title={title} markdown={markdown} />
-            </Suspense>
-        </>
-    );
-};
+export default function Feedback({
+    // title,
+    // markdown,
+    searchParams,
+}) {
+    const { title, markdown } = searchParams as {
+        title?: string;
+        markdown?: string;
+    };
+
+    if (title && markdown) {
+        return (
+            <>
+                <Suspense fallback={<Loading title="Did you make a point?" />}>
+                    <KeyInsight title={title} markdown={markdown} />
+                </Suspense>
+                <Suspense fallback={<Loading title="What can be improved?" />}>
+                    <Improvements title={title} markdown={markdown} />
+                </Suspense>
+            </>
+        );
+    } else {
+        return null;
+    }
+}

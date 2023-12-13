@@ -1,17 +1,7 @@
-import Card from "@mui/joy/Card";
-import Skeleton from "@mui/joy/Skeleton";
 import Typography from "@mui/joy/Typography";
 import { FC, Suspense } from "react";
-import { createTwitterThread } from "../aistuff/createTwitterThread";
-import { CopyableCard } from "../components/CopyableCard";
-import Box from "@mui/joy/Box";
-
-const Loading = () => (
-    <Card>
-        <Typography level="title-lg">A possible twitter thread</Typography>
-        <Skeleton variant="rectangular" height={350} />
-    </Card>
-);
+import { createTwitterThread } from "../../aistuff/createTwitterThread";
+import { CopyableCard } from "../../components/CopyableCard";
 
 const TwitterThreadContent: FC<{ title: string; markdown: string }> = async ({
     title,
@@ -32,15 +22,19 @@ const TwitterThreadContent: FC<{ title: string; markdown: string }> = async ({
     );
 };
 
-export const TwitterThread: FC<{ title: string; markdown: string }> = ({
-    title,
-    markdown,
-}) => {
-    return (
-        <Suspense fallback={<Loading />}>
+export default function TwitterThread({ searchParams }) {
+    const { title, markdown } = searchParams as {
+        title?: string;
+        markdown?: string;
+    };
+
+    if (title && markdown) {
+        return (
             <CopyableCard title="A possible twitter thread" variant="plain">
                 <TwitterThreadContent title={title} markdown={markdown} />
             </CopyableCard>
-        </Suspense>
-    );
-};
+        );
+    } else {
+        return null;
+    }
+}

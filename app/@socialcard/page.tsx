@@ -34,19 +34,12 @@ const SocialCardImage: FC<{ title: string }> = async ({ title }) => {
     );
 };
 
-const Loading = () => (
-    <Card>
-        <Skeleton variant="text" level="title-lg" />
-        <AspectRatio maxHeight={300}>
-            <Skeleton />
-        </AspectRatio>
-    </Card>
-);
+export default function SocialCard({ searchParams }) {
+    const { title } = searchParams as { title?: string };
 
-export const SocialCard: FC<{ title: string }> = async ({ title }) => {
-    return (
-        <Suspense fallback={<Loading />}>
-            <SocialCardImage title={title} />
-        </Suspense>
-    );
-};
+    if (title) {
+        return <SocialCardImage title={title} />;
+    } else {
+        return null;
+    }
+}
