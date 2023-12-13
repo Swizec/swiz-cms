@@ -14,6 +14,7 @@ export default function RootLayout(props: {
     clicopypasta: React.ReactNode;
     socialcard: React.ReactNode;
     frontmatter: React.ReactNode;
+    twitterthread: React.ReactNode;
 }) {
     return (
         <html lang="en">
@@ -39,6 +40,7 @@ export default function RootLayout(props: {
                                 {props.clicopypasta}
                                 {props.socialcard}
                                 {props.frontmatter}
+                                {props.twitterthread}
 
                                 <Box p={5} />
                             </Stack>

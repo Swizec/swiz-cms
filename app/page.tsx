@@ -1,7 +1,6 @@
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import { ArticleForm } from "./ArticleForm";
-import { TwitterThread } from "./TwitterThread";
 
 const Header = () => (
     <Box sx={{ pt: 2 }}>
@@ -27,11 +26,5 @@ export default function Page({ searchParams }) {
             <ArticleForm title={title} markdown={markdown} />
             <Box />
         </>
-
-        //     {title && markdown ? (
-        //         <TwitterThread title={title} markdown={markdown} />
-        //     ) : null}
-        //     <Box p={5}></Box>
-        // </Stack>
     );
 }

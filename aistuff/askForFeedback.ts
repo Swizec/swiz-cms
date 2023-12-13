@@ -30,7 +30,7 @@ export async function askForFeedback(
         {
             role: "user",
             content:
-                "Suggest some editorial improvements I can make to the article so it delivers the core insight more clearly and better engages readers. Respond in markdown",
+                "Suggest editorial improvements I can make so the article delivers its core insight more clearly and better engages readers. Respond in short bullet points formatted as markdown",
         },
     ];
 
