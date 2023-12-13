@@ -10,6 +10,8 @@ import Stack from "@mui/joy/Stack";
 export default function RootLayout(props: {
     children: React.ReactNode;
     feedback: React.ReactNode;
+    clicopypasta: React.ReactNode;
+    socialcard: React.ReactNode;
 }) {
     return (
         <html lang="en">
@@ -33,6 +35,7 @@ export default function RootLayout(props: {
                                 {props.children}
                                 {props.feedback}
                                 {props.clicopypasta}
+                                {props.socialcard}
                             </Stack>
                         </Grid>
                     </CssVarsProvider>
