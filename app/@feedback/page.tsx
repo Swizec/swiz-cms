@@ -5,6 +5,7 @@ import { FC, Suspense } from "react";
 import Box from "@mui/joy/Box";
 import CardContent from "@mui/joy/CardContent";
 import Markdown from "react-markdown";
+import { OpenAIStream } from "ai";
 import { getKeyInsight } from "../../aistuff/getKeyInsight";
 import { CopyableCard } from "../../components/CopyableCard";
 import { askForFeedback } from "../../aistuff/askForFeedback";
@@ -47,11 +48,35 @@ const KeyInsight: FC<{ title: string; markdown: string }> = async ({
     );
 };
 
+async function Reader({
+    reader,
+}: {
+    reader: ReadableStreamDefaultReader<any>;
+}) {
+    const { done, value } = await reader.read();
+
+    if (done) {
+        return null;
+    }
+
+    const text = new TextDecoder().decode(value);
+
+    return (
+        <span>
+            {text}
+            <Suspense>
+                <Reader reader={reader} />
+            </Suspense>
+        </span>
+    );
+}
+
 const Improvements: FC<{ title: string; markdown: string }> = async ({
     title,
     markdown,
 }) => {
     const feedback = await askForFeedback(title, markdown);
+    const stream = OpenAIStream(feedback);
 
     return (
         <Card>
@@ -61,7 +86,8 @@ const Improvements: FC<{ title: string; markdown: string }> = async ({
                         What can be improved?
                     </Typography>
 
-                    <Markdown>{feedback}</Markdown>
+                    <Reader reader={stream.getReader()} />
+                    {/* <Markdown>{feedback}</Markdown> */}
                 </Box>
             </CardContent>
         </Card>
