@@ -1,11 +1,10 @@
-import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 import { cleanArticle } from "./_cleanArticle";
+import { ChatCompletionMessageParam } from "openai/resources";
 
-const openai = new OpenAIApi(
-    new Configuration({
-        apiKey: process.env.OPENAI_API_KEY,
-    })
-);
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
 export async function createTwitterThread(
     title: string,
@@ -13,7 +12,7 @@ export async function createTwitterThread(
 ): Promise<string[]> {
     const cleanContent = await cleanArticle(content);
 
-    const messages: ChatCompletionRequestMessage[] = [
+    const messages: ChatCompletionMessageParam[] = [
         {
             role: "system",
             content:
@@ -34,18 +33,18 @@ export async function createTwitterThread(
         },
     ];
 
-    const threadCompletion = await openai.createChatCompletion({
+    const threadCompletion = await openai.chat.completions.create({
         model: "gpt-4",
         messages,
         temperature: 0.6,
         max_tokens: 800,
     });
 
-    if (!threadCompletion.data.choices[0].message) {
+    if (!threadCompletion.choices[0].message.content) {
         throw new Error("something went wrong");
     }
 
-    const thread = threadCompletion.data.choices[0].message.content
+    const thread = threadCompletion.choices[0].message.content
         .trim()
         .split("\n")
         .filter((t) => t.trim().length > 0);

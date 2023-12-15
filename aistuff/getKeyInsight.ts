@@ -1,11 +1,10 @@
-import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 import { cleanArticle } from "./_cleanArticle";
+import { ChatCompletionMessageParam } from "openai/resources";
 
-const openai = new OpenAIApi(
-    new Configuration({
-        apiKey: process.env.OPENAI_API_KEY,
-    })
-);
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
 export async function getKeyInsight(
     title: string,
@@ -13,7 +12,7 @@ export async function getKeyInsight(
 ): Promise<string[]> {
     const cleanContent = await cleanArticle(content);
 
-    let messages: ChatCompletionRequestMessage[] = [
+    let messages: ChatCompletionMessageParam[] = [
         {
             role: "system",
             content: `You just read an article titled ${title}`,
@@ -28,37 +27,37 @@ export async function getKeyInsight(
         },
     ];
 
-    const insight1 = await openai.createChatCompletion({
+    const insight1 = await openai.chat.completions.create({
         model: "gpt-4",
         messages,
         temperature: 0.6,
         max_tokens: 800,
     });
 
-    if (!insight1.data.choices[0].message) {
+    if (!insight1.choices[0].message.content) {
         throw new Error("something went wrong");
     }
 
-    messages.push(insight1.data.choices[0].message);
+    messages.push(insight1.choices[0].message);
     messages.push({
         role: "user",
         content:
             "Turn that insight into a pithy tweet in the style of Swizec Teller",
     });
 
-    const insight2 = await openai.createChatCompletion({
+    const insight2 = await openai.chat.completions.create({
         model: "gpt-4",
         messages,
         temperature: 0.6,
         max_tokens: 800,
     });
 
-    if (!insight2.data.choices[0].message) {
+    if (!insight2.choices[0].message.content) {
         throw new Error("something went wrong");
     }
 
     return [
-        insight1.data.choices[0].message.content.trim(),
-        insight2.data.choices[0].message.content.trim(),
+        insight1.choices[0].message.content.trim(),
+        insight2.choices[0].message.content.trim(),
     ];
 }
