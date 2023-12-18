@@ -5,6 +5,8 @@ import { CopyableCard } from "../../components/CopyableCard";
 import { AIStreamReader } from "../../components/AIStreamReader";
 import { OpenAIStream } from "ai";
 
+export const runtime = "edge";
+
 const TwitterThreadContent: FC<{ title: string; markdown: string }> = async ({
     title,
     markdown,
@@ -26,11 +28,12 @@ const TwitterThreadContent: FC<{ title: string; markdown: string }> = async ({
     );
 };
 
-export default function TwitterThread({ searchParams }) {
-    const { title, markdown } = searchParams as {
-        title?: string;
-        markdown?: string;
-    };
+export default function TwitterThread({
+    searchParams,
+}: {
+    searchParams: Record<string, string>;
+}) {
+    const { title, markdown } = searchParams;
 
     if (title && markdown) {
         return (

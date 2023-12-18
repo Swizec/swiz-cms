@@ -11,6 +11,8 @@ import { CopyableCard } from "../../components/CopyableCard";
 import { askForFeedback } from "../../aistuff/askForFeedback";
 import { AIStreamReader } from "../../components/AIStreamReader";
 
+export const runtime = "edge";
+
 const Loading: FC<{ title: string }> = ({ title }) => (
     <Card>
         <CardContent>
