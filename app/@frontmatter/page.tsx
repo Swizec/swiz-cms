@@ -1,11 +1,9 @@
-import Card from "@mui/joy/Card";
-import Skeleton from "@mui/joy/Skeleton";
 import Typography from "@mui/joy/Typography";
 import { format } from "date-fns";
-import { FC, Suspense } from "react";
-import { fetchSocialCard } from "../@socialcard/page";
+import { FC } from "react";
 import { CopyableCard } from "../../components/CopyableCard";
 import { createDescription } from "../../aistuff/createDescription";
+import { fetchSocialCard } from "../@socialcard/fetchSocialCard";
 
 const FrontmatterContent: FC<{ title: string; markdown: string }> = async ({
     title,
