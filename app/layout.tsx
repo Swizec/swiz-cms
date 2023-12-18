@@ -34,16 +34,18 @@ export default function RootLayout(props: {
                             justifyContent="center"
                             alignItems="center"
                         >
-                            <Stack spacing={2} maxWidth={900}>
-                                {props.children}
-                                {props.feedback}
-                                {props.clicopypasta}
-                                {props.socialcard}
-                                {props.frontmatter}
-                                {props.twitterthread}
+                            <Grid xs={7}>
+                                <Stack spacing={2}>
+                                    {props.children}
+                                    {props.feedback}
+                                    {props.clicopypasta}
+                                    {props.socialcard}
+                                    {props.frontmatter}
+                                    {props.twitterthread}
 
-                                <Box p={5} />
-                            </Stack>
+                                    <Box p={5} />
+                                </Stack>
+                            </Grid>
                         </Grid>
                     </CssVarsProvider>
                 </NextAppDirEmotionCacheProvider>
