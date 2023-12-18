@@ -1,11 +1,9 @@
 import Typography from "@mui/joy/Typography";
 import { FC } from "react";
-import { createTwitterThread } from "../../aistuff/createTwitterThread";
+
 import { CopyableCard } from "../../components/CopyableCard";
 import { AIStreamReader } from "../../components/AIStreamReader";
 import { OpenAIStream } from "ai";
-
-export const runtime = "edge";
 
 const TwitterThreadContent: FC<{ title: string; markdown: string }> = async ({
     title,
