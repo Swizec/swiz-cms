@@ -5,8 +5,6 @@ import { CopyableCard } from "../../components/CopyableCard";
 import { AIStreamReader } from "../../components/AIStreamReader";
 import { OpenAIStream } from "ai";
 
-export const runtime = "edge";
-
 const TwitterThreadContent: FC<{ title: string; markdown: string }> = async ({
     title,
     markdown,
