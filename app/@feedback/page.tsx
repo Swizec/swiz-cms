@@ -9,6 +9,7 @@ import { OpenAIStream } from "ai";
 import { getKeyInsight } from "../../aistuff/getKeyInsight";
 import { CopyableCard } from "../../components/CopyableCard";
 import { askForFeedback } from "../../aistuff/askForFeedback";
+import { AIStreamReader } from "../../components/AIStreamReader";
 
 const Loading: FC<{ title: string }> = ({ title }) => (
     <Card>
@@ -48,29 +49,6 @@ const KeyInsight: FC<{ title: string; markdown: string }> = async ({
     );
 };
 
-async function Reader({
-    reader,
-}: {
-    reader: ReadableStreamDefaultReader<any>;
-}) {
-    const { done, value } = await reader.read();
-
-    if (done) {
-        return null;
-    }
-
-    const text = new TextDecoder().decode(value);
-
-    return (
-        <span>
-            {text}
-            <Suspense>
-                <Reader reader={reader} />
-            </Suspense>
-        </span>
-    );
-}
-
 const Improvements: FC<{ title: string; markdown: string }> = async ({
     title,
     markdown,
@@ -86,7 +64,7 @@ const Improvements: FC<{ title: string; markdown: string }> = async ({
                         What can be improved?
                     </Typography>
 
-                    <Reader reader={stream.getReader()} />
+                    <AIStreamReader reader={stream.getReader()} />
                     {/* <Markdown>{feedback}</Markdown> */}
                 </Box>
             </CardContent>
@@ -94,11 +72,7 @@ const Improvements: FC<{ title: string; markdown: string }> = async ({
     );
 };
 
-export default function Feedback({
-    // title,
-    // markdown,
-    searchParams,
-}) {
+export default function Feedback({ searchParams }) {
     const { title, markdown } = searchParams as {
         title?: string;
         markdown?: string;

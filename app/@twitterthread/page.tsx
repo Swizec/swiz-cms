@@ -1,23 +1,27 @@
 import Typography from "@mui/joy/Typography";
-import { FC, Suspense } from "react";
+import { FC } from "react";
 import { createTwitterThread } from "../../aistuff/createTwitterThread";
 import { CopyableCard } from "../../components/CopyableCard";
+import { AIStreamReader } from "../../components/AIStreamReader";
+import { OpenAIStream } from "ai";
 
 const TwitterThreadContent: FC<{ title: string; markdown: string }> = async ({
     title,
     markdown,
 }) => {
     const thread = await createTwitterThread(title, markdown);
+    const stream = OpenAIStream(thread);
 
     return (
         <Typography level="body-sm">
-            {thread.map((tweet, i) => (
+            <AIStreamReader reader={stream.getReader()} />
+            {/* {thread.map((tweet, i) => (
                 <Typography key={i}>
                     {tweet}
                     <br />
                     <br />
                 </Typography>
-            ))}
+            ))} */}
         </Typography>
     );
 };

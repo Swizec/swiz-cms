@@ -6,10 +6,7 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
-export async function createTwitterThread(
-    title: string,
-    content: string
-): Promise<string[]> {
+export async function createTwitterThread(title: string, content: string) {
     const cleanContent = await cleanArticle(content);
 
     const messages: ChatCompletionMessageParam[] = [
@@ -38,24 +35,27 @@ export async function createTwitterThread(
         messages,
         temperature: 0.6,
         max_tokens: 800,
+        stream: true,
     });
 
-    if (!threadCompletion.choices[0].message.content) {
-        throw new Error("something went wrong");
-    }
+    return threadCompletion;
 
-    const thread = threadCompletion.choices[0].message.content
-        .trim()
-        .split("\n")
-        .filter((t) => t.trim().length > 0);
+    // if (!threadCompletion.choices[0].message.content) {
+    //     throw new Error("something went wrong");
+    // }
 
-    return thread
-        .map((t) =>
-            t
-                .trim()
-                .replace(/^\d+\W\d*/, "")
-                .replace(/^[\s\W]+/, "")
-                .trim()
-        )
-        .map((t, i) => `${i + 1}. ${t}`);
+    // const thread = threadCompletion.choices[0].message.content
+    //     .trim()
+    //     .split("\n")
+    //     .filter((t) => t.trim().length > 0);
+
+    // return thread
+    //     .map((t) =>
+    //         t
+    //             .trim()
+    //             .replace(/^\d+\W\d*/, "")
+    //             .replace(/^[\s\W]+/, "")
+    //             .trim()
+    //     )
+    //     .map((t, i) => `${i + 1}. ${t}`);
 }
