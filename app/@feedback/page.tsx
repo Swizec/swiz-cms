@@ -12,7 +12,8 @@ import { askForFeedback } from "../../aistuff/askForFeedback";
 import { AIStreamReader } from "../../components/AIStreamReader";
 import LZString from "lz-string";
 
-export const runtime = "edge";
+// export const runtime = "edge";
+export const maxDuration = 60;
 
 const Loading: FC<{ title: string }> = ({ title }) => (
     <Card>
