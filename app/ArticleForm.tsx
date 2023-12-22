@@ -17,9 +17,10 @@ export const ArticleForm: FC<{ title?: string; markdown?: string }> = ({
         event.preventDefault();
 
         const title = event.target.querySelector("[name=title]").value;
-        const markdown = LZString.compressToEncodedURIComponent(
-            event.target.querySelector("[name=markdown]").value
-        );
+        const markdown =
+            /*LZString.compressToEncodedURIComponent(*/
+            event.target.querySelector("[name=markdown]").value;
+        // );
 
         window.location.href = `?title=${title}&markdown=${markdown}`;
     }
