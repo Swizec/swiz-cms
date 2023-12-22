@@ -10,6 +10,7 @@ import { getKeyInsight } from "../../aistuff/getKeyInsight";
 import { CopyableCard } from "../../components/CopyableCard";
 import { askForFeedback } from "../../aistuff/askForFeedback";
 import { AIStreamReader } from "../../components/AIStreamReader";
+import LZString from "lz-string";
 
 export const runtime = "edge";
 
@@ -75,10 +76,12 @@ const Improvements: FC<{ title: string; markdown: string }> = async ({
 };
 
 export default function Feedback({ searchParams }) {
-    const { title, markdown } = searchParams as {
+    let { title, markdown } = searchParams as {
         title?: string;
         markdown?: string;
     };
+
+    markdown = markdown && LZString.decompressFromEncodedURIComponent(markdown);
 
     if (title && markdown) {
         return (

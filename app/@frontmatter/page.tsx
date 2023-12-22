@@ -1,6 +1,7 @@
 import Typography from "@mui/joy/Typography";
 import { format } from "date-fns";
 import { FC } from "react";
+import LZString from "lz-string";
 import { CopyableCard } from "../../components/CopyableCard";
 import { createDescription } from "../../aistuff/createDescription";
 import { fetchSocialCard } from "../@socialcard/fetchSocialCard";
@@ -36,10 +37,12 @@ hero: ./img/${heroURL}
 };
 
 export default function Frontmatter({ searchParams }) {
-    const { title, markdown } = searchParams as {
+    let { title, markdown } = searchParams as {
         title?: string;
         markdown?: string;
     };
+
+    markdown = markdown && LZString.decompressFromEncodedURIComponent(markdown);
 
     if (title && markdown) {
         return (

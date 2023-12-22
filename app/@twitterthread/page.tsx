@@ -4,9 +4,10 @@ import { createTwitterThread } from "../../aistuff/createTwitterThread";
 import { CopyableCard } from "../../components/CopyableCard";
 import { AIStreamReader } from "../../components/AIStreamReader";
 import { OpenAIStream } from "ai";
+import LZString from "lz-string";
 
-// export const runtime = "edge";
-export const maxDuration = 30;
+// export const maxDuration = 60;
+export const runtime = "edge";
 
 const TwitterThreadContent: FC<{ title: string; markdown: string }> = async ({
     title,
@@ -34,7 +35,9 @@ export default function TwitterThread({
 }: {
     searchParams: Record<string, string>;
 }) {
-    const { title, markdown } = searchParams;
+    let { title, markdown } = searchParams;
+
+    markdown = markdown && LZString.decompressFromEncodedURIComponent(markdown);
 
     if (title && markdown) {
         return (
