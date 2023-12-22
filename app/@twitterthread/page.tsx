@@ -6,8 +6,8 @@ import { AIStreamReader } from "../../components/AIStreamReader";
 import { OpenAIStream } from "ai";
 import LZString from "lz-string";
 
-export const maxDuration = 60;
-// export const runtime = "edge";
+// export const maxDuration = 60;
+export const runtime = "edge";
 
 const TwitterThreadContent: FC<{ title: string; markdown: string }> = async ({
     title,

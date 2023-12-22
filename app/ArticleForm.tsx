@@ -1,3 +1,4 @@
+"use client";
 import Stack from "@mui/joy/Stack";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
@@ -13,13 +14,13 @@ export const ArticleForm: FC<{ title?: string; markdown?: string }> = ({
     markdown,
 }) => {
     async function compressInputValues(formData: FormData) {
-        "use server";
+        // "use server";
         const title = formData.get("title");
         const markdown = LZString.compressToEncodedURIComponent(
             formData.get("markdown") as string
         );
 
-        redirect(`?title=${title}&markdown=${markdown}`);
+        window.location.href = `?title=${title}&markdown=${markdown}`;
     }
 
     return (

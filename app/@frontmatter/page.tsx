@@ -6,6 +6,8 @@ import { CopyableCard } from "../../components/CopyableCard";
 import { createDescription } from "../../aistuff/createDescription";
 import { fetchSocialCard } from "../@socialcard/fetchSocialCard";
 
+export const runtime = "edge";
+
 const FrontmatterContent: FC<{ title: string; markdown: string }> = async ({
     title,
     markdown,
