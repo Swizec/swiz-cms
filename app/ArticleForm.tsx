@@ -13,18 +13,19 @@ export const ArticleForm: FC<{ title?: string; markdown?: string }> = ({
     title,
     markdown,
 }) => {
-    async function compressInputValues(formData: FormData) {
-        // "use server";
-        const title = formData.get("title");
+    function onSubmit(event) {
+        event.preventDefault();
+
+        const title = event.target.querySelector("[name=title]").value;
         const markdown = LZString.compressToEncodedURIComponent(
-            formData.get("markdown") as string
+            event.target.querySelector("[name=markdown]").value
         );
 
         window.location.href = `?title=${title}&markdown=${markdown}`;
     }
 
     return (
-        <form method="get" action={compressInputValues}>
+        <form method="get" onSubmit={onSubmit}>
             <Stack spacing={2}>
                 <Box>
                     <FormLabel>Title</FormLabel>
