@@ -1,11 +1,12 @@
-import Card from "@mui/joy/Card";
-import Skeleton from "@mui/joy/Skeleton";
 import Typography from "@mui/joy/Typography";
 import { format } from "date-fns";
-import { FC, Suspense } from "react";
-import { fetchSocialCard } from "../@socialcard/page";
+import { FC } from "react";
+import LZString from "lz-string";
 import { CopyableCard } from "../../components/CopyableCard";
 import { createDescription } from "../../aistuff/createDescription";
+import { fetchSocialCard } from "../@socialcard/fetchSocialCard";
+
+export const runtime = "edge";
 
 const FrontmatterContent: FC<{ title: string; markdown: string }> = async ({
     title,
@@ -38,10 +39,12 @@ hero: ./img/${heroURL}
 };
 
 export default function Frontmatter({ searchParams }) {
-    const { title, markdown } = searchParams as {
+    let { title, markdown } = searchParams as {
         title?: string;
         markdown?: string;
     };
+
+    markdown = markdown && LZString.decompressFromEncodedURIComponent(markdown);
 
     if (title && markdown) {
         return (

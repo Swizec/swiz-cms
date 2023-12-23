@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import Alert from "@mui/joy/Alert";
 import ReportIcon from "@mui/icons-material/Report";
 import Button from "@mui/joy/Button";
-import Typography from "@mui/joy/Typography";
 
 export default function Error({
     error,
