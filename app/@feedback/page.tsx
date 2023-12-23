@@ -4,7 +4,6 @@ import Typography from "@mui/joy/Typography";
 import { FC, Suspense } from "react";
 import Box from "@mui/joy/Box";
 import CardContent from "@mui/joy/CardContent";
-import Markdown from "react-markdown";
 import { OpenAIStream } from "ai";
 import { getKeyInsight } from "../../aistuff/getKeyInsight";
 import { CopyableCard } from "../../components/CopyableCard";
