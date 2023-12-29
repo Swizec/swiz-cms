@@ -10,6 +10,7 @@ import Box from "@mui/joy/Box";
 
 export default function RootLayout(props: {
     children: React.ReactNode;
+    relatedarticles: React.ReactNode;
     feedback: React.ReactNode;
     clicopypasta: React.ReactNode;
     socialcard: React.ReactNode;
@@ -37,6 +38,7 @@ export default function RootLayout(props: {
                             <Grid xs={7}>
                                 <Stack spacing={2}>
                                     {props.children}
+                                    {props.relatedarticles}
                                     {props.feedback}
                                     {props.clicopypasta}
                                     {props.socialcard}
