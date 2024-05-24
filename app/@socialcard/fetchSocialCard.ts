@@ -2,7 +2,7 @@ export async function fetchSocialCard(
     title: string
 ): Promise<{ status: string; url: string }> {
     const res = await fetch(
-        `https://pifc233qp6.execute-api.us-east-1.amazonaws.com/dev/social-card?title=${title}`,
+        `https://mskj2vd0r9.execute-api.us-east-1.amazonaws.com/dev2/social-card?title=${title}`,
         { cache: "force-cache" }
     );
 
