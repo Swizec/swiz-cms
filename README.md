@@ -75,3 +75,34 @@ Live results can change with model behavior or published content; this small sam
 The generated MDX uses `pages/blog/<slug>/index.mdx`, comma-separated `categories`, an escaped description, and an optional `content_upgrade` field. Selecting **None** omits the upgrade field. If the draft changes after metadata generation, review or regenerate the values before copying the file. Terminal commands check out `master` in the blog repository, create the article directory and its `img` subdirectory with one `mkdir -p`, and touch the file without overwriting existing contents. Each step runs only if the previous step succeeds.
 
 The recommended development and CI runtime is Node.js 26 LTS (`nvm use`). CI installs from `package-lock.json`, typechecks, runs tests, and builds without API credentials. Live model/database checks are separate from CI.
+
+## Historical backtest
+
+The November 14, 2026 backtest freezes classifier commit `8e35d8a` and runs all 579 eligible posts from the ten-year archive, excluding 228 category-definition sources and the 16 earlier evaluation posts. Only the title and full Markdown body enter the model. Historical tags and upgrades are scored afterward. All 579 posts were classified successfully; the classifier was not changed during the run.
+
+| Historical agreement metric       |            Result |
+| --------------------------------- | ----------------: |
+| Category precision                |             28.7% |
+| Category recall                   |             51.7% |
+| Category micro F1                 |             36.9% |
+| Exact category set                |           0 / 544 |
+| Explicit content-upgrade accuracy | 124 / 146 (84.9%) |
+| SeniorMindset correctly recovered | 107 / 114 (93.9%) |
+| ScalingFast correctly recovered   |   17 / 32 (53.1%) |
+
+Category metrics exclude 35 posts with no topic labels. Predictions average 4.85 categories versus 2.70 saved categories, and 91.2% hit the five-category cap. Extra generic labels such as `Lesson`, `Insights`, and `Tutorial` account for many mismatches. Some extra labels are reasonable subjects absent from the historical tags, so agreement is not the same as editorial correctness.
+
+The upgrade accuracy above applies only to explicit labels for the two supported books. Always choosing SeniorMindset would get 78.1% on that subset; balanced accuracy is 73.5%. The latest two years score 22/37 (59.5%), and 2026 alone scores 4/17 (23.5%), with many saved ScalingFast labels classified as SeniorMindset. Of 389 posts without an upgrade, the model suggests a book for 298 and none for 91. Treating every missing value as none gives 40.2% agreement across 535 posts, but missing metadata is not a confirmed negative. Another 44 posts use unsupported historical offers and are excluded from upgrade accuracy.
+
+The earlier 20 live regression checks cover selected required topics and exclusions; they are not an accuracy estimate. This broader backtest exposes over-selection and weak separation between the books. It measures one run against the current archive labels, which can reflect publication campaigns and historical editorial choices.
+
+The [full metrics](reports/classifier-backtest-2026-11-14.json) include the confusion matrices, per-category counts, yearly results, input hashes, model, and source commit. The [per-post CSV](reports/classifier-backtest-2026-11-14.csv) contains every saved and predicted label for audit, without article bodies.
+
+To rerun on a labelled JSON archive:
+
+```sh
+BACKTEST_CORPUS=/path/to/archive.json BACKTEST_OUTPUT=/tmp/classifier-backtest.jsonl npm run backtest:classifier
+node --experimental-strip-types scripts/backtest-metrics.ts /tmp/classifier-backtest.jsonl /tmp/classifier-backtest.json
+```
+
+Each input record has `slug`, `url`, `title`, `body` (Markdown without YAML frontmatter), `published` (YYYY-MM-DD), canonical `categories`, `hasContentUpgrade` (whether the frontmatter key exists), and `contentUpgradeRaw` (the saved string or null). The runner filters the date window and excludes definition/development articles automatically. It uses four concurrent workers, checkpoints every result, and only resumes when all input fingerprints match. It makes paid API calls and is skipped in ordinary tests and CI. The metrics command also writes a per-post CSV.
