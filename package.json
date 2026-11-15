@@ -16,6 +16,7 @@
     "@neondatabase/serverless": "^1.2.1",
     "@sindresorhus/slugify": "^4.0.1",
     "ai": "^7.0.173",
+    "cheerio": "^1.2.0",
     "js-tiktoken": "^1.0.21",
     "next": "^16.4.6",
     "openai": "^7.57.0",

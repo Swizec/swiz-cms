@@ -2,6 +2,15 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { streamText } from "ai";
 import { POST } from "../app/api/feedback/route";
 import { feedbackPrompt } from "../lib/article";
+import {
+  loadFeedbackContext,
+  FEEDBACK_GUIDANCE,
+} from "../lib/server/feedback-context";
+
+vi.mock("../lib/server/feedback-context", async (original) => ({
+  ...(await original<typeof import("../lib/server/feedback-context")>()),
+  loadFeedbackContext: vi.fn(async () => ({ articles: [], incomplete: true })),
+}));
 
 vi.mock("ai", async (original) => ({
   ...(await original<typeof import("ai")>()),
@@ -36,7 +45,12 @@ describe("feedback", () => {
     );
     const response = await POST(
       request([
-        text("1", "user", prompt),
+        {
+          ...text("1", "user", prompt),
+          metadata: {
+            draft: { title: "A draft", body: "The **actual** body." },
+          },
+        },
         text("2", "assistant", "The central argument could be clearer."),
         text("3", "user", "Which argument do you mean?"),
       ]),
@@ -46,7 +60,9 @@ describe("feedback", () => {
       expect.objectContaining({
         model: expect.objectContaining({ modelId: "gpt-6-astra" }),
         providerOptions: { openai: { reasoningEffort: "high", store: false } },
+        system: FEEDBACK_GUIDANCE,
         messages: [
+          { role: "user", content: expect.stringContaining('"articles":[]') },
           { role: "user", content: [{ type: "text", text: prompt }] },
           {
             role: "assistant",
@@ -61,6 +77,66 @@ describe("feedback", () => {
         ],
       }),
     );
+  });
+  it("reuses the review's excerpts on follow-ups instead of retrieving a different history", async () => {
+    vi.stubEnv("OPENAI_API_KEY", "test-key");
+    const draft = { title: "A draft", body: "A specific story." };
+    const context = {
+      articles: [
+        {
+          title: "An older story",
+          url: "https://swizec.com/blog/older-story",
+          published: "2025-06-25",
+          kind: "related",
+          excerpt: "The actual words from an older post.",
+          truncated: false,
+        },
+      ],
+      incomplete: false,
+    };
+    const response = await POST(
+      request([
+        { ...text("1", "user", feedbackPrompt(draft)), metadata: { draft } },
+        {
+          ...text("2", "assistant", "That connects to your older story."),
+          metadata: { context },
+        },
+        text("3", "user", "What has changed since that post?"),
+      ]),
+    );
+    expect(response.status).toBe(200);
+    expect(loadFeedbackContext).not.toHaveBeenCalled();
+    expect(streamText).toHaveBeenCalledWith(
+      expect.objectContaining({
+        messages: expect.arrayContaining([
+          {
+            role: "user",
+            content: expect.stringContaining(
+              "The actual words from an older post.",
+            ),
+          },
+          {
+            role: "user",
+            content: [
+              { type: "text", text: "What has changed since that post?" },
+            ],
+          },
+        ]),
+      }),
+    );
+  });
+  it("rejects a different draft hidden in metadata", async () => {
+    vi.stubEnv("OPENAI_API_KEY", "test-key");
+    const response = await POST(
+      request([
+        {
+          ...text("1", "user", "Review this"),
+          metadata: { draft: { title: "Another title", body: "Another body" } },
+        },
+      ]),
+    );
+    expect(response.status).toBe(400);
+    expect(loadFeedbackContext).not.toHaveBeenCalled();
   });
   it("rejects malformed messages before invoking a model", async () => {
     const response = await POST(
