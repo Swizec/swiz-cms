@@ -20,7 +20,7 @@ export const ArticleForm: FC<{ title?: string; markdown?: string }> = ({
             event.target.querySelector("[name=markdown]").value
         );
 
-        window.location.href = `?title=${title}&markdown=${markdown}`;
+        window.location.href = `?title=${encodeURIComponent(title)}&markdown=${markdown}`;
     }
 
     return (

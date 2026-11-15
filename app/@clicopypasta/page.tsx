@@ -1,10 +1,11 @@
+import type { ArticlePageProps } from "../../lib/article-params";
 import Typography from "@mui/joy/Typography";
 
 import slugify from "@sindresorhus/slugify";
 import { CopyableCard } from "../../components/CopyableCard";
 
-export default function CLICopyPasta({ searchParams }) {
-    const { title } = searchParams as { title?: string };
+export default async function CLICopyPasta({ searchParams }: ArticlePageProps) {
+    const { title } = (await searchParams) as { title?: string };
 
     if (!title) {
         return null;

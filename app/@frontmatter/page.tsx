@@ -1,3 +1,4 @@
+import type { ArticlePageProps } from "../../lib/article-params";
 import Typography from "@mui/joy/Typography";
 import { format } from "date-fns";
 import { FC } from "react";
@@ -6,7 +7,6 @@ import { CopyableCard } from "../../components/CopyableCard";
 import { createDescription } from "../../aistuff/createDescription";
 import { fetchSocialCard } from "../@socialcard/fetchSocialCard";
 
-export const runtime = "edge";
 
 const FrontmatterContent: FC<{ title: string; markdown: string }> = async ({
     title,
@@ -38,8 +38,8 @@ hero: ./img/${heroURL}
     );
 };
 
-export default function Frontmatter({ searchParams }) {
-    let { title, markdown } = searchParams as {
+export default async function Frontmatter({ searchParams }: ArticlePageProps) {
+    let { title, markdown } = (await searchParams) as {
         title?: string;
         markdown?: string;
     };

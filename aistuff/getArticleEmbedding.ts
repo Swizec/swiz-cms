@@ -1,16 +1,13 @@
-import OpenAI from "openai";
 import { cleanArticle } from "./_cleanArticle";
-
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+import { getOpenAI } from "../lib/openai";
+import { EMBEDDING_MODEL } from "../lib/models";
 
 export async function getArticleEmbedding(content: string): Promise<number[]> {
     const cleanContent = await cleanArticle(content);
 
-    const res = await openai.embeddings.create({
+    const res = await getOpenAI().embeddings.create({
         input: cleanContent.toString(),
-        model: "text-embedding-ada-002",
+        model: EMBEDDING_MODEL,
     });
 
     return res.data[0].embedding;

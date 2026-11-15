@@ -1,45 +1,43 @@
 {
-    "name": "swiz-cms",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start"
-    },
-    "dependencies": {
-        "@emotion/react": "^11.11.1",
-        "@emotion/styled": "^11.11.0",
-        "@fontsource/inter": "^5.0.15",
-        "@mui/icons-material": "^5.15.0",
-        "@mui/joy": "^5.0.0-beta.15",
-        "@mui/material": "^5.15.0",
-        "@sindresorhus/slugify": "^2.2.1",
-        "@theme-ui/mdx": "^0.15.3",
-        "@theme-ui/presets": "^0.15.3",
-        "@vercel/postgres": "^0.5.1",
-        "ai": "^2.2.29",
-        "date-fns": "^2.30.0",
-        "lz-string": "^1.5.0",
-        "next": "^14.0.3",
-        "openai": "^4.22.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-hook-form": "^6.7.0",
-        "react-markdown": "^9.0.1",
-        "react-query": "^2.12.1",
-        "react-query-devtools": "^2.4.4",
-        "regenerator-runtime": "^0.13.7",
-        "remark": "^14.0.2",
-        "strip-markdown": "^5.0.0",
-        "theme-ui": "^0.15.1",
-        "tss-react": "^4.9.3",
-        "unist-util-visit": "^4.1.1"
-    },
-    "devDependencies": {
-        "@types/node": "^20.10.4",
-        "@types/pako": "^2.0.3",
-        "@types/react": "^18.2.43",
-        "typescript": "^5.3.3"
-    }
+  "name": "swiz-cms",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^4.0.118",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@fontsource/inter": "^5.3.0",
+    "@mui/icons-material": "^9.5.0",
+    "@mui/joy": "5.0.0-beta.52",
+    "@mui/material": "^9.5.0",
+    "@neondatabase/serverless": "^1.2.1",
+    "@sindresorhus/slugify": "^4.0.1",
+    "ai": "^7.0.173",
+    "date-fns": "^4.4.0",
+    "lz-string": "^1.5.0",
+    "next": "^16.4.6",
+    "openai": "^7.57.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-markdown": "^10.1.0",
+    "remark": "^15.0.1",
+    "tss-react": "^4.9.21",
+    "unist-util-visit": "^5.2.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  }
 }

@@ -1,3 +1,4 @@
+import type { ArticlePageProps } from "../../lib/article-params";
 import Card from "@mui/joy/Card";
 import Typography from "@mui/joy/Typography";
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -19,8 +20,8 @@ const SocialCardImage: FC<{ title: string }> = async ({ title }) => {
     );
 };
 
-export default function SocialCard({ searchParams }) {
-    const { title } = searchParams as { title?: string };
+export default async function SocialCard({ searchParams }: ArticlePageProps) {
+    const { title } = (await searchParams) as { title?: string };
 
     if (title) {
         return <SocialCardImage title={title} />;

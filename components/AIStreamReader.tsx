@@ -3,7 +3,7 @@ import { Suspense } from "react";
 export async function AIStreamReader({
     reader,
 }: {
-    reader: ReadableStreamDefaultReader<any>;
+    reader: ReadableStreamDefaultReader<string>;
 }) {
     const { done, value } = await reader.read();
 
@@ -11,7 +11,7 @@ export async function AIStreamReader({
         return null;
     }
 
-    const text = new TextDecoder().decode(value);
+    const text = value;
 
     return (
         <>
