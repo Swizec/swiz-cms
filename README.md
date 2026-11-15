@@ -48,13 +48,29 @@ Run `npm test` for request validation and conversation regression checks.
 
 ## Publishing suggestions
 
-**Suggest metadata** runs three tasks in parallel with GPT-6 Luna:
+**Suggest metadata** runs two tasks in parallel with GPT-6 Luna:
 
 - The Responses API selects indexes of one or two representative sentences. The server copies those sentences from the Markdown's plain text; it never substitutes model-written prose.
-- The [Decisions API](https://developers.openai.com/api/docs/guides/decisions) chooses `SeniorMindset`, `ScalingFast`, or no content upgrade.
-- The Responses API selects categories together using Structured Outputs constrained to the hardcoded list. It chooses up to five distinct, relevant topics, preserving the model's order and avoiding redundant umbrella labels. Category guidance explains that `AI` includes coding agents and their impact on engineering, while `review` means reviews and retrospectives rather than code review. Suggestions are editable; no category is required.
+- The [Decisions API](https://developers.openai.com/api/docs/guides/decisions) chooses the content upgrade (`SeniorMindset`, `ScalingFast`, or none) and categories. Every category is a native `choice` option with its own definition and applicability criteria. It selects the best additional category, sees what is already covered, and can stop when another label would be incidental or redundant. There are at most five sequential choices; the upgrade shares the first request. Suggestions remain editable and no category is required.
 
-`lib/categories.ts` contains all 284 category names from [swizec.com/categories](https://swizec.com/categories), retrieved on November 14, 2026. Refresh this file manually. There is no runtime scraping or category database.
+`lib/categories.ts` contains 132 categories used in 823 published posts from **November 14, 2016 through November 14, 2026**. The ten-year window applies to post publication dates. Older categories, including `review`, are excluded from both suggestions and the manual picker. `Uncategorized` remains a manual fallback and is not an automatic suggestion.
+
+`lib/server/category-catalog.json` defines every category using its recent archive posts and the blog's curated category introductions where available. Each entry records supporting URLs and publication dates. The definitions were drafted from archive excerpts and reviewed, including ambiguous names and named series. Historical tags are evidence, not perfect labels. Refresh the list, window, and definitions together manually; there is no runtime scraping or category database.
+
+Category selection compares meanings directly instead of sorting independent confidence scores. Later choices consider earlier choices to avoid spending all five slots on overlapping labels. Missing, refused, invalid, or repeated decisions fail the request so the user can retry instead of receiving a silently incomplete result.
+
+The opt-in live evaluation uses 16 recent articles covering engineering, React, databases, serverless, leadership, books, retrospectives, travel, creative writing, careers, programming, immigration, and overcommitment. These articles are excluded from the definition sources. It checks a few essential categories and clear exclusions rather than requiring an exact historical tag set. Four additional synthetic controls cover an incidental AI-tool mention, human-only code review, health, and freelance contracts. Ordinary tests verify catalog coverage, dates, the native choice contract, stopping, cancellation propagation, and error handling without API calls.
+
+```sh
+# Uses OPENAI_API_KEY from .env.local; fetches the published articles and makes paid API calls.
+npm run eval:categories
+
+# Optional: use full Markdown bodies from a local JSON archive, without frontmatter.
+# Corpus shape: [{ "slug": "...", "title": "...", "body": "..." }]
+CATEGORY_EVAL_CORPUS=/path/to/posts.json CATEGORY_EVAL_RESULTS=/tmp/category-results.json npm run eval:categories
+```
+
+Live results can change with model behavior or published content; this small sample is a regression check, not a claim of accuracy across every category.
 
 The generated MDX uses `pages/blog/<slug>/index.mdx`, comma-separated `categories`, an escaped description, and an optional `content_upgrade` field. Selecting **None** omits the upgrade field. If the draft changes after metadata generation, review or regenerate the values before copying the file. Terminal commands check out `master` in the blog repository, create the article directory and its `img` subdirectory with one `mkdir -p`, and touch the file without overwriting existing contents. Each step runs only if the previous step succeeds.
 

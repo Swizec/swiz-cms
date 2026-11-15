@@ -1,0 +1,30 @@
+[
+  {
+    "id": "incidental-ai-tool",
+    "title": "Making TypeScript tests catch type errors",
+    "body": "Our test suite ran JavaScript emitted by the TypeScript compiler, so the tests never checked their own types. I asked Claude for a link to the documentation, then investigated the build configuration. The fix was to run the tests through ts-jest and run tsc against the test files as part of the check. This preserves source line numbers in failures and catches an incorrect type in a mock before the test executes. We keep a separate test tsconfig that includes the fixtures and test globals. The most useful check is to deliberately pass a string where the function expects a number and confirm the type checker rejects it. Running tests and checking types catch different failures, so the pipeline needs both.",
+    "required": ["TypeScript", "Testing"],
+    "excluded": ["AI", "OpenAI"]
+  },
+  {
+    "id": "human-code-review",
+    "title": "Pair reviews that teach the whole team",
+    "body": "Our engineers now review difficult pull requests in pairs. A junior engineer and a senior engineer read the change together, discuss why the design works, and leave a shared set of comments. We rotate the pair so knowledge spreads beyond the original author. The author joins when they can explain context that is missing from the diff. Nobody is expected to defend every line: we agree on the outcome, separate preferences from problems, and let the author make the final small decisions. Review time is reserved on the team calendar so nobody spends a day waiting for a colleague to respond. After a month, people understood more of the codebase and felt more comfortable asking each other for help.",
+    "required": ["Teamwork"],
+    "excluded": ["AI", "Automation", "review"]
+  },
+  {
+    "id": "health-with-technical-audience",
+    "title": "Sleep and recovery are part of training",
+    "body": "I tracked my sleep while training for a long race. When I slept less, my easy runs felt harder and I struggled to recover before the next workout. I moved bedtime earlier, stopped late caffeine, and made room for a rest day instead of trying to solve fatigue with another hard session. The logs helped me notice a pattern, but they are one person's observations and don't prove a cause. The useful change was paying attention to recovery, nutrition, and how I actually felt. My day job writing software isn't the point here: this is about making physical training sustainable and taking care of my body.",
+    "required": ["Health"],
+    "excluded": ["AI", "Software Engineering", "Testing"]
+  },
+  {
+    "id": "freelance-contracts",
+    "title": "Pricing freelance contracts without selling every hour",
+    "body": "My freelance practice works best when the client and I agree on scope before I quote a price. I ask what outcome they need, define deliverables, and write down what would count as a change request. Fixed-price contracts can work for a bounded project; uncertain work needs a paid discovery phase or a time-based agreement. I collect a deposit, invoice on milestones, and reserve capacity for finding the next client. A late payment is a business problem to resolve with a clear contract and a conversation, not a reason to silently work extra hours. Keeping several client relationships healthy matters as much as finishing the current project.",
+    "required": ["Freelancing"],
+    "excluded": ["AI"]
+  }
+]
