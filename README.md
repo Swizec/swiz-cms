@@ -48,10 +48,11 @@ Run `npm test` for request validation and conversation regression checks.
 
 ## Publishing suggestions
 
-**Suggest metadata** uses GPT-6 Luna in two parallel calls:
+**Suggest metadata** runs three tasks in parallel with GPT-6 Luna:
 
 - The Responses API selects indexes of one or two representative sentences. The server copies those sentences from the Markdown's plain text; it never substitutes model-written prose.
-- The [Decisions API](https://developers.openai.com/api/docs/guides/decisions) chooses `SeniorMindset`, `ScalingFast`, or no content upgrade, and evaluates the hardcoded categories in one shared-input request. The five strongest category matches above 0.8 are offered as suggestions. They are editable; no category is required.
+- The [Decisions API](https://developers.openai.com/api/docs/guides/decisions) chooses `SeniorMindset`, `ScalingFast`, or no content upgrade.
+- The Responses API selects categories together using Structured Outputs constrained to the hardcoded list. It chooses up to five distinct, relevant topics, preserving the model's order and avoiding redundant umbrella labels. Category guidance explains that `AI` includes coding agents and their impact on engineering, while `review` means reviews and retrospectives rather than code review. Suggestions are editable; no category is required.
 
 `lib/categories.ts` contains all 284 category names from [swizec.com/categories](https://swizec.com/categories), retrieved on November 14, 2026. Refresh this file manually. There is no runtime scraping or category database.
 
