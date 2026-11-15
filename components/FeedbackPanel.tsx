@@ -5,6 +5,15 @@ import { useState } from "react";
 import Markdown from "react-markdown";
 import type { FeedbackMessage } from "../lib/feedback";
 import {
+  ArrowUp,
+  ArrowUpRight,
+  BookOpen,
+  MessageSquareText,
+  RotateCcw,
+  Sparkles,
+  UserRound,
+} from "lucide-react";
+import {
   articleSchema,
   feedbackPrompt,
   sameArticle,
@@ -68,29 +77,45 @@ export function FeedbackPanel({ article }: { article: Article }) {
     >
       <div className="section-heading">
         <div>
-          <p className="eyebrow">A second pair of eyes</p>
-          <h2 id="feedback-heading">Talk it through</h2>
+          <p className="eyebrow">Your writing partner</p>
+          <h2 id="feedback-heading">A fresh perspective</h2>
         </div>
-        <span className="model-label">Astra · high</span>
+        <span className="model-label">
+          <Sparkles size={12} aria-hidden="true" />
+          Astra · high
+        </span>
       </div>
       {!messages.length ? (
         <div className="feedback-empty">
-          <span className="quote-mark" aria-hidden="true">
-            “
+          <span className="empty-icon">
+            <MessageSquareText size={27} aria-hidden="true" />
           </span>
-          <p>what do you think about this</p>
+          <p>Talk through your draft.</p>
           <span className="muted">
             Feedback grounded in your voice, recent writing, and relevant posts
             from your archive.
           </span>
+          <div className="context-tags">
+            <span>
+              <UserRound size={13} aria-hidden="true" />
+              Your voice
+            </span>
+            <span>
+              <BookOpen size={13} aria-hidden="true" />
+              Blog history
+            </span>
+          </div>
           <button
             type="button"
             className="button"
             disabled={!articleSchema.safeParse(article).success || busy}
             onClick={startReview}
           >
-            Get feedback <span aria-hidden="true">↗</span>
+            Get feedback <ArrowUpRight size={16} aria-hidden="true" />
           </button>
+          <span className="feedback-prompt">
+            “what do you think about this”
+          </span>
         </div>
       ) : (
         <>
@@ -104,6 +129,7 @@ export function FeedbackPanel({ article }: { article: Article }) {
               disabled={busy || !articleSchema.safeParse(article).success}
               onClick={startReview}
             >
+              <RotateCcw size={12} aria-hidden="true" />
               New review
             </button>
           </div>
@@ -117,7 +143,7 @@ export function FeedbackPanel({ article }: { article: Article }) {
             <details className="archive-context">
               <summary>
                 {context.articles.length
-                  ? `Using ${context.articles.length} posts from your archive`
+                  ? `Using ${context.articles.length} ${context.articles.length === 1 ? "post" : "posts"} from your archive`
                   : "Using your writing style guide"}
               </summary>
               {context.articles.length === 0 ? (
@@ -180,7 +206,7 @@ export function FeedbackPanel({ article }: { article: Article }) {
             ))}
             {busy && !hasResponseText && (
               <p className="loading" role="status">
-                {status === "submitted"
+                {status === "submitted" && !context
                   ? "Reading your draft and blog history…"
                   : "Astra is thinking about your article…"}
               </p>
@@ -232,7 +258,7 @@ export function FeedbackPanel({ article }: { article: Article }) {
                   type="submit"
                   disabled={!question.trim()}
                 >
-                  Ask Astra <span aria-hidden="true">↑</span>
+                  Ask Astra <ArrowUp size={15} aria-hidden="true" />
                 </button>
               )}
             </div>

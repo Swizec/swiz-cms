@@ -6,6 +6,7 @@ import {
   type RelatedArticle,
 } from "../lib/article";
 import { useArticleRequest } from "../hooks/useArticleRequest";
+import { ArrowUpRight, BookOpen } from "lucide-react";
 
 export function RelatedArticles({ article }: { article: Article }) {
   const { result, pending, error, run } =
@@ -48,7 +49,7 @@ export function RelatedArticles({ article }: { article: Article }) {
               <li key={item.url}>
                 <a href={item.url} target="_blank" rel="noreferrer">
                   <span>{item.title}</span>
-                  <span aria-hidden="true">↗</span>
+                  <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
                 {item.published && (
                   <time dateTime={item.published}>{item.published}</time>
@@ -61,9 +62,15 @@ export function RelatedArticles({ article }: { article: Article }) {
         )
       ) : (
         !pending && (
-          <p className="empty-state">
-            Find older articles worth linking to in this one.
-          </p>
+          <div className="related-empty">
+            <span className="empty-icon">
+              <BookOpen size={27} aria-hidden="true" />
+            </span>
+            <h3>Build on what you’ve written.</h3>
+            <p className="empty-state">
+              Find older articles worth linking to in this one.
+            </p>
+          </div>
         )
       )}
     </section>

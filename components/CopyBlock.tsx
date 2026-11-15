@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Check, Copy } from "lucide-react";
 
 export function CopyBlock({ title, text }: { title: string; text: string }) {
   const [status, setStatus] = useState("");
@@ -17,6 +18,11 @@ export function CopyBlock({ title, text }: { title: string; text: string }) {
       <div className="section-heading">
         <h3>{title}</h3>
         <button type="button" className="button small secondary" onClick={copy}>
+          {status === "Copied" ? (
+            <Check size={14} aria-hidden="true" />
+          ) : (
+            <Copy size={14} aria-hidden="true" />
+          )}
           Copy {title.toLowerCase()}
         </button>
       </div>

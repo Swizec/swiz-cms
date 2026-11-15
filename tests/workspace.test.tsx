@@ -11,6 +11,7 @@ import {
 import { FeedbackPanel } from "../components/FeedbackPanel";
 import { PublishingPanel } from "../components/PublishingPanel";
 import { Workspace } from "../components/Workspace";
+import type { FeedbackContext } from "../lib/feedback";
 
 const article = {
   title: "Scaling teams",
@@ -21,9 +22,13 @@ afterEach(() => {
   localStorage.clear();
   vi.unstubAllGlobals();
 });
-function reply(text: string, id: string) {
+function reply(text: string, id: string, context?: FeedbackContext) {
   const events = [
-    { type: "start", messageId: id },
+    {
+      type: "start",
+      messageId: id,
+      ...(context ? { messageMetadata: { context } } : {}),
+    },
     { type: "start-step" },
     { type: "text-start", id: "text" },
     { type: "text-delta", id: "text", delta: text },
@@ -154,5 +159,77 @@ describe("writing workspace", () => {
     expect(document.querySelectorAll("pre")[1].textContent).not.toContain(
       "content_upgrade:",
     );
+  });
+  it("preserves draft, feedback context, and publishing edits across workspace tabs", async () => {
+    const context: FeedbackContext = {
+      articles: [
+        {
+          title: "An earlier post",
+          url: "https://swizec.com/blog/earlier-post",
+          published: "2026-06-17",
+          kind: "related",
+          excerpt: "An actual example from the archive.",
+          truncated: false,
+        },
+      ],
+      incomplete: false,
+    };
+    const fetch = vi
+      .fn()
+      .mockResolvedValueOnce(
+        reply("This builds on your earlier post.", "first", context),
+      )
+      .mockResolvedValueOnce(
+        reply("The new example adds a useful distinction.", "second"),
+      );
+    vi.stubGlobal("fetch", fetch);
+    localStorage.setItem("swiz-cms:draft:v1", JSON.stringify(article));
+    render(<Workspace />);
+    const switchTab = (name: string) =>
+      fireEvent.mouseDown(screen.getByRole("tab", { name }), {
+        button: 0,
+        ctrlKey: false,
+      });
+    switchTab("Preview");
+    expect(
+      await screen.findByRole("heading", { name: article.title }),
+    ).toBeTruthy();
+    switchTab("Write");
+    expect((screen.getByLabelText("Body") as HTMLTextAreaElement).value).toBe(
+      article.body,
+    );
+    fireEvent.click(screen.getByRole("button", { name: /Get feedback/ }));
+    await screen.findByText("This builds on your earlier post.");
+    expect(screen.getByText("Using 1 post from your archive")).toBeTruthy();
+    expect(
+      JSON.parse(fetch.mock.calls[0][1].body).messages[0].metadata.draft,
+    ).toEqual(article);
+    switchTab("Publish");
+    fireEvent.change(screen.getByLabelText("Description"), {
+      target: { value: "An edited description." },
+    });
+    fireEvent.change(screen.getByLabelText("Content upgrade"), {
+      target: { value: "ScalingFast" },
+    });
+    switchTab("Related");
+    expect(screen.getByRole("button", { name: "Find articles" })).toBeTruthy();
+    switchTab("Feedback");
+    expect(screen.getByText("This builds on your earlier post.")).toBeTruthy();
+    fireEvent.change(screen.getByLabelText("Keep the conversation going"), {
+      target: { value: "What is different this time?" },
+    });
+    fireEvent.click(await screen.findByRole("button", { name: /Ask Astra/ }));
+    await screen.findByText("The new example adds a useful distinction.");
+    expect(
+      JSON.parse(fetch.mock.calls[1][1].body).messages[1].metadata.context,
+    ).toEqual(context);
+    switchTab("Publish");
+    expect(
+      (screen.getByLabelText("Description") as HTMLTextAreaElement).value,
+    ).toBe("An edited description.");
+    expect(
+      (screen.getByLabelText("Content upgrade") as HTMLSelectElement).value,
+    ).toBe("ScalingFast");
+    expect(fetch).toHaveBeenCalledTimes(2);
   });
 });
