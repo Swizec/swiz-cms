@@ -10,10 +10,13 @@ export function articleFromMarkdown(markdown: string): Article | null {
   const end = heading.position?.end.offset;
   const title = toString(heading, { includeHtml: false }).trim();
   if (end === undefined || !title) return null;
+  const body = markdown.slice(end).replace(/^(?:[\t ]*\r?\n)+/, "");
+  // A heading on its own is a snippet, not a replacement article.
+  if (!body.trim()) return null;
   return {
     title,
     // Remove only the heading and its separator. Keep the remaining Markdown
     // verbatim, including indentation, code fences, links, and line endings.
-    body: markdown.slice(end).replace(/^(?:[\t ]*\r?\n)+/, ""),
+    body,
   };
 }

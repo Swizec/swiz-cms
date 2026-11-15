@@ -17,17 +17,25 @@ export function CopyBlock({ title, text }: { title: string; text: string }) {
     <div className="copy-block">
       <div className="section-heading">
         <h3>{title}</h3>
-        <button type="button" className="button small secondary" onClick={copy}>
+        <button
+          type="button"
+          className="button small secondary"
+          onClick={copy}
+          aria-label={`Copy ${title.toLowerCase()}`}
+        >
           {status === "Copied" ? (
             <Check size={14} aria-hidden="true" />
           ) : (
             <Copy size={14} aria-hidden="true" />
           )}
-          Copy {title.toLowerCase()}
+          {status === "Copied" ? "Copied" : "Copy"}
         </button>
       </div>
       <pre tabIndex={0}>{text}</pre>
-      <span className="caption" role="status">
+      <span
+        className={status === "Copied" ? "sr-only" : "caption"}
+        role="status"
+      >
         {status}
       </span>
     </div>

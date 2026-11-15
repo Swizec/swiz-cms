@@ -28,6 +28,9 @@ describe("Markdown article import", () => {
     "An opening paragraph.\n\n# A later heading",
     "#not-a-heading\n\nBody",
     "#\n\nBody",
+    "# Just a heading",
+    "# Just a heading\n\n  \n",
+    "A heading\n=========\n",
   ])("leaves non-title Markdown alone: %s", (markdown) => {
     expect(articleFromMarkdown(markdown)).toBeNull();
   });

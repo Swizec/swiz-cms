@@ -1,18 +1,10 @@
 "use client";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 import type { FeedbackMessage } from "../lib/feedback";
-import {
-  ArrowUp,
-  ArrowUpRight,
-  BookOpen,
-  MessageSquareText,
-  RotateCcw,
-  Sparkles,
-  UserRound,
-} from "lucide-react";
+import { ArrowUp, ArrowUpRight, RotateCcw } from "lucide-react";
 import {
   articleSchema,
   feedbackPrompt,
@@ -44,7 +36,15 @@ export function FeedbackPanel({ article }: { article: Article }) {
   } = useChat<FeedbackMessage>({ transport });
   const [reviewedDraft, setReviewedDraft] = useState<Article | null>(null);
   const [question, setQuestion] = useState("");
+  const scrollArea = useRef<HTMLDivElement>(null);
+  const followLatest = useRef(true);
   const busy = status === "submitted" || status === "streaming";
+  useEffect(() => {
+    const viewport = scrollArea.current;
+    if (viewport && viewport.clientHeight > 0 && followLatest.current) {
+      viewport.scrollTop = viewport.scrollHeight;
+    }
+  }, [messages, status]);
   const latestMessage = messages.at(-1);
   const context = messages.find(
     (message) => message.role === "assistant" && message.metadata?.context,
@@ -60,6 +60,7 @@ export function FeedbackPanel({ article }: { article: Article }) {
   function startReview() {
     const parsed = articleSchema.safeParse(article);
     if (!parsed.success || busy) return;
+    followLatest.current = true;
     setMessages([]);
     clearError();
     setQuestion("");
@@ -70,41 +71,32 @@ export function FeedbackPanel({ article }: { article: Article }) {
     });
   }
 
+  function sendFollowUp() {
+    if (!question.trim() || busy) return;
+    followLatest.current = true;
+    void sendMessage({ text: question.trim() });
+    setQuestion("");
+  }
+
   return (
     <section
-      className="panel feedback-panel"
+      className={`panel feedback-panel${messages.length ? " has-conversation" : ""}`}
       aria-labelledby="feedback-heading"
     >
       <div className="section-heading">
-        <div>
-          <p className="eyebrow">Your writing partner</p>
-          <h2 id="feedback-heading">A fresh perspective</h2>
-        </div>
-        <span className="model-label">
-          <Sparkles size={12} aria-hidden="true" />
-          Astra · high
-        </span>
+        <h2 id="feedback-heading">Draft feedback</h2>
+        <span className="model-label">Astra · high</span>
       </div>
       {!messages.length ? (
         <div className="feedback-empty">
-          <span className="empty-icon">
-            <MessageSquareText size={27} aria-hidden="true" />
-          </span>
-          <p>Talk through your draft.</p>
-          <span className="muted">
-            Feedback grounded in your voice, recent writing, and relevant posts
-            from your archive.
-          </span>
-          <div className="context-tags">
-            <span>
-              <UserRound size={13} aria-hidden="true" />
-              Your voice
-            </span>
-            <span>
-              <BookOpen size={13} aria-hidden="true" />
-              Blog history
-            </span>
-          </div>
+          <p className="muted">
+            Review this draft with your writing style, recent posts, and
+            relevant articles from your archive as context. Ask follow-up
+            questions in the same conversation.
+          </p>
+          <p className="feedback-prompt">
+            “what do you think about this” + your draft
+          </p>
           <button
             type="button"
             className="button"
@@ -113,9 +105,6 @@ export function FeedbackPanel({ article }: { article: Article }) {
           >
             Get feedback <ArrowUpRight size={16} aria-hidden="true" />
           </button>
-          <span className="feedback-prompt">
-            “what do you think about this”
-          </span>
         </div>
       ) : (
         <>
@@ -133,117 +122,143 @@ export function FeedbackPanel({ article }: { article: Article }) {
               New review
             </button>
           </div>
-          {changed && (
-            <p className="notice">
-              Your draft has changed. Start a new review to include your latest
-              edits. Follow-ups here use the previous draft.
-            </p>
-          )}
-          {context && (
-            <details className="archive-context">
-              <summary>
-                {context.articles.length
-                  ? `Using ${context.articles.length} ${context.articles.length === 1 ? "post" : "posts"} from your archive`
-                  : "Using your writing style guide"}
-              </summary>
-              {context.articles.length === 0 ? (
-                <p className="muted">
-                  The archive couldn’t be loaded. Start a new review to try
-                  again.
-                </p>
-              ) : (
-                <ul>
-                  {context.articles.map((item) => (
-                    <li key={item.url}>
-                      <a href={item.url} target="_blank" rel="noreferrer">
-                        {item.title}
-                      </a>
-                      <span className="caption">
-                        {item.kind === "recent"
-                          ? "Recent writing"
-                          : "Related post"}
-                        {item.published ? ` · ${item.published}` : ""}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {context.incomplete && context.articles.length > 0 && (
-                <p className="muted">
-                  Some posts couldn’t be loaded. This review uses the available
-                  excerpts.
-                </p>
-              )}
-            </details>
-          )}
           <div
-            className="conversation"
-            aria-label="Feedback conversation"
-            aria-busy={busy}
+            className="feedback-scroll"
+            ref={scrollArea}
+            onScroll={(event) => {
+              const viewport = event.currentTarget;
+              followLatest.current =
+                viewport.scrollHeight -
+                  viewport.scrollTop -
+                  viewport.clientHeight <
+                40;
+            }}
           >
-            {messages.slice(1).map((message) => (
-              <div key={message.id} className={`message ${message.role}`}>
-                <p className="message-author">
-                  {message.role === "user" ? "You" : "Astra"}
-                </p>
-                <div className="prose">
-                  {message.parts.map((part, index) =>
-                    part.type === "text" ? (
-                      <Markdown
-                        key={index}
-                        components={{
-                          a: (props) => (
-                            <a {...props} target="_blank" rel="noreferrer" />
-                          ),
-                        }}
-                      >
-                        {part.text}
-                      </Markdown>
-                    ) : null,
-                  )}
-                </div>
-              </div>
-            ))}
-            {busy && !hasResponseText && (
-              <p className="loading" role="status">
-                {status === "submitted" && !context
-                  ? "Reading your draft and blog history…"
-                  : "Astra is thinking about your article…"}
+            {changed && (
+              <p className="notice">
+                Your draft has changed. Start a new review to include your
+                latest edits. Follow-ups here use the previous draft.
               </p>
             )}
-          </div>
-          {error && (
-            <div className="error" role="alert">
-              <p>{readableError(error.message)}</p>
-              <button
-                type="button"
-                className="text-button"
-                onClick={() => void regenerate()}
-              >
-                Retry response
-              </button>
+            {context && (
+              <details className="archive-context">
+                <summary>
+                  {context.articles.length
+                    ? `Using ${context.articles.length} ${context.articles.length === 1 ? "post" : "posts"} from your archive`
+                    : "Using your writing style guide"}
+                </summary>
+                {context.articles.length === 0 ? (
+                  <p className="muted">
+                    The archive couldn’t be loaded. Start a new review to try
+                    again.
+                  </p>
+                ) : (
+                  <ul>
+                    {context.articles.map((item) => (
+                      <li key={item.url}>
+                        <a href={item.url} target="_blank" rel="noreferrer">
+                          {item.title}
+                        </a>
+                        <span className="caption">
+                          {item.kind === "recent"
+                            ? "Recent writing"
+                            : "Related post"}
+                          {item.published ? ` · ${item.published}` : ""}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {context.incomplete && context.articles.length > 0 && (
+                  <p className="muted">
+                    Some posts couldn’t be loaded. This review uses the
+                    available excerpts.
+                  </p>
+                )}
+              </details>
+            )}
+            <div
+              className="conversation"
+              aria-label="Feedback conversation"
+              aria-busy={busy}
+            >
+              {messages.slice(1).map((message) => (
+                <div key={message.id} className={`message ${message.role}`}>
+                  <p className="message-author">
+                    {message.role === "user" ? "You" : "Astra"}
+                  </p>
+                  <div className="prose">
+                    {message.parts.map((part, index) =>
+                      part.type === "text" ? (
+                        <Markdown
+                          key={index}
+                          components={{
+                            a: (props) => (
+                              <a {...props} target="_blank" rel="noreferrer" />
+                            ),
+                          }}
+                        >
+                          {part.text}
+                        </Markdown>
+                      ) : null,
+                    )}
+                  </div>
+                </div>
+              ))}
+              {busy && !hasResponseText && (
+                <p className="loading" role="status">
+                  {status === "submitted" && !context
+                    ? "Reading your draft and blog history…"
+                    : "Astra is thinking about your article…"}
+                </p>
+              )}
             </div>
-          )}
+            {error && (
+              <div className="error" role="alert">
+                <p>{readableError(error.message)}</p>
+                <button
+                  type="button"
+                  className="text-button"
+                  onClick={() => void regenerate()}
+                >
+                  Retry response
+                </button>
+              </div>
+            )}
+          </div>
           <form
             className="follow-up"
             onSubmit={(event) => {
               event.preventDefault();
-              if (question.trim() && !busy) {
-                void sendMessage({ text: question.trim() });
-                setQuestion("");
-              }
+              sendFollowUp();
             }}
           >
-            <label htmlFor="follow-up">Keep the conversation going</label>
+            <label htmlFor="follow-up" className="sr-only">
+              Keep the conversation going
+            </label>
             <textarea
               id="follow-up"
-              rows={3}
+              rows={2}
               maxLength={20_000}
-              placeholder="Ask a question, push back, or dig into an idea…"
+              placeholder="Ask a follow-up…"
+              aria-describedby="follow-up-hint"
               value={question}
               onChange={(event) => setQuestion(event.target.value)}
+              onKeyDown={(event) => {
+                if (
+                  event.key === "Enter" &&
+                  (event.metaKey || event.ctrlKey) &&
+                  !event.nativeEvent.isComposing
+                ) {
+                  event.preventDefault();
+                  sendFollowUp();
+                }
+              }}
             />
             <div className="action-row">
+              <span id="follow-up-hint" className="caption">
+                ⌘ / Ctrl + Enter to send
+              </span>
               {busy ? (
                 <button
                   type="button"
