@@ -49,6 +49,71 @@ function reply(text: string, id: string, context?: FeedbackContext) {
 }
 
 describe("writing workspace", () => {
+  it("splits a pasted article into editable fields, autosaves it, and previews one title", async () => {
+    const fetch = vi.fn();
+    vi.stubGlobal("fetch", fetch);
+    render(<Workspace />);
+    const body = screen.getByLabelText("Body") as HTMLTextAreaElement;
+    fireEvent.paste(body, {
+      clipboardData: { getData: () => `# ${article.title}\n\n${article.body}` },
+    });
+    expect((screen.getByLabelText("Title") as HTMLTextAreaElement).value).toBe(
+      article.title,
+    );
+    expect(body.value).toBe(article.body);
+    expect(screen.getByText(/Title detected from your Markdown/)).toBeTruthy();
+    await waitFor(() =>
+      expect(JSON.parse(localStorage.getItem("swiz-cms:draft:v1")!)).toEqual(
+        article,
+      ),
+    );
+    fireEvent.mouseDown(screen.getByRole("tab", { name: "Preview" }), {
+      button: 0,
+      ctrlKey: false,
+    });
+    expect(
+      screen.getAllByRole("heading", { name: article.title }),
+    ).toHaveLength(1);
+    expect(fetch).not.toHaveBeenCalled();
+  });
+  it("imports a replacement draft but does not intercept a snippet paste", () => {
+    localStorage.setItem("swiz-cms:draft:v1", JSON.stringify(article));
+    render(<Workspace />);
+    const body = screen.getByLabelText("Body") as HTMLTextAreaElement;
+    const clipboardData = {
+      getData: () => "# A replacement\n\nA different body.",
+    };
+    body.setSelectionRange(5, 5);
+    expect(fireEvent.paste(body, { clipboardData })).toBe(true);
+    expect((screen.getByLabelText("Title") as HTMLTextAreaElement).value).toBe(
+      article.title,
+    );
+    expect(body.value).toBe(article.body);
+    body.setSelectionRange(0, body.value.length);
+    expect(fireEvent.paste(body, { clipboardData })).toBe(false);
+    expect((screen.getByLabelText("Title") as HTMLTextAreaElement).value).toBe(
+      "A replacement",
+    );
+    expect(body.value).toBe("A different body.");
+  });
+  it("keeps the existing draft when a pasted article exceeds the limits", () => {
+    localStorage.setItem("swiz-cms:draft:v1", JSON.stringify(article));
+    render(<Workspace />);
+    const body = screen.getByLabelText("Body") as HTMLTextAreaElement;
+    body.setSelectionRange(0, body.value.length);
+    expect(
+      fireEvent.paste(body, {
+        clipboardData: { getData: () => `# ${"x".repeat(251)}\n\nA body.` },
+      }),
+    ).toBe(false);
+    expect(screen.getByRole("alert").textContent).toContain(
+      "longer than 250 characters",
+    );
+    expect(body.value).toBe(article.body);
+    expect((screen.getByLabelText("Title") as HTMLTextAreaElement).value).toBe(
+      article.title,
+    );
+  });
   it("restores and autosaves a draft without sending it to an API or URL", async () => {
     localStorage.setItem("swiz-cms:draft:v1", JSON.stringify(article));
     const fetch = vi.fn();

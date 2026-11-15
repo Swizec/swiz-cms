@@ -32,6 +32,8 @@ References: [GPT-6 migration](https://developers.openai.com/api/docs/guides/late
 
 The title and Markdown body save in this browser's local storage. Drafts are never placed in the URL. Each feature runs only when requested, with its own loading, error, and retry behavior.
 
+Paste a full Markdown article into an empty body (or select the whole body to replace a draft). A leading level-one heading becomes the editable title and is removed from the body, so the preview and published article do not duplicate it. Both `# Title` and underlined titles work, including inline formatting. The remaining Markdown is preserved. Snippet pastes, code blocks, and lower-level headings are left alone; no AI request is needed.
+
 The workspace keeps the writing canvas beside a tabbed assistant. **Write / Preview** switches between Markdown input and its rendered preview. **Feedback / Related / Publish** switches tools without discarding conversations, in-progress requests, or metadata edits. Radix Tabs provides keyboard navigation; Lucide supplies the interface icons. On narrow screens the tools sit beneath the editor.
 
 - **Get feedback** asks `what do you think about this`, then sends the title and full body to Astra at high reasoning. Server guidance preserves Swizec's voice, and three related posts plus two recent posts supply actual blog context. Follow-up questions include the conversation and reuse the same excerpts. **New review** starts over with the latest draft and fresh context.

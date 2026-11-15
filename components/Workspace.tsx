@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ClipboardEvent } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import {
   ArrowUpRight,
@@ -20,6 +20,7 @@ import {
 import { FeedbackPanel } from "./FeedbackPanel";
 import { PublishingPanel } from "./PublishingPanel";
 import { RelatedArticles } from "./RelatedArticles";
+import { articleFromMarkdown } from "../lib/markdown-import";
 
 const STORAGE_KEY = "swiz-cms:draft:v1";
 export function Workspace() {
@@ -28,6 +29,10 @@ export function Workspace() {
   const [activeTool, setActiveTool] = useState("feedback");
   const [editorMode, setEditorMode] = useState("write");
   const [saveStatus, setSaveStatus] = useState("Loading draft…");
+  const [pasteNotice, setPasteNotice] = useState<{
+    message: string;
+    error: boolean;
+  } | null>(null);
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -59,6 +64,36 @@ export function Workspace() {
   const words = article.body.trim()
     ? article.body.trim().split(/\s+/).length
     : 0;
+
+  function pasteArticle(event: ClipboardEvent<HTMLTextAreaElement>) {
+    const field = event.currentTarget;
+    const replacesBody =
+      !article.body.trim() ||
+      (field.selectionStart === 0 &&
+        field.selectionEnd === article.body.length);
+    if (!replacesBody) return;
+    const imported = articleFromMarkdown(
+      event.clipboardData.getData("text/plain"),
+    );
+    if (!imported) return;
+    event.preventDefault();
+    const parsed = draftSchema.safeParse(imported);
+    if (!parsed.success) {
+      setPasteNotice({
+        message:
+          imported.title.length > 250
+            ? "The pasted title is longer than 250 characters. Shorten it before importing."
+            : "The pasted body is longer than 100,000 characters. Shorten it before importing.",
+        error: true,
+      });
+      return;
+    }
+    setArticle(parsed.data);
+    setPasteNotice({
+      message: "Title detected from your Markdown. Both fields are editable.",
+      error: false,
+    });
+  }
 
   return (
     <main className="workspace">
@@ -132,9 +167,10 @@ export function Workspace() {
                 maxLength={250}
                 value={article.title}
                 disabled={!ready}
-                onChange={(event) =>
-                  setArticle({ ...article, title: event.target.value })
-                }
+                onChange={(event) => {
+                  setArticle({ ...article, title: event.target.value });
+                  setPasteNotice(null);
+                }}
               />
               <label htmlFor="body" className="sr-only">
                 Body
@@ -143,15 +179,25 @@ export function Workspace() {
                 id="body"
                 className="body-input"
                 placeholder={
-                  "Start writing, or paste your draft here.\n\nMarkdown is welcome."
+                  "Start writing, or paste your full Markdown here.\n\nA leading # heading becomes the title automatically."
                 }
                 maxLength={MAX_BODY_LENGTH}
                 value={article.body}
                 disabled={!ready}
-                onChange={(event) =>
-                  setArticle({ ...article, body: event.target.value })
-                }
+                onPaste={pasteArticle}
+                onChange={(event) => {
+                  setArticle({ ...article, body: event.target.value });
+                  setPasteNotice(null);
+                }}
               />
+              {pasteNotice && (
+                <p
+                  className={pasteNotice.error ? "error" : "field-hint"}
+                  role={pasteNotice.error ? "alert" : "status"}
+                >
+                  {pasteNotice.message}
+                </p>
+              )}
             </Tabs.Content>
             <Tabs.Content
               value="preview"
