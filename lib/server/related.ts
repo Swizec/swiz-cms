@@ -13,6 +13,7 @@ export async function findRelatedArticles(
   article: Article,
   signal?: AbortSignal,
 ): Promise<RelatedArticle[]> {
+  const sql = getDatabase();
   const plainText = String(
     await remark()
       .use(stripMarkdown)
@@ -26,7 +27,6 @@ export async function findRelatedArticles(
   );
   const embedding = result.data[0]?.embedding;
   if (!embedding?.length) throw new Error("No embedding returned.");
-  const sql = getDatabase();
   const ownUrl = `/blog/${slugify(article.title)}/`;
   const rows =
     await sql`select url, title, published_date from article_embeddings
