@@ -50,59 +50,70 @@ Run `npm test` for request validation and conversation regression checks.
 
 **Suggest metadata** runs two tasks in parallel with GPT-6 Luna:
 
-- The Responses API selects indexes of one or two representative sentences. The server copies those sentences from the Markdown's plain text; it never substitutes model-written prose.
-- The [Decisions API](https://developers.openai.com/api/docs/guides/decisions) chooses the content upgrade (`SeniorMindset`, `ScalingFast`, or none) and categories. Every category is a native `choice` option with its own definition and applicability criteria. It selects the best additional category, sees what is already covered, and can stop when another label would be incidental or redundant. There are at most five sequential choices; the upgrade shares the first request. Suggestions remain editable and no category is required.
+- The Responses API selects indexes of one or two representative sentences. The server copies those sentences from the Markdown's plain text.
+- One [Decisions API](https://developers.openai.com/api/docs/guides/decisions) request selects the content upgrade (`SeniorMindset`, `ScalingFast`, or none) and evaluates category membership with native predicates. Each category has an applicability rubric and recent examples. Selection requires strong evidence, uses a small historical-usage adjustment, and raises the cutoff for each additional label. Zero categories is allowed; five is a cap. All suggestions remain editable.
 
-`lib/categories.ts` contains 132 categories used in 823 published posts from **November 14, 2016 through November 14, 2026**. The ten-year window applies to post publication dates. Older categories, including `review`, are excluded from both suggestions and the manual picker. `Uncategorized` remains a manual fallback and is not an automatic suggestion.
+The manual picker contains 132 categories used in 823 posts from **November 14, 2016 through November 14, 2026**. Older tags such as `review` are excluded. Ten broad labels remain manual-only: `Uncategorized`, `Lesson`, `Insights`, `Tips`, `Tutorial`, `Programming Lessons`, `Thoughts`, `Opinion`, `Technical`, and `Programming`.
 
-`lib/server/category-catalog.json` defines every category using its recent archive posts and the blog's curated category introductions where available. Each entry records supporting URLs and publication dates. The definitions were drafted from archive excerpts and reviewed, including ambiguous names and named series. Historical tags are evidence, not perfect labels. Refresh the list, window, and definitions together manually; there is no runtime scraping or category database.
+`lib/server/category-catalog.json` supplies definitions and dated source URLs. `category-profile.json` supplies five-year usage and example titles; `category-calibration.json` stores the fitted cutoffs. The automatic selector evaluates 122 categories in one request. It does not use native choice confidence as a membership score. Its adjusted ranking scores are not measured probabilities of historical agreement. Invalid, missing, refused, or repeated decisions fail the request instead of returning partial metadata.
 
-Category selection compares meanings directly instead of sorting independent confidence scores. Later choices consider earlier choices to avoid spending all five slots on overlapping labels. Missing, refused, invalid, or repeated decisions fail the request so the user can retry instead of receiving a silently incomplete result.
+Calibration gives recent articles more weight, with a three-year half-life. Archive frequency is only a weak prior so clear subjects such as AI or a rarely discussed technology survive. The runtime needs no Python, training service, extra model call, or taxonomy lookup. Refresh the static taxonomy, profile, model decisions, calibration, and validation together.
 
-The opt-in live evaluation uses 16 recent articles covering engineering, React, databases, serverless, leadership, books, retrospectives, travel, creative writing, careers, programming, immigration, and overcommitment. These articles are excluded from the definition sources. It checks a few essential categories and clear exclusions rather than requiring an exact historical tag set. Four additional synthetic controls cover an incidental AI-tool mention, human-only code review, health, and freelance contracts. Ordinary tests verify catalog coverage, dates, the native choice contract, stopping, cancellation propagation, and error handling without API calls.
+The book rubrics distinguish individual career growth (`SeniorMindset`) from engineering teams, business growth, and evolving production systems (`ScalingFast`). Current drafts can use either book. Historical replay offers Scaling Fast only from **December 7, 2025**, when blog commit `8557ae475bea49eddcf416f1fb8b9a1d4cb2aaae` introduced its standard article content upgrade. The book announcement followed on December 8; a separate landing-page signup existed from September 17.
 
-```sh
-# Uses OPENAI_API_KEY from .env.local; fetches the published articles and makes paid API calls.
-npm run eval:categories
+## Historical calibration
 
-# Optional: use full Markdown bodies from a local JSON archive, without frontmatter.
-# Corpus shape: [{ "slug": "...", "title": "...", "body": "..." }]
-CATEGORY_EVAL_CORPUS=/path/to/posts.json CATEGORY_EVAL_RESULTS=/tmp/category-results.json npm run eval:categories
-```
+The comparison uses content published **November 14, 2021–November 14, 2026**. Of 361 posts, 148 were used for tuning (133 category-labelled), 66 were reserved from fitting (63 category-labelled), and 147 were existing definition/development sources. Usage counts use the 295 non-reserved posts. Prompt example titles exclude both tuning and reserved articles. A seeded split is checked in at `tests/fixtures/classifier-calibration-split.json`.
 
-Live results can change with model behavior or published content; this small sample is a regression check, not a claim of accuracy across every category.
+The 66 validation articles were included in the earlier baseline and evaluated twice during this revision. This is **reused validation**, not an untouched test set. No final cutoffs were fitted to their labels. A first, stronger frequency-weighted model reached 76.9% precision but failed central-subject checks, including AI and specific technologies, so it was rejected. The final policy uses scikit-learn grid search, article-level five-fold cross-validation, and the precision-oriented F0.5 objective, constrained by separate development controls. Its cross-validated precision is 60.9%, recall 48.4%, and F0.5 57.9%.
 
-The generated MDX uses `pages/blog/<slug>/index.mdx`, comma-separated `categories`, an escaped description, and an optional `content_upgrade` field. Selecting **None** omits the upgrade field. If the draft changes after metadata generation, review or regenerate the values before copying the file. Terminal commands check out `master` in the blog repository, create the article directory and its `img` subdirectory with one `mkdir -p`, and touch the file without overwriting existing contents. Each step runs only if the previous step succeeds.
+On the same 63 labelled validation articles:
 
-The recommended development and CI runtime is Node.js 26 LTS (`nvm use`). CI installs from `package-lock.json`, typechecks, runs tests, and builds without API credentials. Live model/database checks are separate from CI.
+| Historical category agreement   | Original selector | Final selector |
+| ------------------------------- | ----------------: | -------------: |
+| Precision                       |             32.9% |          58.8% |
+| Recall                          |             52.9% |          45.5% |
+| Micro F1                        |             40.6% |          51.3% |
+| F0.5 (precision weighted)       |             35.6% |          55.6% |
+| Mean suggested categories       |              4.87 |           2.35 |
+| Posts receiving five categories |           59 / 63 |         6 / 63 |
+| Exact category set              |            0 / 63 |         4 / 63 |
 
-## Historical backtest
+The saved posts average 3.03 categories. Extra labels fall from 206 to 61; missed historical labels increase from 90 to 104. Some deliberately omitted generic labels count as misses. On the latest two years (20 labelled validation articles), precision rises from 31.9% to 60.4%, recall from 47.6% to 50.8%, and F1 from 38.2% to 55.2%. Historical agreement is not the same as editorial correctness, and the model still misses some named collections and adds some plausible but unsaved subjects.
 
-The November 14, 2026 backtest freezes classifier commit `8e35d8a` and runs all 579 eligible posts from the ten-year archive, excluding 228 category-definition sources and the 16 earlier evaluation posts. Only the title and full Markdown body enter the model. Historical tags and upgrades are scored afterward. All 579 posts were classified successfully; the classifier was not changed during the run.
+Date-aware content-upgrade agreement improves from **27/29 (93.1%) to 28/29 (96.6%)** on eligible explicit labels. This is weak evidence of book discrimination: 26 are prelaunch SeniorMindset labels and only three are post-launch ScalingFast labels. Post-launch accuracy is 2/3, versus 3/3 for the original selector; a simple publication-era heuristic scores 29/29. Five older ScalingFast labels are backfills and excluded. Another 30 posts have missing upgrades and two use legacy offers; missing metadata is not a verified `none` label. The final classifier suggests SeniorMindset on 23 of those 30 missing-label posts and none on seven. Six current-day controls separately check career, team delivery, migrations, narrow tutorials, and unrelated personal writing with both books available; all pass.
 
-| Historical agreement metric       |            Result |
-| --------------------------------- | ----------------: |
-| Category precision                |             28.7% |
-| Category recall                   |             51.7% |
-| Category micro F1                 |             36.9% |
-| Exact category set                |           0 / 544 |
-| Explicit content-upgrade accuracy | 124 / 146 (84.9%) |
-| SeniorMindset correctly recovered | 107 / 114 (93.9%) |
-| ScalingFast correctly recovered   |   17 / 32 (53.1%) |
+The final 20 category development checks pass, including substantial versus incidental AI, specific technologies, books, and personal subjects. One old 2018 fixture now expects its saved `Personal` category instead of requiring an inferred `productivity` tag that was never saved. This corrects the development assertion; historical reference labels and scoring remain unchanged. These controls constrain development and are not accuracy estimates.
 
-Category metrics exclude 35 posts with no topic labels. Predictions average 4.85 categories versus 2.70 saved categories, and 91.2% hit the five-category cap. Extra generic labels such as `Lesson`, `Insights`, and `Tutorial` account for many mismatches. Some extra labels are reasonable subjects absent from the historical tags, so agreement is not the same as editorial correctness.
+[Comparison metrics](reports/classifier-calibration-2026-11-15.json) include per-category counts, year breakdowns, confusion matrices, availability exclusions, calibration settings, and collection fingerprints. The [paired CSV](reports/classifier-calibration-2026-11-15.csv) shows every saved, original, and final label without article bodies. The [original ten-year report](reports/classifier-backtest-2026-11-14.json) remains available as the baseline.
 
-The upgrade accuracy above applies only to explicit labels for the two supported books. Always choosing SeniorMindset would get 78.1% on that subset; balanced accuracy is 73.5%. The latest two years score 22/37 (59.5%), and 2026 alone scores 4/17 (23.5%), with many saved ScalingFast labels classified as SeniorMindset. Of 389 posts without an upgrade, the model suggests a book for 298 and none for 91. Treating every missing value as none gives 40.2% agreement across 535 posts, but missing metadata is not a confirmed negative. Another 44 posts use unsupported historical offers and are excluded from upgrade accuracy.
+## Reproducing the evaluation
 
-The earlier 20 live regression checks cover selected required topics and exclusions; they are not an accuracy estimate. This broader backtest exposes over-selection and weak separation between the books. It measures one run against the current archive labels, which can reflect publication campaigns and historical editorial choices.
-
-The [full metrics](reports/classifier-backtest-2026-11-14.json) include the confusion matrices, per-category counts, yearly results, input hashes, model, and source commit. The [per-post CSV](reports/classifier-backtest-2026-11-14.csv) contains every saved and predicted label for audit, without article bodies.
-
-To rerun on a labelled JSON archive:
+Ordinary `npm test` and CI skip paid API calls. Live regression checks:
 
 ```sh
-BACKTEST_CORPUS=/path/to/archive.json BACKTEST_OUTPUT=/tmp/classifier-backtest.jsonl npm run backtest:classifier
-node --experimental-strip-types scripts/backtest-metrics.ts /tmp/classifier-backtest.jsonl /tmp/classifier-backtest.json
+CATEGORY_EVAL_CORPUS=/path/to/archive.json npm run eval:categories
 ```
 
-Each input record has `slug`, `url`, `title`, `body` (Markdown without YAML frontmatter), `published` (YYYY-MM-DD), canonical `categories`, `hasContentUpgrade` (whether the frontmatter key exists), and `contentUpgradeRaw` (the saved string or null). The runner filters the date window and excludes definition/development articles automatically. It uses four concurrent workers, checkpoints every result, and only resumes when all input fingerprints match. It makes paid API calls and is skipped in ordinary tests and CI. The metrics command also writes a per-post CSV.
+The archive is a JSON array with `slug`, `url`, `title`, full Markdown `body` without YAML, `published` (YYYY-MM-DD), canonical `categories`, `hasContentUpgrade`, and `contentUpgradeRaw`. Only title/body enter model input; publication date filters available book options locally.
+
+Collect the frozen reserved partition, then compare with original JSONL predictions:
+
+```sh
+BACKTEST_CORPUS=/path/to/archive.json BACKTEST_OUTPUT=/tmp/validation.jsonl npm run backtest:classifier
+node --experimental-strip-types scripts/backtest-metrics.ts --compare /tmp/original.jsonl /tmp/validation.jsonl /tmp/comparison.json
+```
+
+The runner defaults to `BACKTEST_PARTITION=holdout`; use `tuning` for the calibration partition. It checkpoints with four workers and refuses to resume after input or source fingerprints change. Keep the JSONL and its `.meta.json` together. The comparison refuses changed reference labels. API errors remain errors, not negative predictions.
+
+To reproduce offline fitting, first collect tuning probabilities and the separate development controls. Fit only on the tuning partition and create a new reserved set before further iterative tuning:
+
+```sh
+BACKTEST_PARTITION=tuning BACKTEST_CORPUS=/path/to/archive.json BACKTEST_OUTPUT=/tmp/tuning.jsonl npm run backtest:classifier
+CLASSIFIER_DEVELOPMENT=1 CATEGORY_EVAL_CORPUS=/path/to/archive.json BACKTEST_OUTPUT=/tmp/development.jsonl node --env-file-if-exists=.env.local node_modules/vitest/vitest.mjs run tests/classifier-development.test.ts
+python3 -m venv /tmp/cms-calibration
+/tmp/cms-calibration/bin/pip install -r scripts/calibration-requirements.txt
+/tmp/cms-calibration/bin/python scripts/fit-category-calibration.py /tmp/tuning.jsonl /tmp/development.jsonl /tmp/calibration.json
+```
+
+`node scripts/build-category-profile.mjs /path/to/archive.json /tmp/profile.json` reproduces the usage profile from the frozen corpus order and split. The offline fitter refuses missing tuning/control records and never accepts reserved articles. Model responses can vary between runs; the checked-in report records the evaluated snapshot.

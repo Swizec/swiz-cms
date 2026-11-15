@@ -2,16 +2,19 @@ import { it, expect } from "vitest";
 import { createHash } from "node:crypto";
 import { appendFile, readFile, writeFile } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
-import { classifyArticle } from "../lib/server/classification";
+import {
+  classificationCandidates,
+  readCandidates,
+  SCALING_FAST_AVAILABLE_FROM,
+} from "../lib/server/classification-candidates";
+import { selectCategories } from "../lib/server/category-selection";
 import { DECISION_MODEL } from "../lib/models";
-import { CATEGORY_WINDOW } from "../lib/categories";
-import catalog from "../lib/server/category-catalog.json";
-import developmentCases from "./fixtures/category-eval.json";
+import split from "./fixtures/classifier-calibration-split.json";
 
 // The archive is private input; reports contain labels and public URLs, not bodies.
 // Run explicitly with BACKTEST_CORPUS and BACKTEST_OUTPUT. Never runs in CI.
 it.skipIf(process.env.CLASSIFIER_BACKTEST !== "1")(
-  "backtests the frozen classifier against unused archive posts",
+  "backtests the frozen classifier partition",
   async () => {
     function requiredEnv(name: string) {
       const value = process.env[name];
@@ -31,39 +34,54 @@ it.skipIf(process.env.CLASSIFIER_BACKTEST !== "1")(
       contentUpgradeRaw: string | null;
       hasContentUpgrade: boolean;
     }[] = JSON.parse(raw);
-    const sources = new Set(
-      Object.values(catalog).flatMap((c) => c.sources.map((s) => s.url)),
+    const partition = process.env.BACKTEST_PARTITION ?? "holdout";
+    if (partition !== "holdout" && partition !== "tuning")
+      throw new Error("BACKTEST_PARTITION must be holdout or tuning.");
+    const selected = new Set(split[partition]);
+    const eligible = all.filter((p) => selected.has(p.slug));
+    if (
+      new Set(eligible.map((p) => p.slug)).size !== eligible.length ||
+      eligible.length !== selected.size
+    )
+      throw new Error("Missing or duplicate articles in corpus.");
+    if (
+      eligible.some(
+        (p) =>
+          p.published < split.window.start || p.published > split.window.end,
+      )
+    )
+      throw new Error("Article outside the frozen evaluation window.");
+    const sourceFiles = [
+      "lib/server/classification.ts",
+      "lib/server/classification-candidates.ts",
+      "lib/server/category-selection.ts",
+      "lib/server/category-catalog.json",
+      "lib/server/category-profile.json",
+      "lib/server/category-calibration.json",
+      "tests/fixtures/classifier-calibration-split.json",
+    ];
+    const fingerprints = Object.fromEntries(
+      await Promise.all(
+        sourceFiles.map(async (path) => [
+          path,
+          createHash("sha256")
+            .update(await readFile(path))
+            .digest("hex"),
+        ]),
+      ),
     );
-    const development = new Set(developmentCases.map((p) => p.slug));
-    const recent = all.filter(
-      (p) =>
-        p.published >= CATEGORY_WINDOW.start &&
-        p.published <= CATEGORY_WINDOW.end,
-    );
-    const eligible = recent.filter(
-      (p) => !sources.has(p.url) && !development.has(p.slug),
-    );
-    if (new Set(eligible.map((p) => p.slug)).size !== eligible.length)
-      throw new Error("Duplicate articles in corpus.");
     const signature = {
       classifierCommit: execFileSync("git", ["rev-parse", "HEAD"], {
         encoding: "utf8",
       }).trim(),
       model: DECISION_MODEL,
-      classifierSha256: createHash("sha256")
-        .update(await readFile("lib/server/classification.ts"))
-        .digest("hex"),
-      catalogSha256: createHash("sha256")
-        .update(JSON.stringify(catalog))
-        .digest("hex"),
+      fingerprints,
       corpusSha256: createHash("sha256").update(raw).digest("hex"),
-      categoryWindow: CATEGORY_WINDOW,
-      totalRecent: recent.length,
-      excludedDefinitionSources: recent.filter((p) => sources.has(p.url))
-        .length,
-      excludedDevelopment: recent.filter(
-        (p) => !sources.has(p.url) && development.has(p.slug),
-      ).length,
+      partition,
+      categoryWindow: split.window,
+      upgradeAvailableFrom: SCALING_FAST_AVAILABLE_FROM,
+      upgradePolicy:
+        "Offer only books available on the publication date; dates and labels are not model input.",
       eligible: eligible.length,
     };
     let previous: string;
@@ -94,16 +112,20 @@ it.skipIf(process.env.CLASSIFIER_BACKTEST !== "1")(
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
     }
-    const completed = new Set(
-      lines
-        .trim()
-        .split("\n")
-        .filter(Boolean)
-        .map((line) => JSON.parse(line).slug as string),
-    );
+    const previousRows: { slug: string; error: string | null }[] = lines
+      .trim()
+      .split("\n")
+      .filter(Boolean)
+      .map((line) => JSON.parse(line));
+    const completed = new Set(previousRows.map((row) => row.slug));
+    if (
+      completed.size !== previousRows.length ||
+      previousRows.some((row) => !selected.has(row.slug))
+    )
+      throw new Error("Unexpected or duplicate checkpoint rows.");
     const pending = eligible.filter((p) => !completed.has(p.slug));
     let cursor = 0;
-    let failures = 0;
+    let failures = previousRows.filter((row) => row.error !== null).length;
     let writes = Promise.resolve();
     async function worker() {
       while (cursor < pending.length) {
@@ -111,12 +133,19 @@ it.skipIf(process.env.CLASSIFIER_BACKTEST !== "1")(
         const start = Date.now();
         let result;
         try {
-          // Labels, dates and source URLs never enter the classifier request.
-          const prediction = await classifyArticle(
+          // Only the full title/body enters model input. The date filters the
+          // available book choices; saved labels never enter this request.
+          const answers = await classificationCandidates(
             { title: post.title, body: post.body },
+            post.published,
             AbortSignal.timeout(120_000),
           );
-          result = { prediction, error: null };
+          const candidates = readCandidates(answers, post.published);
+          const prediction = {
+            categories: selectCategories(candidates.scores),
+            contentUpgrade: candidates.contentUpgrade,
+          };
+          result = { ...candidates, prediction, error: null };
         } catch (error) {
           failures++;
           result = {
@@ -142,7 +171,7 @@ it.skipIf(process.env.CLASSIFIER_BACKTEST !== "1")(
         completed.add(post.slug);
         if (completed.size % 25 === 0 || completed.size === eligible.length)
           console.log(
-            `Backtest ${completed.size}/${eligible.length}; ${failures} request failures this run`,
+            `Backtest ${completed.size}/${eligible.length}; ${failures} request failures`,
           );
       }
     }

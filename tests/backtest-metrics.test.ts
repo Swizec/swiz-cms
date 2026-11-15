@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   categoryMetrics,
   upgradeMetrics,
+  historicalUpgradeMetrics,
+  compareClassifiers,
   type BacktestRow,
 } from "../scripts/backtest-metrics";
 function row(
@@ -96,5 +98,55 @@ describe("backtest metrics", () => {
     expect(score.explicitlyLabelled.count).toBe(0);
     expect(score.explicitlyLabelled.accuracy).toBeNull();
     expect(score.explicitlyLabelled.balancedAccuracy).toBeNull();
+  });
+  it("excludes prelaunch book backfills without turning them into negative labels", () => {
+    const before = {
+      ...row([], [], "ScalingFast", "SeniorMindset", true),
+      slug: "backfill",
+      published: "2024-01-01",
+    };
+    const senior = {
+      ...row([], [], "SeniorMindset", "SeniorMindset", true),
+      slug: "senior",
+      published: "2024-02-01",
+    };
+    const after = { ...row([], [], "ScalingFast", null, true), slug: "after" };
+    const missing = { ...row([], [], null, null, false), slug: "missing" };
+    const result = historicalUpgradeMetrics(
+      [before, senior, after, missing],
+      "2025-12-07",
+    );
+    expect(result.backfilledBeforeAvailability).toHaveLength(1);
+    expect(result.eligible.explicitlyLabelled.count).toBe(2);
+    expect(result.eligible.explicitlyLabelled.accuracy).toBe(0.5);
+    expect(result.beforeAvailability.count).toBe(1);
+    expect(result.afterAvailability.count).toBe(1);
+    expect(result.eligible.missing.count).toBe(1);
+    expect(result.publicationEraBaseline).toEqual({
+      count: 2,
+      correct: 2,
+      accuracy: 1,
+    });
+  });
+  it("compares the same articles and refuses changed reference labels", () => {
+    const before = row(["A"], ["B"]);
+    const after = row(["A"], ["A"]);
+    const result = compareClassifiers(
+      [before, { ...before, slug: "unused" }],
+      [after],
+      "2025-12-07",
+    );
+    expect(result.before.categories.labelled).toBe(1);
+    expect(result.after.categories.microPrecision).toBe(1);
+    expect(() =>
+      compareClassifiers(
+        [before],
+        [{ ...after, expectedCategories: ["B"] }],
+        "2025-12-07",
+      ),
+    ).toThrow("different reference");
+    expect(() => compareClassifiers([], [after], "2025-12-07")).toThrow(
+      "Missing",
+    );
   });
 });

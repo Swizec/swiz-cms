@@ -92,6 +92,7 @@ export function categoryMetrics(rows: BacktestRow[]) {
     microPrecision: divide(tp, tp + fp),
     microRecall: divide(tp, tp + fn),
     microF1: divide(2 * tp, 2 * tp + fp + fn),
+    microF05: divide(1.25 * tp, 1.25 * tp + fp + 0.25 * fn),
     meanArticleF1: mean(examples.map((r) => r.f1)),
     meanJaccard: mean(examples.map((r) => r.jaccard)),
     truePositive: tp,
@@ -102,6 +103,7 @@ export function categoryMetrics(rows: BacktestRow[]) {
     meanReferenceLabels: mean(examples.map((r) => r.actual)),
     meanPredictedLabels: mean(examples.map((r) => r.predicted)),
     fiveCategoryRate: mean(examples.map((r) => Number(r.predicted === 5))),
+    noCategoryRate: mean(examples.map((r) => Number(r.predicted === 0))),
     recallCeilingAtFive: divide(
       examples.reduce((sum, r) => sum + Math.min(5, r.actual), 0),
       sum("actual"),
@@ -222,6 +224,59 @@ export function upgradeMetrics(rows: BacktestRow[]) {
   };
 }
 
+export function historicalUpgradeMetrics(
+  rows: BacktestRow[],
+  availableFrom: string,
+) {
+  const backfilled = rows.filter(
+    (r) =>
+      r.hasContentUpgrade &&
+      r.expectedContentUpgrade === "ScalingFast" &&
+      r.published < availableFrom,
+  );
+  const backfilledSlugs = new Set(backfilled.map((r) => r.slug));
+  const eligible = rows.filter((r) => !backfilledSlugs.has(r.slug));
+  const explicit = eligible.filter(
+    (r) => r.prediction && supportedLabel(r) !== null,
+  );
+  return {
+    availableFrom,
+    backfilledBeforeAvailability: backfilled.map((r) => ({
+      slug: r.slug,
+      published: r.published,
+      saved: r.expectedContentUpgrade,
+      predicted: r.prediction?.contentUpgrade,
+    })),
+    eligible: upgradeMetrics(eligible),
+    beforeAvailability: upgradeMetrics(
+      eligible.filter((r) => r.published < availableFrom),
+    ).explicitlyLabelled,
+    afterAvailability: upgradeMetrics(
+      eligible.filter((r) => r.published >= availableFrom),
+    ).explicitlyLabelled,
+    // With publication-era class imbalance, this simple heuristic can score
+    // extremely well without understanding the article. Show it explicitly.
+    publicationEraBaseline: {
+      count: explicit.length,
+      correct: explicit.filter(
+        (r) =>
+          r.expectedContentUpgrade ===
+          (r.published < availableFrom ? "SeniorMindset" : "ScalingFast"),
+      ).length,
+      accuracy: explicit.length
+        ? divide(
+            explicit.filter(
+              (r) =>
+                r.expectedContentUpgrade ===
+                (r.published < availableFrom ? "SeniorMindset" : "ScalingFast"),
+            ).length,
+            explicit.length,
+          )
+        : null,
+    },
+  };
+}
+
 export function summarize(rows: BacktestRow[]) {
   return {
     attempted: rows.length,
@@ -232,10 +287,179 @@ export function summarize(rows: BacktestRow[]) {
   };
 }
 
+export function compareClassifiers(
+  before: BacktestRow[],
+  after: BacktestRow[],
+  availableFrom: string,
+) {
+  const old = new Map(before.map((row) => [row.slug, row]));
+  if (
+    old.size !== before.length ||
+    new Set(after.map((row) => row.slug)).size !== after.length
+  )
+    throw new Error("Duplicate comparison rows.");
+  const matched = after.map((row) => {
+    const baseline = old.get(row.slug);
+    if (
+      !baseline ||
+      JSON.stringify([...baseline.expectedCategories].sort()) !==
+        JSON.stringify([...row.expectedCategories].sort()) ||
+      baseline.expectedContentUpgrade !== row.expectedContentUpgrade ||
+      baseline.hasContentUpgrade !== row.hasContentUpgrade ||
+      baseline.published !== row.published
+    )
+      throw new Error(`Missing or different reference labels: ${row.slug}`);
+    return baseline;
+  });
+  const score = (rows: BacktestRow[]) => ({
+    ...summarize(rows),
+    historicalContentUpgrades: historicalUpgradeMetrics(rows, availableFrom),
+  });
+  return { before: score(matched), after: score(after) };
+}
+
+function writeComparison(
+  beforePath: string,
+  afterPath: string,
+  output: string,
+) {
+  const readRows = (path: string): BacktestRow[] =>
+    readFileSync(path, "utf8")
+      .trim()
+      .split("\n")
+      .filter(Boolean)
+      .map((line) => JSON.parse(line));
+  const before = readRows(beforePath),
+    after = readRows(afterPath);
+  const baselineMeta = JSON.parse(
+    readFileSync(`${beforePath}.meta.json`, "utf8"),
+  );
+  const candidateMeta = JSON.parse(
+    readFileSync(`${afterPath}.meta.json`, "utf8"),
+  );
+  if (after.length !== candidateMeta.signature.eligible)
+    throw new Error("Comparison is incomplete.");
+  const availableFrom = candidateMeta.signature.upgradeAvailableFrom;
+  if (!availableFrom) throw new Error("Missing upgrade availability date.");
+  const comparison = compareClassifiers(before, after, availableFrom);
+  const result = {
+    generatedAt: new Date().toISOString(),
+    methodology: {
+      window: candidateMeta.signature.categoryWindow,
+      categoryReference:
+        "Saved labels excluding Uncategorized; posts without topic labels are excluded, not treated as negatives. Extra labels measure disagreement, not necessarily editorial mistakes.",
+      calibration:
+        "148 tuning articles (133 category-labelled), with 20 separate development controls protecting central subjects. 295 non-holdout posts supply usage priors; prompt example titles exclude both tuning and reserved articles. F0.5 prioritizes precision; fitting weights decay with a three-year half-life.",
+      validation:
+        "66 articles reserved from fitting; 63 have category labels. They were previously included in the original baseline and evaluated twice during this revision. The first policy was rejected after separate development regressions; no final thresholds were fitted to these 66 labels. This is reused validation, not a new untouched test set.",
+      temporalScope:
+        "Retrospective random-partition validation, not a forward-in-time test: category definitions and non-holdout usage counts span the five-year snapshot. Fitting downweights older labels rather than assuming category usage stayed fixed.",
+      upgrades:
+        "Publication-date replay filters available offers. Current frontmatter ScalingFast labels predating its article-offer launch are backfills and excluded from date-aware accuracy. Missing values and legacy offers remain separate. The old baseline had no availability gate; the publication-era heuristic is also shown to expose class/era confounding.",
+      availabilityEvidence:
+        "swizec.com commit 8557ae475bea49eddcf416f1fb8b9a1d4cb2aaae on 2025-12-07 added the standard ScalingFast article upgrade; the book announcement was published 2025-12-08. A landing-page signup existed earlier, from 2025-09-17.",
+      inputs:
+        "Only title and full Markdown body are model input. Publication date controls the book choices; saved labels and URLs do not enter the request.",
+    },
+    baselineMeta,
+    candidateMeta,
+    calibration: JSON.parse(
+      readFileSync("lib/server/category-calibration.json", "utf8"),
+    ),
+    comparison,
+    recentTwoYears: compareClassifiers(
+      before,
+      after.filter((r) => r.published >= "2024-11-14"),
+      availableFrom,
+    ),
+    perYear: [...new Set(after.map((r) => r.published.slice(0, 4)))]
+      .sort()
+      .map((year) => {
+        const scores = compareClassifiers(
+          before,
+          after.filter((r) => r.published.startsWith(year)),
+          availableFrom,
+        );
+        const compact = (score: typeof scores.before) => {
+          const { perCategory: _omit, ...categories } = score.categories;
+          return { ...score, categories };
+        };
+        return {
+          year,
+          before: compact(scores.before),
+          after: compact(scores.after),
+        };
+      }),
+  };
+  writeFileSync(output, JSON.stringify(result, null, 2) + "\n");
+  const old = new Map(before.map((r) => [r.slug, r]));
+  const csv = (value: unknown) =>
+    '"' + String(value ?? "").replaceAll('"', '""') + '"';
+  const header = [
+    "url",
+    "title",
+    "published",
+    "saved_categories",
+    "before_categories",
+    "after_categories",
+    "saved_upgrade",
+    "upgrade_reference_status",
+    "before_upgrade",
+    "after_upgrade",
+    "error",
+  ];
+  const data = after.map((r) => {
+    const baseline = old.get(r.slug)!;
+    return [
+      r.url,
+      r.title,
+      r.published,
+      r.expectedCategories.join(" | "),
+      baseline.prediction?.categories.join(" | "),
+      r.prediction?.categories.join(" | "),
+      r.expectedContentUpgrade ?? "none",
+      !r.hasContentUpgrade
+        ? "missing"
+        : supportedLabel(r) === null
+          ? "legacy"
+          : r.expectedContentUpgrade === "ScalingFast" &&
+              r.published < availableFrom
+            ? "backfilled-before-availability"
+            : "explicit-available",
+      baseline.prediction?.contentUpgrade ?? "none",
+      r.prediction?.contentUpgrade ?? "none",
+      r.error,
+    ];
+  });
+  writeFileSync(
+    output.replace(/\.json$/, ".csv"),
+    [header, ...data].map((row) => row.map(csv).join(",")).join("\n") + "\n",
+  );
+  console.log(
+    JSON.stringify(
+      {
+        before: comparison.before.categories,
+        after: comparison.after.categories,
+      },
+      (key, value) => (key === "perCategory" ? undefined : value),
+      2,
+    ),
+  );
+}
+
 if (
   process.argv[1] &&
   resolve(process.argv[1]) === fileURLToPath(import.meta.url)
 ) {
+  if (process.argv[2] === "--compare") {
+    const [before, after, output] = process.argv.slice(3);
+    if (!before || !after || !output)
+      throw new Error(
+        "Usage: node scripts/backtest-metrics.ts --compare BEFORE.jsonl AFTER.jsonl OUTPUT.json",
+      );
+    writeComparison(before, after, output);
+    process.exit(0);
+  }
   const [input, output] = process.argv.slice(2);
   if (!input || !output)
     throw new Error(

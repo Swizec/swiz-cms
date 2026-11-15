@@ -1,6 +1,6 @@
 {
   "Personal": {
-    "description": "Use for essays whose central material is the author's private life, relationships, family, health, travel, or personal choices, with firsthand experience carrying the point. A first-person anecdote alone is not enough: classify primarily technical, career, or business guidance by its substantive subject when personal experience merely illustrates it.",
+    "description": "First-person life and career updates, personal projects, milestones, family, travel, hobbies, and reflections on lived experience. Includes personal news about changing jobs, writing a book, or changing this blog. Use when the author’s own story is a central subject, even when it also teaches a professional lesson; a brief anecdote introducing impersonal technical advice is insufficient.",
     "sources": [
       {
         "url": "https://swizec.com/blog/what-b2-b-saa-s-taught-me-about-having-kids",
@@ -34,7 +34,7 @@
     ]
   },
   "Senior Mindset": {
-    "description": "Use for guidance on the judgment and perspective associated with senior engineering: choosing meaningful work, balancing tradeoffs, taking responsibility for outcomes, and thinking beyond the immediate code change. It concerns how engineers approach their work, not simply years of experience, a senior job title, or management as a role.",
+    "description": "The thinking and behavior of an effective experienced engineer: judgment, ownership, choosing useful work, growing influence, taking responsibility, and navigating the human or business side of engineering. Includes career lessons and leadership perspective drawn from practice. Can coexist with Software Engineering or Leadership when the article develops that mindset; code syntax or a tool walkthrough alone does not qualify.",
     "sources": [
       {
         "url": "https://swizec.com/blog/software-has-no-value",
@@ -68,7 +68,7 @@
     ]
   },
   "Learning": {
-    "description": "Use for posts centered on how to acquire, develop, or retain knowledge or skills, including learning strategies, study resources, and lessons drawn into generalizable guidance. A technical explanation can overlap when it teaches a skill, but mere reporting of an experience or a bug fix is not enough unless learning itself is a main subject.",
+    "description": "How people acquire knowledge and skills, learn from feedback, read research, practice, teach, or develop expertise. The learning process must be a real topic. Do not add merely because an article explains a useful idea, contains a takeaway, or the author says they learned something.",
     "sources": [
       {
         "url": "https://swizec.com/blog/just-read-the-paper",
@@ -85,7 +85,7 @@
     ]
   },
   "Software Engineering": {
-    "description": "Use for the practice of building and changing software systems over time: maintainability, migrations, technical debt, reliability, prioritization, and engineering processes. Look for attention to the system and consequences of decisions, not just code syntax. A narrow implementation tutorial may fit Technical or Programming more strongly.",
+    "description": "Building, operating, changing, and maintaining real software: development practices, tradeoffs, quality, complexity, migrations, technical debt, reviews, tests, and delivering outcomes. Applies to practical engineering essays even when another category names their more specific topic. An isolated API or language feature tutorial without a broader engineering practice is insufficient.",
     "sources": [
       {
         "url": "https://swizec.com/blog/no-more-tech-debt",
@@ -217,7 +217,7 @@
     ]
   },
   "Leadership": {
-    "description": "Use for the work of guiding people and engineering teams: setting direction, mentoring, feedback, hiring, delegation, and creating conditions for others to succeed. The focus is influence and responsibility for a group, not simply personal career progress or writing code alongside colleagues; those subjects may fit Career or Teamwork.",
+    "description": "Guiding engineers and teams toward shared outcomes: judgment, ownership, coaching, delegation, feedback, hiring, setting direction, coordinating people, and creating conditions for others to succeed. Includes leadership by senior individual contributors, code-review culture and decisions about how the team works. A purely technical walkthrough or personal job search without influence on other people is insufficient.",
     "sources": [
       {
         "url": "https://swizec.com/blog/stop-burning-tokens-on-code-review",
@@ -268,7 +268,7 @@
     ]
   },
   "Scaling Fast Book": {
-    "description": "Use for substantive discussion of Swizec's book *Scaling Fast*—its ideas, material, creation, publication, or reception. The book or its contents should be a clear subject, not a passing reference. General advice about scaling a company, team, or software system belongs under the relevant subject category instead.",
+    "description": "The collection of essays behind Scaling Fast: building and evolving software, teams, and businesses through growth. Covers delivery practices, code review, migrations, abstractions, architectural complexity, observability, team organization, delegation, and managing change in working production systems. Essays developing this material belong even without mentioning the book. Also includes book updates and excerpts. A standalone language/library tutorial or individual job-search advice is insufficient.",
     "sources": [
       {
         "url": "https://swizec.com/blog/taming-chaos-is-a-learnable-skill",

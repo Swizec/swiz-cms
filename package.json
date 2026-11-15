@@ -8,7 +8,7 @@
     "start": "next start",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
-    "eval:categories": "CATEGORY_EVAL=1 node --env-file-if-exists=.env.local node_modules/vitest/vitest.mjs run tests/category-eval.test.ts",
+    "eval:categories": "CATEGORY_EVAL=1 node --env-file-if-exists=.env.local node_modules/vitest/vitest.mjs run tests/category-eval.test.ts tests/upgrade-eval.test.ts",
     "backtest:classifier": "CLASSIFIER_BACKTEST=1 node --env-file-if-exists=.env.local node_modules/vitest/vitest.mjs run tests/classifier-backtest.test.ts"
   },
   "dependencies": {

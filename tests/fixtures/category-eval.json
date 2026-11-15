@@ -71,9 +71,9 @@
   },
   {
     "slug": "dont-say-yes-when-youre-happy",
-    "required": ["productivity"],
+    "required": ["Personal"],
     "excluded": ["AI"],
-    "note": "The body is about overcommitting while in a good mood. A project for a friend supplies context; paid freelance work is not established."
+    "note": "A first-person account of overcommitting. Personal is a saved historical label; the earlier productivity requirement was inferred, never saved, and would force an optional lesson tag under the conservative policy."
   },
   {
     "slug": "reader-question-usereducer-or-xstate",
