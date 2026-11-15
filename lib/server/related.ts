@@ -29,7 +29,7 @@ export async function findRelatedArticles(
   if (!embedding?.length) throw new Error("No embedding returned.");
   const ownUrl = `/blog/${slugify(article.title)}/`;
   const rows =
-    await sql`select url, title, published_date from article_embeddings
+    await sql`select url, title, to_char(published_date, 'YYYY-MM-DD') as published_date from article_embeddings
     where rtrim(url, '/') <> ${ownUrl.slice(0, -1)}
       and rtrim(url, '/') <> ${`https://swizec.com${ownUrl.slice(0, -1)}`}
     order by embedding <-> ${JSON.stringify(embedding)}::vector asc, published_date desc limit 5`;
