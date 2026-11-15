@@ -9,7 +9,7 @@ export function articlePath(title: string) {
 export function scaffoldCommand(title: string) {
   const directory = articlePath(title);
   if (!directory) return "";
-  return `cd ~/Documents/websites/swizec.com &&\ngit checkout master &&\nmkdir -p '${directory}' &&\nmkdir -p '${directory}/img' &&\ntouch '${directory}/index.mdx'`;
+  return `cd ~/Documents/websites/swizec.com &&\ngit checkout master &&\nmkdir -p '${directory}/img' &&\ntouch '${directory}/index.mdx'`;
 }
 export function localDate(date = new Date()) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
