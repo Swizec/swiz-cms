@@ -4,7 +4,7 @@ A personal writing and publishing workspace for swizec.com.
 
 ## Development
 
-Use Node.js 22.13 or newer and npm:
+Use Node.js 26 LTS (`nvm use`) and npm. Node.js 22.13 or newer is also supported:
 
 ```sh
 npm ci
@@ -16,6 +16,7 @@ Set `OPENAI_API_KEY` and `POSTGRES_URL` in `.env.local`. The latter points to th
 
 ```sh
 npm run typecheck
+npm test
 npm run build
 ```
 
@@ -38,3 +39,16 @@ The title and Markdown body save in this browser's local storage. Drafts are nev
 Feedback stays in memory for the current page visit. Refreshing keeps the draft and starts a fresh conversation. OpenAI responses use `store: false`.
 
 Run `npm test` for request validation and conversation regression checks.
+
+## Publishing suggestions
+
+**Suggest metadata** uses GPT-6 Luna in two parallel calls:
+
+- The Responses API selects indexes of one or two representative sentences. The server copies those sentences from the Markdown's plain text; it never substitutes model-written prose.
+- The [Decisions API](https://developers.openai.com/api/docs/guides/decisions) chooses `SeniorMindset`, `ScalingFast`, or no content upgrade, and evaluates the hardcoded categories in one shared-input request. The five strongest category matches above 0.8 are offered as suggestions. They are editable; no category is required.
+
+`lib/categories.ts` contains all 284 category names from [swizec.com/categories](https://swizec.com/categories), retrieved on November 14, 2026. Refresh this file manually. There is no runtime scraping or category database.
+
+The generated MDX uses `pages/blog/<slug>/index.mdx`, comma-separated `categories`, an escaped description, and an optional `content_upgrade` field. Selecting **None** omits the upgrade field. If the draft changes after metadata generation, review or regenerate the values before copying the file. Terminal commands create directories and touch the file without overwriting existing contents.
+
+The recommended development and CI runtime is Node.js 26 LTS (`nvm use`). CI installs from `package-lock.json`, typechecks, runs tests, and builds without API credentials. Live model/database checks are separate from CI.

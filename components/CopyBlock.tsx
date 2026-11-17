@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function CopyBlock({ title, text }: { title: string; text: string }) {
   const [status, setStatus] = useState("");
+  useEffect(() => setStatus(""), [text]);
   async function copy() {
     try {
       await navigator.clipboard.writeText(text);
