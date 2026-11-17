@@ -303,6 +303,25 @@ textarea::placeholder {
 .review-context button {
   flex-shrink: 0;
 }
+.archive-context {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--paper);
+  border-radius: 6px;
+  font-size: 12px;
+}
+.archive-context summary {
+  cursor: pointer;
+}
+.archive-context ul {
+  padding-left: 16px;
+}
+.archive-context li {
+  margin-top: 8px;
+}
+.archive-context .caption {
+  display: block;
+}
 .conversation {
   max-height: 650px;
   overflow-y: auto;
