@@ -33,6 +33,12 @@ export function FeedbackPanel({ article }: { article: Article }) {
   const [reviewedDraft, setReviewedDraft] = useState<Article | null>(null);
   const [question, setQuestion] = useState("");
   const busy = status === "submitted" || status === "streaming";
+  const latestMessage = messages.at(-1);
+  const hasResponseText =
+    latestMessage?.role === "assistant" &&
+    latestMessage.parts.some(
+      (part) => part.type === "text" && part.text.trim().length > 0,
+    );
   const changed =
     reviewedDraft !== null && !sameArticle(reviewedDraft, article);
 
@@ -125,7 +131,7 @@ export function FeedbackPanel({ article }: { article: Article }) {
                 </div>
               </div>
             ))}
-            {status === "submitted" && (
+            {busy && !hasResponseText && (
               <p className="loading" role="status">
                 Astra is thinking about your article…
               </p>

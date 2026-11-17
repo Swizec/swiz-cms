@@ -492,3 +492,55 @@ textarea::placeholder {
     min-height: 330px;
   }
 }
+.field-hint {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 7px 0 0;
+}
+.metadata-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 15px;
+}
+.category-picker {
+  display: flex;
+  gap: 8px;
+}
+.category-picker select {
+  min-width: 0;
+}
+.category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 0;
+  margin: 0 0 10px;
+  list-style: none;
+}
+.category-chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #edf1e8;
+  border: 1px solid #dde4d5;
+  border-radius: 4px;
+  color: #3e5839;
+  padding: 4px 8px;
+  font-size: 11px;
+}
+.category-chips button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font-size: 16px;
+  padding: 0 2px;
+}
+.notice p {
+  margin-bottom: 5px;
+}
+@media (max-width: 480px) {
+  .metadata-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
