@@ -12,8 +12,9 @@ const tokenizer = getEncoding("cl100k_base");
 export async function findRelatedArticles(
   article: Article,
   signal?: AbortSignal,
+  limit = 5,
 ): Promise<RelatedArticle[]> {
-  const sql = getDatabase();
+  const sql = getDatabase(signal);
   const plainText = String(
     await remark()
       .use(stripMarkdown)
@@ -32,7 +33,7 @@ export async function findRelatedArticles(
     await sql`select url, title, to_char(published_date, 'YYYY-MM-DD') as published_date from article_embeddings
     where rtrim(url, '/') <> ${ownUrl.slice(0, -1)}
       and rtrim(url, '/') <> ${`https://swizec.com${ownUrl.slice(0, -1)}`}
-    order by embedding <-> ${JSON.stringify(embedding)}::vector asc, published_date desc limit 5`;
+    order by embedding <-> ${JSON.stringify(embedding)}::vector asc, published_date desc limit ${limit}`;
   return rows.flatMap((row) => {
     const url = new URL(String(row.url), "https://swizec.com");
     if (

@@ -3,6 +3,7 @@ import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { useState } from "react";
 import Markdown from "react-markdown";
+import type { FeedbackMessage } from "../lib/feedback";
 import {
   articleSchema,
   feedbackPrompt,
@@ -10,7 +11,9 @@ import {
   type Article,
 } from "../lib/article";
 
-const transport = new DefaultChatTransport({ api: "/api/feedback" });
+const transport = new DefaultChatTransport<FeedbackMessage>({
+  api: "/api/feedback",
+});
 function readableError(message: string) {
   try {
     return JSON.parse(message).error || message;
@@ -29,11 +32,14 @@ export function FeedbackPanel({ article }: { article: Article }) {
     clearError,
     regenerate,
     stop,
-  } = useChat({ transport });
+  } = useChat<FeedbackMessage>({ transport });
   const [reviewedDraft, setReviewedDraft] = useState<Article | null>(null);
   const [question, setQuestion] = useState("");
   const busy = status === "submitted" || status === "streaming";
   const latestMessage = messages.at(-1);
+  const context = messages.find(
+    (message) => message.role === "assistant" && message.metadata?.context,
+  )?.metadata?.context;
   const hasResponseText =
     latestMessage?.role === "assistant" &&
     latestMessage.parts.some(
@@ -49,7 +55,10 @@ export function FeedbackPanel({ article }: { article: Article }) {
     clearError();
     setQuestion("");
     setReviewedDraft({ ...article });
-    void sendMessage({ text: feedbackPrompt(parsed.data) });
+    void sendMessage({
+      text: feedbackPrompt(parsed.data),
+      metadata: { draft: parsed.data },
+    });
   }
 
   return (
@@ -71,7 +80,8 @@ export function FeedbackPanel({ article }: { article: Article }) {
           </span>
           <p>what do you think about this</p>
           <span className="muted">
-            Your article, an open question, and room to follow up.
+            Feedback grounded in your voice, recent writing, and relevant posts
+            from your archive.
           </span>
           <button
             type="button"
@@ -103,6 +113,43 @@ export function FeedbackPanel({ article }: { article: Article }) {
               edits. Follow-ups here use the previous draft.
             </p>
           )}
+          {context && (
+            <details className="archive-context">
+              <summary>
+                {context.articles.length
+                  ? `Using ${context.articles.length} posts from your archive`
+                  : "Using your writing style guide"}
+              </summary>
+              {context.articles.length === 0 ? (
+                <p className="muted">
+                  The archive couldn’t be loaded. Start a new review to try
+                  again.
+                </p>
+              ) : (
+                <ul>
+                  {context.articles.map((item) => (
+                    <li key={item.url}>
+                      <a href={item.url} target="_blank" rel="noreferrer">
+                        {item.title}
+                      </a>
+                      <span className="caption">
+                        {item.kind === "recent"
+                          ? "Recent writing"
+                          : "Related post"}
+                        {item.published ? ` · ${item.published}` : ""}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {context.incomplete && context.articles.length > 0 && (
+                <p className="muted">
+                  Some posts couldn’t be loaded. This review uses the available
+                  excerpts.
+                </p>
+              )}
+            </details>
+          )}
           <div
             className="conversation"
             aria-label="Feedback conversation"
@@ -133,7 +180,9 @@ export function FeedbackPanel({ article }: { article: Article }) {
             ))}
             {busy && !hasResponseText && (
               <p className="loading" role="status">
-                Astra is thinking about your article…
+                {status === "submitted"
+                  ? "Reading your draft and blog history…"
+                  : "Astra is thinking about your article…"}
               </p>
             )}
           </div>
