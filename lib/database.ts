@@ -1,9 +1,12 @@
+import { ConfigurationError } from "./server/http";
 import { neon } from "@neondatabase/serverless";
 
-export function getDatabase() {
+export function getDatabase(signal?: AbortSignal) {
   const url = process.env.POSTGRES_URL;
   if (!url) {
-    throw new Error("Set POSTGRES_URL in .env.local to find related articles.");
+    throw new ConfigurationError(
+      "Set POSTGRES_URL in .env.local to find related articles.",
+    );
   }
-  return neon(url);
+  return neon(url, { fetchOptions: { signal } });
 }
