@@ -1,3 +1,4 @@
+import type { ArticlePageProps } from "../lib/article-params";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import { ArticleForm } from "./ArticleForm";
@@ -8,13 +9,13 @@ const Header = () => (
 
         <Typography level="body-lg">
             Use this to setup copypasta for a new article and get writing
-            feedback from GPT-4
+            feedback from GPT-6 Astra
         </Typography>
     </Box>
 );
 
-export default function Page({ searchParams }) {
-    const { title, markdown } = searchParams as {
+export default async function Page({ searchParams }: ArticlePageProps) {
+    const { title, markdown } = (await searchParams) as {
         title?: string;
         markdown?: string;
     };

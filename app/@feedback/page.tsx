@@ -1,17 +1,16 @@
+import type { ArticlePageProps } from "../../lib/article-params";
 import Card from "@mui/joy/Card";
 import Skeleton from "@mui/joy/Skeleton";
 import Typography from "@mui/joy/Typography";
 import { FC, Suspense } from "react";
 import Box from "@mui/joy/Box";
 import CardContent from "@mui/joy/CardContent";
-import { OpenAIStream } from "ai";
 import { getKeyInsight } from "../../aistuff/getKeyInsight";
 import { CopyableCard } from "../../components/CopyableCard";
 import { askForFeedback } from "../../aistuff/askForFeedback";
 import { AIStreamReader } from "../../components/AIStreamReader";
 import LZString from "lz-string";
 
-export const runtime = "edge";
 // export const maxDuration = 60;
 
 const Loading: FC<{ title: string }> = ({ title }) => (
@@ -57,7 +56,7 @@ const Improvements: FC<{ title: string; markdown: string }> = async ({
     markdown,
 }) => {
     const feedback = await askForFeedback(title, markdown);
-    const stream = OpenAIStream(feedback);
+    const stream = feedback.textStream;
 
     return (
         <Card>
@@ -75,8 +74,8 @@ const Improvements: FC<{ title: string; markdown: string }> = async ({
     );
 };
 
-export default function Feedback({ searchParams }) {
-    let { title, markdown } = searchParams as {
+export default async function Feedback({ searchParams }: ArticlePageProps) {
+    let { title, markdown } = (await searchParams) as {
         title?: string;
         markdown?: string;
     };

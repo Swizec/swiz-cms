@@ -1,7 +1,8 @@
+import type { ArticlePageProps } from "../../lib/article-params";
 import Card from "@mui/joy/Card";
 import LZString from "lz-string";
 import { FC } from "react";
-import { sql } from "@vercel/postgres";
+import { getDatabase } from "../../lib/database";
 import { getArticleEmbedding } from "../../aistuff/getArticleEmbedding";
 import Typography from "@mui/joy/Typography";
 import List from "@mui/joy/List";
@@ -16,11 +17,8 @@ const RelatedArticlesList: FC<{ title: string; content: string }> = async ({
     const embedding = await getArticleEmbedding(content);
     const url = `/blog/${slugify(title)}/`;
 
-    const { rows } = await sql<{
-        url: string;
-        title: string;
-        published_date: Date;
-    }>`select url, title, published_date from article_embeddings where url <> ${url} order by embedding <-> ${JSON.stringify(
+    const sql = getDatabase();
+    const rows = await sql`select url, title, published_date from article_embeddings where url <> ${url} order by embedding <-> ${JSON.stringify(
         embedding
     )} asc, published_date desc limit 5`;
 
@@ -29,7 +27,7 @@ const RelatedArticlesList: FC<{ title: string; content: string }> = async ({
             <Typography level="title-lg">Related articles</Typography>
             <List>
                 {rows.map((row) => (
-                    <ListItem>
+                    <ListItem key={row.url}>
                         <Link
                             href={`https://swizec.com${row.url}`}
                             target="_blank"
@@ -43,8 +41,8 @@ const RelatedArticlesList: FC<{ title: string; content: string }> = async ({
     );
 };
 
-export default function RelatedArticles({ searchParams }) {
-    let { title, markdown } = searchParams as {
+export default async function RelatedArticles({ searchParams }: ArticlePageProps) {
+    let { title, markdown } = (await searchParams) as {
         title?: string;
         markdown?: string;
     };

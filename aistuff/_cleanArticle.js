@@ -1,5 +1,4 @@
 import { remark } from "remark";
-import remarkStrip from "strip-markdown";
 import { visit } from "unist-util-visit";
 
 function remarkNameOrFriend() {
