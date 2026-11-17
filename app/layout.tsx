@@ -5,7 +5,7 @@ import "@fontsource/inter/600.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Swiz CMS — The writing desk",
+  title: "Swiz CMS — Draft workspace",
   description: "A personal writing and publishing workspace for swizec.com.",
 };
 export default function RootLayout({

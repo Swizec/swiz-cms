@@ -27,6 +27,7 @@ describe("feedback archive context", () => {
   it("extracts the author's paragraphs without navigation, scripts, or newsletter chrome", () => {
     const result = extractArticleExcerpt(html);
     expect(result).toEqual({
+      title: "Title",
       excerpt: `${prose}\n\nThe final lesson 😈`,
       truncated: false,
     });
@@ -84,7 +85,7 @@ describe("feedback archive context", () => {
     expect(context.incomplete).toBe(true);
     expect(context.articles).toHaveLength(1);
     expect(context.articles[0]).toMatchObject({
-      title: reference.title,
+      title: "Title",
       kind: "recent",
       excerpt: `${prose}\n\nThe final lesson 😈`,
     });
