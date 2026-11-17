@@ -11,6 +11,7 @@ import {
 import { FeedbackPanel } from "../components/FeedbackPanel";
 import { PublishingPanel } from "../components/PublishingPanel";
 import { Workspace } from "../components/Workspace";
+import type { FeedbackContext } from "../lib/feedback";
 
 const article = {
   title: "Scaling teams",
@@ -21,9 +22,13 @@ afterEach(() => {
   localStorage.clear();
   vi.unstubAllGlobals();
 });
-function reply(text: string, id: string) {
+function reply(text: string, id: string, context?: FeedbackContext) {
   const events = [
-    { type: "start", messageId: id },
+    {
+      type: "start",
+      messageId: id,
+      ...(context ? { messageMetadata: { context } } : {}),
+    },
     { type: "start-step" },
     { type: "text-start", id: "text" },
     { type: "text-delta", id: "text", delta: text },
@@ -44,6 +49,156 @@ function reply(text: string, id: string) {
 }
 
 describe("writing workspace", () => {
+  it("splits a pasted article into editable fields, autosaves it, and previews one title", async () => {
+    const fetch = vi.fn();
+    vi.stubGlobal("fetch", fetch);
+    render(<Workspace />);
+    const body = screen.getByLabelText("Body") as HTMLTextAreaElement;
+    fireEvent.paste(body, {
+      clipboardData: { getData: () => `# ${article.title}\n\n${article.body}` },
+    });
+    expect((screen.getByLabelText("Title") as HTMLTextAreaElement).value).toBe(
+      article.title,
+    );
+    expect(body.value).toBe(article.body);
+    expect(screen.getByText(/Full article imported/)).toBeTruthy();
+    await waitFor(() =>
+      expect(JSON.parse(localStorage.getItem("swiz-cms:draft:v1")!)).toEqual(
+        article,
+      ),
+    );
+    fireEvent.mouseDown(screen.getByRole("tab", { name: "Preview" }), {
+      button: 0,
+      ctrlKey: false,
+    });
+    expect(
+      screen.getAllByRole("heading", { name: article.title }),
+    ).toHaveLength(1);
+    expect(fetch).not.toHaveBeenCalled();
+  });
+  it.each(["body", "title", "page", "preview"])(
+    "recognizes an article pasted into %s without a selection and can undo the replacement",
+    async (target) => {
+      localStorage.setItem("swiz-cms:draft:v1", JSON.stringify(article));
+      render(<Workspace />);
+      const body = screen.getByLabelText("Body") as HTMLTextAreaElement;
+      const title = screen.getByLabelText("Title") as HTMLTextAreaElement;
+      const clipboardData = {
+        getData: () => "# A replacement\n\nA different body.",
+      };
+      body.setSelectionRange(5, 5);
+      if (target === "preview") {
+        fireEvent.mouseDown(screen.getByRole("tab", { name: "Preview" }), {
+          button: 0,
+          ctrlKey: false,
+        });
+      }
+      const pasteTarget =
+        target === "page"
+          ? document.body
+          : target === "title"
+            ? title
+            : target === "preview"
+              ? screen.getByRole("heading", { name: article.title })
+              : body;
+      expect(fireEvent.paste(pasteTarget, { clipboardData })).toBe(false);
+      expect(title.value).toBe("A replacement");
+      expect(body.value).toBe("A different body.");
+      expect(
+        screen
+          .getByRole("tab", { name: "Write" })
+          .getAttribute("aria-selected"),
+      ).toBe("true");
+      expect(document.activeElement).toBe(body);
+      await waitFor(() =>
+        expect(JSON.parse(localStorage.getItem("swiz-cms:draft:v1")!)).toEqual({
+          title: "A replacement",
+          body: "A different body.",
+        }),
+      );
+      if (target === "page")
+        fireEvent.keyDown(body, { key: "z", metaKey: true });
+      else fireEvent.click(screen.getByRole("button", { name: "Undo" }));
+      expect(title.value).toBe(article.title);
+      expect(body.value).toBe(article.body);
+      await waitFor(() =>
+        expect(JSON.parse(localStorage.getItem("swiz-cms:draft:v1")!)).toEqual(
+          article,
+        ),
+      );
+    },
+  );
+  it.each([
+    "A paragraph to insert.",
+    "## A section\n\nMore text.",
+    "# A heading on its own",
+    "```md\n# Example\n```",
+  ])("leaves snippet paste to the editor: %s", (snippet) => {
+    localStorage.setItem("swiz-cms:draft:v1", JSON.stringify(article));
+    render(<Workspace />);
+    const body = screen.getByLabelText("Body") as HTMLTextAreaElement;
+    body.setSelectionRange(5, 5);
+    expect(
+      fireEvent.paste(body, { clipboardData: { getData: () => snippet } }),
+    ).toBe(true);
+    expect(body.value).toBe(article.body);
+    expect((screen.getByLabelText("Title") as HTMLTextAreaElement).value).toBe(
+      article.title,
+    );
+    expect(screen.queryByRole("button", { name: "Undo" })).toBeNull();
+  });
+  it("does not import articles pasted into tool fields or hijack undo after editing", () => {
+    localStorage.setItem("swiz-cms:draft:v1", JSON.stringify(article));
+    render(<Workspace />);
+    const clipboardData = {
+      getData: () => "# Another article\n\nA full body.",
+    };
+    fireEvent.mouseDown(screen.getByRole("tab", { name: "Publish" }), {
+      button: 0,
+      ctrlKey: false,
+    });
+    expect(
+      fireEvent.paste(screen.getByLabelText("Description"), { clipboardData }),
+    ).toBe(true);
+    const body = screen.getByLabelText("Body") as HTMLTextAreaElement;
+    expect(body.value).toBe(article.body);
+    fireEvent.paste(body, { clipboardData });
+    expect(
+      fireEvent.keyDown(screen.getByLabelText("Description"), {
+        key: "z",
+        metaKey: true,
+      }),
+    ).toBe(true);
+    expect(body.value).toBe("A full body.");
+    fireEvent.change(body, { target: { value: "A revised body." } });
+    expect(screen.queryByRole("button", { name: "Undo" })).toBeNull();
+    expect(fireEvent.keyDown(body, { key: "z", metaKey: true })).toBe(true);
+    expect(body.value).toBe("A revised body.");
+  });
+  it.each([
+    { markdown: `# ${"x".repeat(251)}\n\nA body.`, limit: "250" },
+    { markdown: `# A title\n\n${"x".repeat(100_001)}`, limit: "100,000" },
+  ])(
+    "keeps the existing draft when an import exceeds $limit characters",
+    ({ markdown, limit }) => {
+      localStorage.setItem("swiz-cms:draft:v1", JSON.stringify(article));
+      render(<Workspace />);
+      const body = screen.getByLabelText("Body") as HTMLTextAreaElement;
+      body.setSelectionRange(5, 5);
+      expect(
+        fireEvent.paste(body, {
+          clipboardData: { getData: () => markdown },
+        }),
+      ).toBe(false);
+      expect(screen.getByRole("alert").textContent).toContain(
+        `longer than ${limit} characters`,
+      );
+      expect(body.value).toBe(article.body);
+      expect(
+        (screen.getByLabelText("Title") as HTMLTextAreaElement).value,
+      ).toBe(article.title);
+    },
+  );
   it("restores and autosaves a draft without sending it to an API or URL", async () => {
     localStorage.setItem("swiz-cms:draft:v1", JSON.stringify(article));
     const fetch = vi.fn();
@@ -78,7 +233,16 @@ describe("writing workspace", () => {
     fireEvent.change(screen.getByLabelText("Keep the conversation going"), {
       target: { value: "Which example?" },
     });
-    fireEvent.click(await screen.findByRole("button", { name: /Ask Astra/ }));
+    const followUp = screen.getByLabelText("Keep the conversation going");
+    expect(fireEvent.keyDown(followUp, { key: "Enter" })).toBe(true);
+    expect(fetch).toHaveBeenCalledTimes(1);
+    await waitFor(() =>
+      expect(
+        (screen.getByRole("button", { name: /Ask Astra/ }) as HTMLButtonElement)
+          .disabled,
+      ).toBe(false),
+    );
+    fireEvent.keyDown(followUp, { key: "Enter", metaKey: true });
     await screen.findByText("Show one ambiguous handoff.");
     const request = JSON.parse(fetch.mock.calls[1][1].body);
     expect(request.messages).toHaveLength(3);
@@ -154,5 +318,85 @@ describe("writing workspace", () => {
     expect(document.querySelectorAll("pre")[1].textContent).not.toContain(
       "content_upgrade:",
     );
+  });
+  it("preserves draft, feedback context, and publishing edits across workspace tabs", async () => {
+    const context: FeedbackContext = {
+      articles: [
+        {
+          title: "An earlier post",
+          url: "https://swizec.com/blog/earlier-post",
+          published: "2026-06-17",
+          kind: "related",
+          excerpt: "An actual example from the archive.",
+          truncated: false,
+        },
+      ],
+      incomplete: false,
+    };
+    const fetch = vi
+      .fn()
+      .mockResolvedValueOnce(
+        reply("This builds on your earlier post.", "first", context),
+      )
+      .mockResolvedValueOnce(
+        reply("The new example adds a useful distinction.", "second"),
+      );
+    vi.stubGlobal("fetch", fetch);
+    localStorage.setItem("swiz-cms:draft:v1", JSON.stringify(article));
+    render(<Workspace />);
+    const switchTab = (name: string) =>
+      fireEvent.mouseDown(screen.getByRole("tab", { name }), {
+        button: 0,
+        ctrlKey: false,
+      });
+    switchTab("Preview");
+    expect(
+      await screen.findByRole("heading", { name: article.title }),
+    ).toBeTruthy();
+    switchTab("Write");
+    expect((screen.getByLabelText("Body") as HTMLTextAreaElement).value).toBe(
+      article.body,
+    );
+    fireEvent.click(screen.getByRole("button", { name: /Get feedback/ }));
+    await screen.findByText("This builds on your earlier post.");
+    expect(screen.getByText("Using 1 post from your archive")).toBeTruthy();
+    expect(
+      JSON.parse(fetch.mock.calls[0][1].body).messages[0].metadata.draft,
+    ).toEqual(article);
+    switchTab("Publish");
+    fireEvent.change(screen.getByLabelText("Description"), {
+      target: { value: "An edited description." },
+    });
+    fireEvent.change(screen.getByLabelText("Content upgrade"), {
+      target: { value: "ScalingFast" },
+    });
+    switchTab("Related");
+    expect(screen.getByRole("button", { name: "Find articles" })).toBeTruthy();
+    switchTab("Feedback");
+    expect(screen.getByText("This builds on your earlier post.")).toBeTruthy();
+    expect(
+      fireEvent.paste(screen.getByLabelText("Keep the conversation going"), {
+        clipboardData: { getData: () => "# A quote\n\nA quoted article." },
+      }),
+    ).toBe(true);
+    expect((screen.getByLabelText("Body") as HTMLTextAreaElement).value).toBe(
+      article.body,
+    );
+    fireEvent.change(screen.getByLabelText("Keep the conversation going"), {
+      target: { value: "What is different this time?" },
+    });
+    fireEvent.click(await screen.findByRole("button", { name: /Ask Astra/ }));
+    await screen.findByText("The new example adds a useful distinction.");
+    expect(
+      JSON.parse(fetch.mock.calls[1][1].body).messages[1].metadata.context,
+    ).toEqual(context);
+    switchTab("Publish");
+    expect(
+      (screen.getByLabelText("Description") as HTMLTextAreaElement).value,
+    ).toBe("An edited description.");
+    expect(
+      (screen.getByLabelText("Content upgrade") as HTMLSelectElement).value,
+    ).toBe("ScalingFast");
+    expect(fetch).toHaveBeenCalledTimes(2);
   });
 });

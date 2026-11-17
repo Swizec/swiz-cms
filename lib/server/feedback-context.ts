@@ -24,6 +24,7 @@ export function extractArticleExcerpt(html: string) {
   const $ = load(html);
   const article = $("article").first();
   if (!article.length) throw new Error("No article body found.");
+  const title = article.find("h1").first().text().trim().slice(0, 500);
   // Everything after the category footer is site chrome, not the author's prose.
   const footer = article.find(".article-categories").first();
   footer.nextAll().remove();
@@ -44,7 +45,7 @@ export function extractArticleExcerpt(html: string) {
   const excerpt = truncated
     ? `${text.slice(0, 6_000)}\n\n[... excerpt omitted ...]\n\n${text.slice(-1_900)}`
     : text;
-  return { excerpt, truncated };
+  return { title, excerpt, truncated };
 }
 
 export async function readPublishedArticle(
@@ -72,10 +73,12 @@ export async function readPublishedArticle(
     !response.headers.get("content-type")?.includes("text/html")
   )
     throw new Error("Article unavailable.");
+  const content = extractArticleExcerpt(await response.text());
   return {
     ...article,
     url: url.href,
-    ...extractArticleExcerpt(await response.text()),
+    ...content,
+    title: content.title || article.title,
   };
 }
 

@@ -36,13 +36,10 @@ export function PublishingPanel({ article }: { article: Article }) {
   return (
     <section className="panel" aria-labelledby="publish-heading">
       <div className="section-heading">
-        <div>
-          <p className="eyebrow">Ready when you are</p>
-          <h2 id="publish-heading">Publish</h2>
-        </div>
+        <h2 id="publish-heading">Publishing</h2>
         <button
           type="button"
-          className="button secondary small"
+          className="button small"
           disabled={pending || !articleSchema.safeParse(article).success}
           onClick={() => void run(article)}
         >
@@ -53,10 +50,6 @@ export function PublishingPanel({ article }: { article: Article }) {
               : "Suggest metadata"}
         </button>
       </div>
-      <p className="muted">
-        A description in your own words, a few categories, and the right next
-        step for your reader.
-      </p>
       {pending && (
         <p className="loading" role="status">
           Picking representative sentences and matching topics…
@@ -86,15 +79,14 @@ export function PublishingPanel({ article }: { article: Article }) {
       <label htmlFor="description">Description</label>
       <textarea
         id="description"
-        rows={3}
+        rows={2}
         placeholder="One or two sentences that capture the idea."
         value={metadata.description}
         disabled={pending}
         onChange={(event) => update({ description: event.target.value })}
       />
       <p className="field-hint">
-        Suggestions quote sentences from your article. Everything here is
-        editable.
+        Suggestions quote one or two sentences from your article.
       </p>
       <div className="metadata-grid">
         <div>

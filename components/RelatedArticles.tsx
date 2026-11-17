@@ -6,6 +6,7 @@ import {
   type RelatedArticle,
 } from "../lib/article";
 import { useArticleRequest } from "../hooks/useArticleRequest";
+import { ArrowUpRight } from "lucide-react";
 
 export function RelatedArticles({ article }: { article: Article }) {
   const { result, pending, error, run } =
@@ -13,10 +14,7 @@ export function RelatedArticles({ article }: { article: Article }) {
   return (
     <section className="panel" aria-labelledby="related-heading">
       <div className="section-heading">
-        <div>
-          <p className="eyebrow">From your archive</p>
-          <h2 id="related-heading">Related articles</h2>
-        </div>
+        <h2 id="related-heading">Related articles</h2>
         <button
           type="button"
           className="button secondary small"
@@ -48,7 +46,7 @@ export function RelatedArticles({ article }: { article: Article }) {
               <li key={item.url}>
                 <a href={item.url} target="_blank" rel="noreferrer">
                   <span>{item.title}</span>
-                  <span aria-hidden="true">↗</span>
+                  <ArrowUpRight size={16} aria-hidden="true" />
                 </a>
                 {item.published && (
                   <time dateTime={item.published}>{item.published}</time>
@@ -62,7 +60,7 @@ export function RelatedArticles({ article }: { article: Article }) {
       ) : (
         !pending && (
           <p className="empty-state">
-            Find older articles worth linking to in this one.
+            Find earlier posts worth linking to in this draft.
           </p>
         )
       )}
