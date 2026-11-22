@@ -8,7 +8,11 @@ if (!input || !output)
 const read = (path) => JSON.parse(readFileSync(path, "utf8"));
 const split = read("tests/fixtures/classifier-calibration-split.json");
 const catalog = read("lib/server/category-catalog.json");
-const corpus = read(input);
+const aliases = read("lib/category-aliases.json");
+const corpus = read(input).map((post) => ({
+  ...post,
+  categories: [...new Set(post.categories.map((name) => aliases[name] ?? name))],
+}));
 if (new Set(corpus.map((p) => p.slug)).size !== corpus.length)
   throw new Error("Duplicate corpus articles.");
 const holdout = new Set(split.holdout);

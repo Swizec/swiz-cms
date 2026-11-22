@@ -686,7 +686,7 @@
     ]
   },
   "Interviewing": {
-    "description": "Apply to posts about conducting, participating in, or designing job interviews, especially how candidates are assessed and how interview processes can be improved. This includes interview questions, evaluation criteria, and evidence about interview effectiveness. Hiring more broadly, career advice, or a passing anecdote about a conversation does not by itself make interviewing the subject.",
+    "description": "Apply to recruiting, evaluating, and selecting people for jobs, from both employer and candidate perspectives. This includes hiring criteria, role expectations and leveling when selecting candidates, interview design, questions, assessments, preparation, and evidence about hiring effectiveness. General career progression, promotions, or managing an existing team are not enough unless recruiting or candidate selection is a central subject.",
     "sources": [
       {
         "url": "https://swizec.com/blog/software-engineer-interviews-for-the-age-of-ai",
@@ -699,6 +699,10 @@
       {
         "url": "https://swizec.com/blog/youre-not-asking-for-a-job-youre-selling-a-service",
         "published": "2020-11-20"
+      },
+      {
+        "url": "https://swizec.com/blog/engineering-levels-arent-about-skill-anymore",
+        "published": "2026-05-19"
       }
     ]
   },
@@ -1425,23 +1429,6 @@
       }
     ]
   },
-  "Salary": {
-    "description": "Applies to posts about salary and compensation: pay levels, pay differences, negotiation, compensation structures, equity as part of remuneration, or factors that affect what engineers are paid. The discussion may connect compensation to employers, roles, or labor markets. Career advice more broadly does not qualify unless pay or compensation is a central subject.",
-    "sources": [
-      {
-        "url": "https://swizec.com/blog/if-you-re-so-good-why-aren-t-you-making-600k-at-bigtech",
-        "published": "2023-03-10"
-      },
-      {
-        "url": "https://swizec.com/blog/are-you-the-engineer-who-scoffs-at-high-salary-numbers",
-        "published": "2022-03-07"
-      },
-      {
-        "url": "https://swizec.com/blog/why-experts-charge-more",
-        "published": "2022-03-07"
-      }
-    ]
-  },
   "GraphQL": {
     "description": "Applies to posts that substantively explain, build, use, or evaluate GraphQL, including schemas, queries, mutations, clients, or GraphQL APIs. It may compare GraphQL with REST when the comparison meaningfully examines GraphQL. A post about APIs generally, or one that only encounters GraphQL traffic incidentally, does not qualify without focused discussion of the technology.",
     "sources": [
@@ -1646,7 +1633,7 @@
     ]
   },
   "Compensation": {
-    "description": "Apply to posts about pay and employment rewards: salaries, bonuses, equity, benefits, compensation ranges, and how employers or workers set or compare them. The focus is what workers are paid or how compensation works. Broader personal budgeting, saving, investing, or asset allocation belongs under Money when that is the main subject.",
+    "description": "Apply to pay and employment rewards: salaries, bonuses, equity, benefits, pay negotiation, compensation ranges, and how employers or workers set, compare, or explain pay. The focus is what workers earn, why pay differs, or how compensation works. Broader career advice does not qualify unless pay is central; personal budgeting, saving, investing, or asset allocation belongs under Money when that is the main subject.",
     "sources": [
       {
         "url": "https://swizec.com/blog/are-you-the-engineer-who-scoffs-at-high-salary-numbers",
@@ -1655,6 +1642,10 @@
       {
         "url": "https://swizec.com/blog/why-experts-charge-more",
         "published": "2022-03-07"
+      },
+      {
+        "url": "https://swizec.com/blog/if-you-re-so-good-why-aren-t-you-making-600k-at-bigtech",
+        "published": "2023-03-10"
       }
     ]
   },
@@ -1874,15 +1865,6 @@
       {
         "url": "https://swizec.com/blog/why-you-need-a-regular-retro",
         "published": "2024-02-24"
-      }
-    ]
-  },
-  "Hiring": {
-    "description": "Use for posts about recruiting and selecting people for engineering roles, including hiring criteria, candidate expectations, and how role levels or responsibilities shape hiring. The focus is bringing people into an organization or deciding whom to hire. Advice about progressing in an existing career, without a hiring or selection concern, is not enough.",
-    "sources": [
-      {
-        "url": "https://swizec.com/blog/engineering-levels-arent-about-skill-anymore",
-        "published": "2026-05-19"
       }
     ]
   },

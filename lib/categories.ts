@@ -1,5 +1,8 @@
 // Categories used on swizec.com posts published within the past ten years.
 // Static snapshot: 823 posts, November 14, 2016 through November 14, 2026.
+// Hiring → Interviewing and Salary → Compensation consolidated November 21.
+import aliases from "./category-aliases.json";
+
 export const CATEGORY_WINDOW = {
   start: "2016-11-14",
   end: "2026-11-14",
@@ -100,7 +103,6 @@ export const CATEGORIES = [
   "time",
   "Git",
   "Webpack",
-  "Salary",
   "GraphQL",
   "data modeling",
   "Research",
@@ -136,8 +138,14 @@ export const CATEGORIES = [
   "TimberJS",
   "Mentoring",
   "Agile",
-  "Hiring",
   "Feedback",
 ] as const;
 
 export type Category = (typeof CATEGORIES)[number];
+
+// Normalize canonical labels from older archive snapshots before computing
+// usage or scoring new predictions. A post contributes once to each category.
+export function canonicalizeCategories(categories: readonly string[]): string[] {
+  const retired: Record<string, string> = aliases;
+  return [...new Set(categories.map((category) => retired[category] ?? category))];
+}

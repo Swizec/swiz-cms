@@ -9,6 +9,7 @@ import {
 } from "../lib/server/classification-candidates";
 import { selectCategories } from "../lib/server/category-selection";
 import { DECISION_MODEL } from "../lib/models";
+import { canonicalizeCategories } from "../lib/categories";
 import split from "./fixtures/classifier-calibration-split.json";
 
 // The archive is private input; reports contain labels and public URLs, not bodies.
@@ -52,6 +53,8 @@ it.skipIf(process.env.CLASSIFIER_BACKTEST !== "1")(
     )
       throw new Error("Article outside the frozen evaluation window.");
     const sourceFiles = [
+      "lib/categories.ts",
+      "lib/category-aliases.json",
       "lib/server/classification.ts",
       "lib/server/classification-candidates.ts",
       "lib/server/category-selection.ts",
@@ -158,7 +161,7 @@ it.skipIf(process.env.CLASSIFIER_BACKTEST !== "1")(
           url: post.url,
           title: post.title,
           published: post.published,
-          expectedCategories: post.categories,
+          expectedCategories: canonicalizeCategories(post.categories),
           expectedContentUpgrade: post.contentUpgradeRaw,
           hasContentUpgrade: post.hasContentUpgrade,
           ...result,

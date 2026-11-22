@@ -1,6 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { Decision } from "openai/resources/decisions";
-import { CATEGORIES, CATEGORY_WINDOW, type Category } from "../lib/categories";
+import {
+  CATEGORIES,
+  CATEGORY_WINDOW,
+  canonicalizeCategories,
+  type Category,
+} from "../lib/categories";
 import { DECISION_MODEL } from "../lib/models";
 import { classifyArticle } from "../lib/server/classification";
 import {
@@ -77,6 +82,9 @@ describe("category evidence", () => {
     expect(MANUAL_CATEGORIES.every((c) => CATEGORIES.includes(c))).toBe(true);
   });
   it("uses five-year usage and examples without putting tuning or holdout articles in prompts", () => {
+    expect(Object.keys(profile.categories).sort()).toEqual(
+      [...CATEGORIES].sort(),
+    );
     expect(profile.window).toEqual(split.window);
     expect(new Set(split.tuning).size).toBe(split.tuning.length);
     expect(new Set(split.holdout).size).toBe(split.holdout.length);
@@ -95,6 +103,27 @@ describe("category evidence", () => {
       }
     }
     expect(calibration.priorDenominator).toBe(profile.trainingPosts + 2);
+  });
+  it("maps retired archive labels without double counting their replacements", () => {
+    expect(
+      canonicalizeCategories([
+        "Salary",
+        "Compensation",
+        "Hiring",
+        "Interviewing",
+        "Career",
+        "Teamwork",
+        "Leadership",
+      ]),
+    ).toEqual([
+      "Compensation",
+      "Interviewing",
+      "Career",
+      "Teamwork",
+      "Leadership",
+    ]);
+    expect(CATEGORIES).not.toContain("Salary");
+    expect(CATEGORIES).not.toContain("Hiring");
   });
   it("asks one membership predicate per automatic category with its rubric", () => {
     expect(topicQuestions.length + 1).toBeLessThanOrEqual(400);

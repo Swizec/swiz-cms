@@ -26,5 +26,43 @@
     "body": "My freelance practice works best when the client and I agree on scope before I quote a price. I ask what outcome they need, define deliverables, and write down what would count as a change request. Fixed-price contracts can work for a bounded project; uncertain work needs a paid discovery phase or a time-based agreement. I collect a deposit, invoice on milestones, and reserve capacity for finding the next client. A late payment is a business problem to resolve with a clear contract and a conversation, not a reason to silently work extra hours. Keeping several client relationships healthy matters as much as finishing the current project.",
     "required": ["Freelancing"],
     "excluded": ["AI"]
+  },
+  {
+    "id": "hiring-without-interview-tactics",
+    "title": "Hire for the job you actually need done",
+    "body": "Recruiting starts with deciding what work the next engineer will own. Before opening a role, write down the responsibilities, scope, and outcomes that would make the hire successful. Use that scorecard to decide where to source candidates and which applications to advance. A prestigious employer on a resume is not evidence that someone can do this job. Compare candidates against the same requirements instead of changing the bar for whoever applied most recently. When choosing between applicants, look for evidence of doing similar work and the ability to learn what is missing. Level the role based on responsibility, and make the selection decision from the evidence gathered. A clear hiring bar helps the team recruit the person it needs.",
+    "required": [
+      "Interviewing"
+    ],
+    "excluded": [
+      "Hiring",
+      "Salary",
+      "Compensation"
+    ]
+  },
+  {
+    "id": "salary-and-total-compensation",
+    "title": "Compare the whole offer before you negotiate",
+    "body": "Two engineering offers can advertise the same total compensation and pay very differently. Compare the guaranteed base salary, bonus targets, equity grant, vesting schedule, and benefits separately. A private company equity estimate is not the same as cash in your paycheck. Ask what assumptions produced the headline number and what happens if the company never exits. Before negotiating, decide which parts of the package matter to you and ask about the salary band for the role. A higher base salary and a larger equity grant have different tradeoffs. Negotiate the actual package rather than accepting an impressive total with unclear terms.",
+    "required": [
+      "Compensation"
+    ],
+    "excluded": [
+      "Salary",
+      "Hiring",
+      "Interviewing"
+    ]
+  },
+  {
+    "id": "career-growth-without-recruiting-or-pay",
+    "title": "Choose growth before another title",
+    "body": "I stayed at the same company and changed the shape of my role. Instead of collecting more tickets, I took responsibility for a product area and learned to explain its tradeoffs to the business. The useful question for my next career step was what I wanted to be trusted with a year from now. I wrote down the experience I was missing and found projects that would let me gain it. A salary increase or a successful interview would not fill those gaps by itself. I reviewed my progress with my manager, asked for broader responsibility, and kept a record of the outcomes. Professional growth comes from choosing challenges that build the capabilities you want, then reflecting on what changed.",
+    "required": [
+      "Career"
+    ],
+    "excluded": [
+      "Interviewing",
+      "Compensation"
+    ]
   }
 ]

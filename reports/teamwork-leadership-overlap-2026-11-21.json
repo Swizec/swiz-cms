@@ -1,0 +1,120 @@
+{
+  "sourceRepository": "Swizec/swizec.com",
+  "sourceCommit": "80160a3a08f0edbc1581ca467af0ab06c4cc2313",
+  "cleanupCommit": "12082c1331e7c1bd396ac52cfda5f28945214d76",
+  "methodology": [
+    "Current counts use published blog posts in the five-year window, with case and punctuation normalized as category slugs.",
+    "Before-cleanup counts read the actual files at the cleanup commit parent for the 348 window articles that existed then. Teams is normalized to Teamwork.",
+    "The same-posts comparison holds that 348-article cohort fixed. Co-tagging measures saved labels, not semantic similarity."
+  ],
+  "window": {
+    "start": "2021-11-21",
+    "end": "2026-11-21"
+  },
+  "current": {
+    "posts": 359,
+    "teamwork": 65,
+    "leadership": 88,
+    "both": 60,
+    "teamworkOnly": 5,
+    "leadershipOnly": 28
+  },
+  "beforeCleanup": {
+    "posts": 348,
+    "teamwork": 59,
+    "leadership": 17,
+    "both": 7,
+    "teamworkOnly": 52,
+    "leadershipOnly": 10
+  },
+  "samePostsNow": {
+    "posts": 348,
+    "teamwork": 59,
+    "leadership": 87,
+    "both": 59,
+    "teamworkOnly": 0,
+    "leadershipOnly": 28
+  },
+  "originallyBoth": [
+    {
+      "title": "Small projects, clear scope",
+      "url": "https://swizec.com/blog/small-projects-clear-scope"
+    },
+    {
+      "title": "How to lead a project",
+      "url": "https://swizec.com/blog/how-to-lead-a-project"
+    },
+    {
+      "title": "Leadership lessons from growing 3x in 1 year",
+      "url": "https://swizec.com/blog/leadership-lessons-from-growing-3x-in-1-year"
+    },
+    {
+      "title": "5 tips for effective standups",
+      "url": "https://swizec.com/blog/5-tips-for-effective-standups"
+    },
+    {
+      "title": "Let juniors speak first",
+      "url": "https://swizec.com/blog/let-juniors-speak-first"
+    },
+    {
+      "title": "What I learned from Team Topologies",
+      "url": "https://swizec.com/blog/what-i-learned-from-team-topologies"
+    },
+    {
+      "title": "Scaling teams is a technical challenge",
+      "url": "https://swizec.com/blog/scaling-teams-is-a-technical-challenge"
+    }
+  ],
+  "originallyTeamworkOnly": [
+    {
+      "title": "How to be useful as a software architect",
+      "url": "https://swizec.com/blog/how-to-be-useful-as-a-software-architect"
+    },
+    {
+      "title": "The one thing every experienced engineer gets wrong",
+      "url": "https://swizec.com/blog/the-one-thing-every-experienced-engineer-gets-wrong"
+    },
+    {
+      "title": "Theory of constraints, AI, and code review",
+      "url": "https://swizec.com/blog/theory-of-constraints-ai-and-code-review"
+    },
+    {
+      "title": "You get what you hire",
+      "url": "https://swizec.com/blog/you-get-what-you-hire"
+    },
+    {
+      "title": "Relentlessly focus on the outcomes",
+      "url": "https://swizec.com/blog/relentlessly-focus-on-the-outcomes"
+    },
+    {
+      "title": "Engineering levels aren't about skill anymore",
+      "url": "https://swizec.com/blog/engineering-levels-arent-about-skill-anymore"
+    }
+  ],
+  "originallyLeadershipOnly": [
+    {
+      "title": "What makes a senior engineer",
+      "url": "https://swizec.com/blog/what-makes-a-senior-engineer"
+    },
+    {
+      "title": "Onboarding to a new team",
+      "url": "https://swizec.com/blog/onboarding-to-a-new-team"
+    },
+    {
+      "title": "Keeping a high engineering culture, tips from the field",
+      "url": "https://swizec.com/blog/keeping-a-high-engineering-culture-tips-from-the-field"
+    },
+    {
+      "title": "How to go from Senior to Lead",
+      "url": "https://swizec.com/blog/how-to-go-from-senior-to-lead"
+    },
+    {
+      "title": "Move the rock",
+      "url": "https://swizec.com/blog/move-the-rock"
+    },
+    {
+      "title": "The Wally Reflector",
+      "url": "https://swizec.com/blog/the-wally-reflector"
+    }
+  ]
+}
