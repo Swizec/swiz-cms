@@ -4,8 +4,7 @@
   "evaluatedAt": "2026-11-22T05:58:00.938Z",
   "methodology": "Live development controls after synchronizing the usage profile to the reviewed blog archive. No thresholds or definitions changed in this revision. This is not a historical backtest or an accuracy estimate.",
   "blogPullRequest": "https://github.com/Swizec/swizec.com/pull/183",
-  "archiveReview": "https://github.com/Swizec/swizec.com/blob/codex/consolidate-career-categories/reports/leadership-teamwork-review-2026-11-21.json",
-  "archiveReviewSha256": "fb78aa7d457dfbf85dade5843bee431419f01bfba2cf8abd34dcc333a8cee5ef",
+  "blogSourceCommit": "4b9eab12583e03eb3a4b5236eee364d2cfa93a7a",
   "priorCommit": "2a5e7b06f47455a77d7dfce4808062f21684244d",
   "profileChanges": {
     "Leadership": {
