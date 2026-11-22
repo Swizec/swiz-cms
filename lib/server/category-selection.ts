@@ -27,8 +27,8 @@ function logit(probability: number) {
   return Math.log(clipped / (1 - clipped));
 }
 
-// Native predicate evidence dominates; the smoothed five-year usage prior has
-// a small, fitted weight. A rare subject can still be decisive. This ranking
+// Native predicate evidence combines with a smoothed five-year usage prior at
+// a fitted weight. A rare subject can still be decisive. This ranking
 // score is not a measured probability that the historical tag will match.
 export function categoryRelevance({ category, probability }: CategoryScore) {
   const prior =
@@ -59,8 +59,8 @@ export function selectCategories(scores: CategoryScore[]): Category[] {
   const selected: Category[] = [];
   for (const { category, relevance } of ranked) {
     if (selected.includes(category)) continue;
-    // Each additional suggestion clears a higher bar. Five is a cap, and
-    // there is no minimum: never pad the result with a barely fitting label.
+    // The cutoff and optional per-label increment are fitted together. Five is
+    // a cap, not a target: never pad the result with a barely fitting label.
     if (
       relevance <
       calibration.threshold + selected.length * calibration.thresholdStep

@@ -5,55 +5,55 @@
     "end": "2026-11-14"
   },
   "trainingArticles": 133,
-  "developmentControls": 20,
+  "developmentControls": 28,
   "priorDenominator": 297,
   "priorPseudocount": 1,
   "probabilityClip": 0.0001,
   "minimumEvidence": 0.9,
   "maxCategories": 5,
-  "priorWeight": 0.075,
-  "threshold": 0.92,
-  "thresholdStep": 0.005,
+  "priorWeight": 0.25,
+  "threshold": 0.9,
+  "thresholdStep": 0,
   "sampleWeightHalfLifeYears": 3,
   "crossValidated": {
-    "precision": 0.6092307692307692,
-    "recall": 0.4841075794621027,
-    "f1": 0.5395095367847411,
-    "f05": 0.5792861322410766,
-    "meanCategories": 2.443609022556391
+    "precision": 0.6363636363636364,
+    "recall": 0.5259067357512953,
+    "f1": 0.5758865248226951,
+    "f05": 0.6107099879663056,
+    "meanCategories": 2.398496240601504
   },
   "crossValidatedFolds": [
     {
-      "priorWeight": 0.075,
-      "threshold": 0.92,
-      "thresholdStep": 0.005
-    },
-    {
-      "priorWeight": 0.075,
-      "threshold": 0.92,
-      "thresholdStep": 0.005
-    },
-    {
-      "priorWeight": 0.075,
-      "threshold": 0.94,
+      "priorWeight": 0.25,
+      "threshold": 0.9,
       "thresholdStep": 0
     },
     {
-      "priorWeight": 0.075,
-      "threshold": 0.92,
-      "thresholdStep": 0.005
+      "priorWeight": 0.25,
+      "threshold": 0.9,
+      "thresholdStep": 0
     },
     {
-      "priorWeight": 0.075,
-      "threshold": 0.92,
-      "thresholdStep": 0.005
+      "priorWeight": 0.25,
+      "threshold": 0.9,
+      "thresholdStep": 0
+    },
+    {
+      "priorWeight": 0.25,
+      "threshold": 0.9,
+      "thresholdStep": 0
+    },
+    {
+      "priorWeight": 0.25,
+      "threshold": 0.9,
+      "thresholdStep": 0
     }
   ],
   "training": {
-    "precision": 0.6149253731343284,
-    "recall": 0.5036674816625917,
-    "f1": 0.553763440860215,
-    "f05": 0.5889079473985135,
-    "meanCategories": 2.518796992481203
+    "precision": 0.6363636363636364,
+    "recall": 0.5259067357512953,
+    "f1": 0.5758865248226951,
+    "f05": 0.6107099879663056,
+    "meanCategories": 2.398496240601504
   }
 }

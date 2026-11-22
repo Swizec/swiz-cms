@@ -174,24 +174,6 @@ describe("selection", () => {
       ]),
     ).toEqual(["AI"]);
   });
-  it("raises the bar for each additional label instead of filling five slots", () => {
-    const candidates: Category[] = [
-      "Senior Mindset",
-      "Software Engineering",
-      "Leadership",
-      "Teamwork",
-      "Career",
-    ];
-    const selected = selectCategories(
-      candidates.map((category) => ({ category, probability: 0.94 })),
-    );
-    expect(selected).toEqual([
-      "Senior Mindset",
-      "Software Engineering",
-      // The reviewed archive uses Teamwork more often than Leadership.
-      "Teamwork",
-    ]);
-  });
   it("still allows a rare specific subject with decisive evidence", () => {
     expect(selectCategories([{ category: "Haskell", probability: 1 }])).toEqual(
       ["Haskell"],
