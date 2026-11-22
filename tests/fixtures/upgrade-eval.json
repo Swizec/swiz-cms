@@ -1,0 +1,38 @@
+[
+  {
+    "id": "career-promotion",
+    "title": "Show your scope before asking for a promotion",
+    "body": "I used to bring a list of tickets to my promotion conversation. My manager needed evidence of scope, impact, and judgment instead. Write down the outcome you owned, who depended on your work, and how you handled ambiguity. Ask your manager what the next level looks like before the review cycle starts. Practice explaining your impact without taking credit for the whole team. A promotion is about proving you already operate at that level, not how many hours you worked.",
+    "expected": "SeniorMindset"
+  },
+  {
+    "id": "career-salary",
+    "title": "Prepare for your next salary conversation",
+    "body": "Your next offer is a negotiation about the value of your experience. Research the role, prepare examples of the scope you have owned, and keep several interview processes moving. Decide what compensation you need before someone asks. A strong professional reputation and a clear account of your impact give you more options. Your goal is a sustainable career with work you enjoy and fair pay, not winning an argument with a recruiter.",
+    "expected": "SeniorMindset"
+  },
+  {
+    "id": "team-delivery",
+    "title": "Keep delivery moving as your team grows",
+    "body": "Doubling the engineering team made every project slower. Decisions still passed through the same two people, reviews waited for days, and nobody knew who owned the interfaces between teams. We gave each team an outcome and the authority to make reversible decisions. Small releases and clear ownership replaced a weekly coordination meeting. Leads coached engineers instead of approving every implementation. Scaling the organization meant changing how people work together, not asking everyone to type faster.",
+    "expected": "ScalingFast"
+  },
+  {
+    "id": "production-migration",
+    "title": "Migrate without stopping the business",
+    "body": "Replacing a production system is a coordination problem. Keep the old path working while you introduce a small slice of the new one. Observe the behavior, compare results, and make rollback cheap before moving more traffic. Give teams ownership of the boundaries and agree on what done means. Shipping incrementally lets you learn from real use while the business keeps serving customers. A big rewrite that pauses all product work compounds both technical and organizational risk.",
+    "expected": "ScalingFast"
+  },
+  {
+    "id": "narrow-tool-tutorial",
+    "title": "Using optional chaining in JavaScript",
+    "body": "The optional chaining operator returns undefined when the value before it is null or undefined. Instead of checking user and user.address separately, write user?.address?.city. To supply a default, combine it with nullish coalescing: user?.address?.city ?? 'Unknown'. Nullish coalescing preserves empty strings and zero. This short example shows the syntax; no architecture or career lesson is needed.",
+    "expected": null
+  },
+  {
+    "id": "personal-trip",
+    "title": "A quiet weekend by the coast",
+    "body": "We spent the weekend walking along the coast, cooking dinner, and watching the fog roll in. I left my laptop at home. On Sunday we found a bakery, bought too many pastries, and sat on the beach until it was time to drive back. Nothing about productivity or engineering here. Just a pleasant weekend with family and a few photos to remember it by.",
+    "expected": null
+  }
+]

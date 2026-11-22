@@ -1,0 +1,1890 @@
+{
+  "Personal": {
+    "description": "First-person life and career updates, personal projects, milestones, family, travel, hobbies, and reflections on lived experience. Includes personal news about changing jobs, writing a book, or changing this blog. Use when the author’s own story is a central subject, even when it also teaches a professional lesson; a brief anecdote introducing impersonal technical advice is insufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/what-b2-b-saa-s-taught-me-about-having-kids",
+        "published": "2026-09-05"
+      },
+      {
+        "url": "https://swizec.com/blog/freedom-from-obligation",
+        "published": "2019-04-24"
+      },
+      {
+        "url": "https://swizec.com/blog/if-the-first-page-of-the-martian-was-written-in-different-type-systems",
+        "published": "2016-12-15"
+      }
+    ]
+  },
+  "Technical": {
+    "description": "Use when the post's main purpose is to explain, implement, compare, or assess a concrete technology, tool, or technical method, supported by details of how it works or how it is used. A passing product name or link is insufficient; choose a narrower technology category when that technology is the clear focus.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/a-pattern-for-composable-ui-in-flask",
+        "published": "2025-02-08"
+      },
+      {
+        "url": "https://swizec.com/blog/why-cssinjs-is-winning-an-example",
+        "published": "2019-01-30"
+      },
+      {
+        "url": "https://swizec.com/blog/livecoding-26-a-new-page-for-a-new-react-indie-bundle",
+        "published": "2016-11-14"
+      }
+    ]
+  },
+  "Senior Mindset": {
+    "description": "The thinking and behavior of an effective experienced engineer: judgment, ownership, choosing useful work, growing influence, taking responsibility, and navigating the human or business side of engineering. Includes career lessons and leadership perspective drawn from practice. Can coexist with Software Engineering or Leadership when the article develops that mindset; code syntax or a tool walkthrough alone does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/software-has-no-value",
+        "published": "2026-11-14"
+      },
+      {
+        "url": "https://swizec.com/blog/working-with-product",
+        "published": "2023-07-18"
+      },
+      {
+        "url": "https://swizec.com/blog/how-cvdriven-development-shapes-our-industry",
+        "published": "2017-10-19"
+      }
+    ]
+  },
+  "Frontend": {
+    "description": "Use for substantive work on browser-facing interfaces: UI structure, interaction, styling, client-side behavior, and the techniques that make web experiences usable. Posts about frontend architecture or implementation fit even when they mention a server; a webpage used only to market a product does not make its business discussion a frontend post.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/beware-the-spaceships",
+        "published": "2026-08-08"
+      },
+      {
+        "url": "https://swizec.com/blog/tooltips-tooltips-are-not-so-easy",
+        "published": "2018-12-10"
+      },
+      {
+        "url": "https://swizec.com/blog/livecoding-26-a-new-page-for-a-new-react-indie-bundle",
+        "published": "2016-11-14"
+      }
+    ]
+  },
+  "Learning": {
+    "description": "How people acquire knowledge and skills, learn from feedback, read research, practice, teach, or develop expertise. The learning process must be a real topic. Do not add merely because an article explains a useful idea, contains a takeaway, or the author says they learned something.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/just-read-the-paper",
+        "published": "2026-04-20"
+      },
+      {
+        "url": "https://swizec.com/blog/how-grit-superchargers-your-career",
+        "published": "2019-03-22"
+      },
+      {
+        "url": "https://swizec.com/blog/yet-another-hard-lesson-about-time",
+        "published": "2017-01-19"
+      }
+    ]
+  },
+  "Software Engineering": {
+    "description": "Building, operating, changing, and maintaining real software: development practices, tradeoffs, quality, complexity, migrations, technical debt, reviews, tests, and delivering outcomes. Applies to practical engineering essays even when another category names their more specific topic. An isolated API or language feature tutorial without a broader engineering practice is insufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/no-more-tech-debt",
+        "published": "2026-10-17"
+      },
+      {
+        "url": "https://swizec.com/blog/let-small-fires-burn",
+        "published": "2024-08-21"
+      },
+      {
+        "url": "https://swizec.com/blog/the-magic-function-principle",
+        "published": "2021-02-05"
+      }
+    ]
+  },
+  "Uncategorized": {
+    "description": "Use when a post has a clear substantive subject but that subject does not fit a more specific category in the catalog. Do not use it merely because a post is humorous, unusual, or carries noisy historical tags, or because several categories could reasonably overlap; assign the best-supported subject category instead.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/pirates-downfall-causes-global-warming",
+        "published": "2019-02-28"
+      },
+      {
+        "url": "https://swizec.com/blog/i-built-a-node-app-to-thaw-my-favorite-snack",
+        "published": "2018-10-11"
+      }
+    ]
+  },
+  "Travel + Events": {
+    "description": "Use for accounts or practical discussion centered on travel, outings, conferences, meetups, or other in-person events, including the experience of attending or visiting. A conference report may qualify when the event frames the post; a technical topic only incidentally mentioned at an event belongs under its subject category instead.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/ai-engineer-summit-report",
+        "published": "2023-10-11"
+      },
+      {
+        "url": "https://swizec.com/blog/friend-go-offline",
+        "published": "2019-07-12"
+      },
+      {
+        "url": "https://swizec.com/blog/60-seconds-2000-miles",
+        "published": "2017-01-04"
+      }
+    ]
+  },
+  "Backend": {
+    "description": "Use for server-side application work and operations: APIs, databases, data handling, cloud or serverless execution, and the reliability of services behind an interface. Look for substantive explanation of server behavior, implementation, or operation. A browser UI that merely calls an API is not backend-focused on that basis alone.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/the-future-of-software-engineering-is-sre",
+        "published": "2026-01-24"
+      },
+      {
+        "url": "https://swizec.com/blog/serverless-file-upload-to-s3-with-nextjs-and-aws-lambda-codewithswiz-27",
+        "published": "2021-04-20"
+      },
+      {
+        "url": "https://swizec.com/blog/time-is-funny-in-ruby",
+        "published": "2017-03-29"
+      }
+    ]
+  },
+  "React": {
+    "description": "Use when React itself is a substantive subject, such as its components, hooks, state, rendering, integration, or ecosystem, with implementation detail or a considered assessment. React appearing incidentally in a broader web or business post is not sufficient; use a broader frontend or programming category when React is not the focus.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/swizec-com-is-now-on-timber-js-a-new-react-framework",
+        "published": "2026-07-21"
+      },
+      {
+        "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-xstate",
+        "published": "2020-08-10"
+      },
+      {
+        "url": "https://swizec.com/blog/livecoding-26-a-new-page-for-a-new-react-indie-bundle",
+        "published": "2016-11-14"
+      }
+    ]
+  },
+  "Business": {
+    "description": "Use for the commercial side of creating or operating a business or product: revenue, pricing, sales, marketing, customers, business models, and financial viability. The discussion should be substantively about commercial decisions or outcomes; mentioning a client or a paid tool while explaining code does not make a post business-focused.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/software-has-no-value",
+        "published": "2026-11-14"
+      },
+      {
+        "url": "https://swizec.com/blog/my-new-5k-monitor-lg-ultrafine-5k",
+        "published": "2017-12-11"
+      },
+      {
+        "url": "https://swizec.com/blog/react-indie-bundle-flopped-heres-why",
+        "published": "2016-12-09"
+      }
+    ]
+  },
+  "Opinion": {
+    "description": "Use for a post whose defining purpose is to argue for or against a position, evaluate an issue, or make a clear interpretive claim, supported by reasons or evidence. A personal voice or a passing preference is not enough; when the post mainly teaches a method or reports an event, classify by that main subject.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/whats-your-next-mountain",
+        "published": "2024-12-21"
+      },
+      {
+        "url": "https://swizec.com/blog/dont-just-wait-around",
+        "published": "2020-04-24"
+      },
+      {
+        "url": "https://swizec.com/blog/if-the-first-page-of-the-martian-was-written-in-different-type-systems",
+        "published": "2016-12-15"
+      }
+    ]
+  },
+  "JavaScript": {
+    "description": "Use when JavaScript language features, semantics, idioms, runtime behavior, or JavaScript-specific code are the central subject. Detailed examples should explain or assess the language rather than use it as incidental syntax. For a post chiefly about React, NodeJS, or another distinct technology, prefer that narrower category.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/the-anatomy-of-a-react-island",
+        "published": "2024-11-23"
+      },
+      {
+        "url": "https://swizec.com/blog/stop-shouting-shouting",
+        "published": "2021-09-21"
+      },
+      {
+        "url": "https://swizec.com/blog/counting-web-sessions-with-javascript",
+        "published": "2017-05-11"
+      }
+    ]
+  },
+  "Leadership": {
+    "description": "Guiding people and creating the conditions for a team to succeed: setting direction, clarifying goals and ownership, delegating decisions, coaching and mentoring, building trust, shaping culture and incentives, removing obstacles, and helping others exercise judgment. Apply when a substantial lesson concerns how these choices help or harm a team. This includes leadership by individual contributors without formal authority. Leadership can be taught through everyday engineering work: using code review to develop engineers, planning to give people clarity and autonomy, or changing how decisions get made. Teamwork describes the collaboration itself; Leadership describes how people enable and influence that work. Peer coordination, a technical workflow, personal productivity, or a manager's presence alone is insufficient. Both categories may apply when both lessons are substantially developed.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/3-sticky-insights-from-3-eng-management-books",
+        "published": "2025-06-03"
+      },
+      {
+        "url": "https://swizec.com/blog/let-small-fires-burn",
+        "published": "2024-08-21"
+      },
+      {
+        "url": "https://swizec.com/blog/how-to-go-from-senior-to-lead",
+        "published": "2023-11-03"
+      }
+    ],
+    "exampleSlugs": [
+      "3-sticky-insights-from-3-eng-management-books",
+      "let-small-fires-burn",
+      "how-to-go-from-senior-to-lead"
+    ]
+  },
+  "Programming": {
+    "description": "Use for the craft of writing and reasoning about code: implementing algorithms or functions, structuring logic, and solving programming problems. The subject need not be a particular language. Prefer a narrower language or technology category when that is central, and Software Engineering when the focus is system-level practice over time.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/ai-writes-good-tests-actually",
+        "published": "2025-03-18"
+      },
+      {
+        "url": "https://swizec.com/blog/coaching-ai-to-write-your-code",
+        "published": "2025-01-07"
+      },
+      {
+        "url": "https://swizec.com/blog/programming-in-markdown",
+        "published": "2023-08-01"
+      }
+    ]
+  },
+  "Livecoding": {
+    "description": "Use for posts that document or recap programming performed in a live session, including the sequence of experiments, decisions, and discoveries made while coding on stream. The session format must be central; a conventional tutorial or technical article does not qualify solely because it embeds a video or mentions live coding.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/hacking-the-react-ast-for-fun-and-profit-codewithswiz-ep34",
+        "published": "2021-06-29"
+      },
+      {
+        "url": "https://swizec.com/blog/using-youtube-as-a-data-source-in-gatsbyjs",
+        "published": "2018-04-24"
+      },
+      {
+        "url": "https://swizec.com/blog/livecoding-26-a-new-page-for-a-new-react-indie-bundle",
+        "published": "2016-11-14"
+      }
+    ]
+  },
+  "Scaling Fast Book": {
+    "description": "The collection of essays behind Scaling Fast: building and evolving software, teams, and businesses through growth. Covers delivery practices, code review, migrations, abstractions, architectural complexity, observability, team organization, delegation, and managing change in working production systems. Essays developing this material belong even without mentioning the book. Also includes book updates and excerpts. A standalone language/library tutorial or individual job-search advice is insufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/taming-chaos-is-a-learnable-skill",
+        "published": "2026-03-11"
+      },
+      {
+        "url": "https://swizec.com/blog/the-laws-of-software-evolution",
+        "published": "2024-09-30"
+      },
+      {
+        "url": "https://swizec.com/blog/tech-debt-is-a-tool",
+        "published": "2021-08-13"
+      }
+    ]
+  },
+  "Side Project": {
+    "description": "Use when an independently pursued project outside the author's primary job is central, including its creation, technical choices, progress, or outcomes. The project may be experimental, educational, or revenue-generating. A work assignment or a mention of a personal tool used only to illustrate another topic is not enough.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/dont-neglect-your-upgrades",
+        "published": "2023-11-07"
+      },
+      {
+        "url": "https://swizec.com/blog/2018-is-off-to-a-rocky-start",
+        "published": "2018-02-07"
+      },
+      {
+        "url": "https://swizec.com/blog/react-indie-bundle-flopped-heres-why",
+        "published": "2016-12-09"
+      }
+    ]
+  },
+  "Teamwork": {
+    "description": "Apply when the article substantially explains how people work together: collaboration among peers or across functions, communication, handoffs, sharing knowledge, coordinating dependent work, joint problem-solving, and shared review or delivery practices. The focus is the team's interactions and collective execution. Leading or managing people, setting their direction, delegation, or developing reports does not by itself establish Teamwork; the collaboration itself must receive substantive attention. A team setting, a manager's presence, or a tool used by a team is insufficient. Evaluate independently of Leadership. Both categories may apply when collaboration and leading people are each strongly developed subjects.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/approve-with-comment",
+        "published": "2024-04-09"
+      },
+      {
+        "url": "https://swizec.com/blog/why-you-need-a-regular-retro",
+        "published": "2024-02-24"
+      },
+      {
+        "url": "https://swizec.com/blog/working-with-product",
+        "published": "2023-07-18"
+      }
+    ],
+    "exampleSlugs": [
+      "approve-with-comment",
+      "why-you-need-a-regular-retro",
+      "working-with-product"
+    ]
+  },
+  "Career": {
+    "description": "Use for an individual's professional path and choices, including job searches, interviews, resumes, compensation, promotions, and career development. The post should address navigating or evaluating work opportunities, rather than management of a team or technical practices that happen to influence someone's career.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/how-to-be-useful-as-a-software-architect",
+        "published": "2026-07-25"
+      },
+      {
+        "url": "https://swizec.com/blog/your-resume-has-a-job",
+        "published": "2024-02-21"
+      },
+      {
+        "url": "https://swizec.com/blog/youre-not-asking-for-a-job-youre-selling-a-service",
+        "published": "2020-11-20"
+      }
+    ]
+  },
+  "AI": {
+    "description": "Use for substantive discussion of artificial intelligence: using models or coding agents, evaluating their capabilities and limitations, building AI-powered systems, or considering their effects on work and society. The focus may be practical or strategic. A passing mention of an AI tool or a link to AI news alone is not enough.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/software-has-no-value",
+        "published": "2026-11-14"
+      },
+      {
+        "url": "https://swizec.com/blog/ai-writes-good-tests-actually",
+        "published": "2025-03-18"
+      },
+      {
+        "url": "https://swizec.com/blog/why-a-coding-ai-like-github-copilot-wont-take-your-job",
+        "published": "2021-07-07"
+      }
+    ]
+  },
+  "Software Architecture": {
+    "description": "Applies to posts about the structure and design of software systems: how responsibilities, components, dependencies, abstractions, or boundaries fit together, and how those choices affect change and maintenance. Includes architectural tradeoffs and ways to manage system-level complexity. A post about a code-level technique or a particular framework does not qualify merely because it mentions architecture.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/stop-burning-tokens-on-code-review",
+        "published": "2026-08-15"
+      },
+      {
+        "url": "https://swizec.com/blog/dry-the-common-source-of-bad-abstractions",
+        "published": "2024-07-18"
+      },
+      {
+        "url": "https://swizec.com/blog/the-magic-function-principle",
+        "published": "2021-02-05"
+      }
+    ]
+  },
+  "Lesson": {
+    "description": "Applies when a post presents a generalizable lesson, principle, or insight for readers to use in their work or decisions. Look for an explicit takeaway, explanation of what it teaches, or advice grounded in experience or analysis. A story or anecdote by itself is not a lesson unless the post develops it into a broader point.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/what-being-an-expert-looks-like",
+        "published": "2024-01-25"
+      },
+      {
+        "url": "https://swizec.com/blog/a-lesson-on-expertise-from-a-great-mafia-movie",
+        "published": "2022-06-16"
+      },
+      {
+        "url": "https://swizec.com/blog/lessons-from-migrating-a-14-year-old-blog-with-1500-posts-to-gatsby",
+        "published": "2020-08-24"
+      }
+    ]
+  },
+  "Reader Question": {
+    "description": "Applies when a post is organized around answering a question submitted by a reader, commonly identifying the question or its author and then offering a response. The subject can be technical, career-related, or otherwise. A post that merely asks readers a question, cites another person's advice, or answers a question posed only as a rhetorical hook does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/but-if-ai-does-it-all-whats-my-job",
+        "published": "2026-05-09"
+      },
+      {
+        "url": "https://swizec.com/blog/how-to-go-from-senior-to-lead",
+        "published": "2023-11-03"
+      },
+      {
+        "url": "https://swizec.com/blog/reader-question:-when-do-you-fix-tech-debt",
+        "published": "2021-08-17"
+      }
+    ]
+  },
+  "Books": {
+    "description": "Applies when books are a substantive subject: discussing or reviewing one or more titles, summarizing ideas from them, recommending reading, or reflecting on what was learned. The book's arguments or content should matter to the post. A passing citation, cover image, or link to a book as supporting evidence alone does not make a post about books.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/3-sticky-insights-from-3-eng-management-books",
+        "published": "2025-06-03"
+      },
+      {
+        "url": "https://swizec.com/blog/insights-for-interviews-from-kahneman-s-noise",
+        "published": "2023-04-14"
+      },
+      {
+        "url": "https://swizec.com/blog/what-i-learned-from-cal-newports-deep-work",
+        "published": "2017-05-26"
+      }
+    ]
+  },
+  "Twitter": {
+    "description": "Applies to substantive discussion of Twitter as a platform or of its posts and embedding mechanisms, including how to retrieve, display, or assess Twitter content. The platform may be the focus of implementation or user-facing behavior. An embedded tweet, a link to a tweet, or a Twitter status used only as a citation is not sufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/build-privacy-focused-blazing-fast-tweet-embeds-codewithswiz-30",
+        "published": "2021-05-12"
+      },
+      {
+        "url": "https://swizec.com/blog/twitter-embeds-without-javascript-pt1-codewithswiz-29",
+        "published": "2021-05-04"
+      }
+    ]
+  },
+  "Papers": {
+    "description": "Applies when academic or research papers are a central source, subject, or format: reading and interpreting their findings, explaining a paper's ideas, or discussing how papers convey technical knowledge. The post should engage with the paper or research literature itself. A citation or link to a paper used only to support another topic is incidental.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/just-read-the-paper",
+        "published": "2026-04-20"
+      },
+      {
+        "url": "https://swizec.com/blog/two-types-of-complexity-and-their-impact",
+        "published": "2023-05-26"
+      },
+      {
+        "url": "https://swizec.com/blog/finding-unresolved-promises-in-javascript",
+        "published": "2021-11-03"
+      }
+    ]
+  },
+  "Writing": {
+    "description": "Applies to the practice, craft, or process of writing and publishing: developing ideas in writing, communicating through prose, or building habits and approaches for producing written work. It can include writing as a way to think or teach. A post does not qualify just because it is itself a blog article or briefly mentions writing.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/how-to-be-witty-and-off-the-cuff-as-a-slow-deep-thinker",
+        "published": "2025-09-16"
+      },
+      {
+        "url": "https://swizec.com/blog/my-new-5k-monitor-lg-ultrafine-5k",
+        "published": "2017-12-11"
+      },
+      {
+        "url": "https://swizec.com/blog/nights-and-weekends",
+        "published": "2017-01-23"
+      }
+    ]
+  },
+  "productivity": {
+    "description": "Applies to practical methods for making work more focused, efficient, or effective, including managing attention, interruptions, workload, and execution. Posts may address individual work habits or how a team gets work done. Mere activity, output, or speed is not the focus unless the post discusses how to improve work practices or their results.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/when-code-is-cheap-judgement-becomes-the-job",
+        "published": "2026-10-08"
+      },
+      {
+        "url": "https://swizec.com/blog/outputs-are-not-outcomes",
+        "published": "2024-04-26"
+      },
+      {
+        "url": "https://swizec.com/blog/when-you-code-write-down-everything",
+        "published": "2019-01-04"
+      }
+    ]
+  },
+  "Thoughts": {
+    "description": "Applies to reflective posts that develop the author's thinking about a subject, experience, or choice, often through a personal framework, question, or considered perspective. Look for exploration and reflection as the organizing mode, rather than a technical how-to or a direct answer to a reader. Personal experience alone does not establish this category.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/are-you-playing-games-you-want-to-win",
+        "published": "2025-12-25"
+      },
+      {
+        "url": "https://swizec.com/blog/how-running-a-side-business-is-a-lot-like-running-a-marathon",
+        "published": "2018-07-25"
+      },
+      {
+        "url": "https://swizec.com/blog/why-everything-must-change-every-five-years",
+        "published": "2018-02-23"
+      }
+    ]
+  },
+  "Fullstack": {
+    "description": "Applies to building or explaining web applications across multiple layers, such as browser interface, server-side behavior, APIs, data, and deployment. The post should address how those parts work together or guide an end-to-end implementation. A frontend-only or backend-only discussion does not qualify simply because it concerns a web application.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/react-htmx-and-tan-stack-start",
+        "published": "2025-10-06"
+      },
+      {
+        "url": "https://swizec.com/blog/move-your-business-logic-into-data",
+        "published": "2022-08-03"
+      },
+      {
+        "url": "https://swizec.com/blog/how-to-add-real-web-push-notifications-to-your-webapp",
+        "published": "2017-11-16"
+      }
+    ]
+  },
+  "Startup": {
+    "description": "Applies to starting, building, or growing a startup venture, including founder decisions, market demand, early product or business strategy, and the conditions that shape startup opportunities. Posts may offer advice or discuss startup economics. General business commentary, ordinary company management, or mentioning a startup without examining venture-building is not enough.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/a-tough-job-market-is-the-best-time-to-start-something",
+        "published": "2026-01-17"
+      },
+      {
+        "url": "https://swizec.com/blog/the-market-always-wins",
+        "published": "2024-02-27"
+      },
+      {
+        "url": "https://swizec.com/blog/that-one-time-a-simple-forloop-increased-conversions-by-19percent",
+        "published": "2017-10-20"
+      }
+    ]
+  },
+  "d3js": {
+    "description": "Applies when D3.js is substantively used, explained, or assessed, including its data-driven visualizations, scales, transitions, shapes, or integration with other UI tools. The post should teach or examine D3 itself or a D3-based implementation. A passing mention, link, or visualization that does not discuss D3 does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/answering-some-common-questions-about-react-d3-2018",
+        "published": "2018-08-02"
+      },
+      {
+        "url": "https://swizec.com/blog/silky-smooth-piechart-transitions-with-react-and-d3js",
+        "published": "2018-03-09"
+      },
+      {
+        "url": "https://swizec.com/blog/a-dancing-rainbow-snake-an-example-of-minimal-react-and-d3v4-transitions",
+        "published": "2017-02-09"
+      }
+    ]
+  },
+  "CodeWithSwiz": {
+    "description": "Applies to posts that belong to CodeWithSwiz, Swizec's named live-coding show, such as an episode, build session, or its accompanying recap and show notes. Evidence includes an explicit series or episode label and framing around the show's stream. A technical tutorial or live-coding post outside this series is not CodeWithSwiz merely by format.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/hacking-the-react-ast-for-fun-and-profit-codewithswiz-ep34",
+        "published": "2021-06-29"
+      },
+      {
+        "url": "https://swizec.com/blog/gatsby-to-nextjs-pt1-server-side-render-or-server-side-generate",
+        "published": "2020-11-19"
+      },
+      {
+        "url": "https://swizec.com/blog/codewithswiz-privacy-focused-embeds-for-youtube-twitter-et-al",
+        "published": "2020-08-27"
+      }
+    ]
+  },
+  "Freelancing": {
+    "description": "Applies to independent contract work and the practical business of freelancing, including finding clients, working under contracts, pricing, income, and managing a freelance practice. The focus may be advice or firsthand discussion of freelance work. A mention that freelancing could be an option, without substantive treatment, is incidental.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/a-tough-job-market-is-the-best-time-to-start-something",
+        "published": "2026-01-17"
+      },
+      {
+        "url": "https://swizec.com/blog/how-i-sponsored-my-own-genius-visa",
+        "published": "2018-09-21"
+      },
+      {
+        "url": "https://swizec.com/blog/how-i-got-boned-by-taxes-two-years-in-a-row",
+        "published": "2017-05-04"
+      }
+    ]
+  },
+  "Serverless": {
+    "description": "Applies to serverless computing as an architecture or development and deployment model, including functions-as-a-service, cloud functions, event-driven execution, and their operational tradeoffs. Posts may teach how to build or evaluate serverless systems. Mentioning a cloud provider or deploying an app does not alone make the subject serverless.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/people-like-me-are-why-you-shouldnt-run-a-hosting-company",
+        "published": "2023-12-22"
+      },
+      {
+        "url": "https://swizec.com/blog/go-full-stack-in-5min-with-your-first-cloud-function",
+        "published": "2021-03-18"
+      },
+      {
+        "url": "https://swizec.com/blog/typescript-for-serverless-lambda-backends",
+        "published": "2019-05-27"
+      }
+    ]
+  },
+  "Haskell": {
+    "description": "Applies when Haskell is substantively discussed or used as a programming language, including its syntax, functional style, libraries, tools, or implementation of a problem. Code in Haskell may support a tutorial or comparison. A passing language mention, a link to Haskell resources, or a general functional-programming discussion without meaningful Haskell content is insufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/advent-of-code-days-17-and-18-spinlocks-and-interpreters",
+        "published": "2017-12-18"
+      },
+      {
+        "url": "https://swizec.com/blog/advent-of-code-day-13-packet-scanners",
+        "published": "2017-12-13"
+      }
+    ]
+  },
+  "Computer Science": {
+    "description": "Applies to foundational computing concepts and formal ideas, such as algorithms, computation, program behavior, complexity, and theoretical models. The post should explain or reason about the underlying concept, not merely use it in an application. Routine coding advice or a practical implementation does not qualify solely because computers or programming are involved.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-stately-ai",
+        "published": "2022-11-08"
+      },
+      {
+        "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-xstate",
+        "published": "2020-08-10"
+      },
+      {
+        "url": "https://swizec.com/blog/do-you-really-need-immutable-data",
+        "published": "2017-05-24"
+      }
+    ]
+  },
+  "HTML": {
+    "description": "Applies to the HTML language and web document markup, including elements, attributes, native browser behavior, and standards-based techniques. Posts may explain how to use or evaluate HTML features in a web interface. HTML shown as incidental code, or a discussion focused on CSS, JavaScript, or a framework, is not enough.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/datalist-the-pure-html-typeahed-you-didnt-know-about",
+        "published": "2021-12-14"
+      }
+    ]
+  },
+  "Management": {
+    "description": "Applies to managing people, teams, or engineering organizations: setting priorities, staffing, supporting performance, coordinating work, and shaping management processes or culture. The post may address managers' responsibilities or the organizational effects of management decisions. Individual career advice or a technical team's workflow alone is not management unless it examines this responsibility.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/when-code-is-cheap-judgement-becomes-the-job",
+        "published": "2026-10-08"
+      },
+      {
+        "url": "https://swizec.com/blog/let-small-fires-burn",
+        "published": "2024-08-21"
+      },
+      {
+        "url": "https://swizec.com/blog/how-we-made-the-best-burndown-chart-youve-ever-seen",
+        "published": "2022-04-12"
+      }
+    ]
+  },
+  "video": {
+    "description": "Apply when a video is the central publication format or subject: recorded talks, demonstrations, livestreams, vlogs, or discussion of making or sharing video. The post may explain the ideas presented in a video, but the video itself should be a meaningful part of the content. A passing embedded clip or link alone does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/you-do-have-time-to-build-it-twice",
+        "published": "2022-07-26"
+      }
+    ]
+  },
+  "Testing": {
+    "description": "Apply to posts about software testing practices, test design, test automation, and tools or techniques for checking behavior and preventing regressions. This includes discussion of unit, integration, and end-to-end tests, as well as tradeoffs in how tests are written or evaluated. Mentioning a test runner or tests incidentally is not enough.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/a-better-way-to-end-to-end-test-your-webapp",
+        "published": "2026-01-06"
+      },
+      {
+        "url": "https://swizec.com/blog/ai-writes-good-tests-actually",
+        "published": "2025-03-18"
+      },
+      {
+        "url": "https://swizec.com/blog/pg-mem-and-jest-for-smooth-integration-testing",
+        "published": "2021-12-21"
+      }
+    ]
+  },
+  "Interviewing": {
+    "description": "Apply to recruiting, evaluating, and selecting people for jobs, from both employer and candidate perspectives. This includes hiring criteria, role expectations and leveling when selecting candidates, interview design, questions, assessments, preparation, and evidence about hiring effectiveness. General career progression, promotions, or managing an existing team are not enough unless recruiting or candidate selection is a central subject.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/software-engineer-interviews-for-the-age-of-ai",
+        "published": "2026-03-25"
+      },
+      {
+        "url": "https://swizec.com/blog/insights-for-interviews-from-kahneman-s-noise",
+        "published": "2023-04-14"
+      },
+      {
+        "url": "https://swizec.com/blog/youre-not-asking-for-a-job-youre-selling-a-service",
+        "published": "2020-11-20"
+      },
+      {
+        "url": "https://swizec.com/blog/engineering-levels-arent-about-skill-anymore",
+        "published": "2026-05-19"
+      }
+    ]
+  },
+  "Indie Hacking": {
+    "description": "Apply to posts about independently building and operating a product business, including choosing a business model, finding customers, launching products, and deciding whether to pursue the work full time. The focus is self-directed entrepreneurship and the realities of making the business work. Creating something as a hobby, or merely reporting side income, is not sufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/it-made-me-500k-but-i-think-content-is-a-bad-business",
+        "published": "2024-10-12"
+      },
+      {
+        "url": "https://swizec.com/blog/different-medium-different-mindset",
+        "published": "2021-03-19"
+      },
+      {
+        "url": "https://swizec.com/blog/hustle-life-and-bernoulli-trials",
+        "published": "2019-07-02"
+      }
+    ]
+  },
+  "API": {
+    "description": "Apply when software APIs are a substantive subject: designing or implementing endpoints and contracts, consuming an API, or discussing how systems exchange requests and responses. Posts may cover API structure, behavior, integrations, or the consequences of an API design choice. A product or service link that happens to point to an API does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/clever-technical-hackery-can-t-solve-the-wrong-design",
+        "published": "2023-03-07"
+      },
+      {
+        "url": "https://swizec.com/blog/how-to-add-typeform-as-a-gatsby-source",
+        "published": "2022-01-25"
+      }
+    ]
+  },
+  "Database": {
+    "description": "Apply to posts centered on databases and data persistence: database behavior, storage choices, queries, schemas, indexing, or the tradeoffs of managing stored data. This includes relational and non-relational models and database-specific performance or testing. A post that only mentions a database as one dependency, without discussing its role, does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/i-was-wrong-about-databases",
+        "published": "2025-02-13"
+      },
+      {
+        "url": "https://swizec.com/blog/how-i-added-a-related-articles-feature-on-swizec-com-using-gpt-4-embeddings",
+        "published": "2024-01-04"
+      },
+      {
+        "url": "https://swizec.com/blog/notes-on-a-relational-model-of-data-for-large-shared-data-banks",
+        "published": "2022-09-20"
+      }
+    ]
+  },
+  "linkages": {
+    "description": "Apply to posts about connecting audiences, publications, or communities through recommendations, cross-promotion, or collaborative distribution. The connection between the parties or their audiences should be a meaningful topic, not merely a list of links. Ordinary citations, embedded posts, and hyperlinks used as supporting references do not qualify on their own.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/javascript-games-and-wonderful-tools",
+        "published": "2023-06-16"
+      }
+    ]
+  },
+  "Year in review": {
+    "description": "Apply to retrospective posts that take stock of a defined year or period, describing notable outcomes, changes, lessons, or next steps. A review may focus on work, business, or personal goals, and may also look ahead. A post published near year-end, or a routine monthly update without a retrospective purpose, does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/are-you-playing-games-you-want-to-win",
+        "published": "2025-12-25"
+      },
+      {
+        "url": "https://swizec.com/blog/5-years-of-books-and-courses-or-how-i-made-dollar369000-on-the-side",
+        "published": "2020-07-21"
+      },
+      {
+        "url": "https://swizec.com/blog/how-i-sidehustled-dollar72167-last-year-and-what-i-wanna-do-next",
+        "published": "2018-01-03"
+      }
+    ]
+  },
+  "python": {
+    "description": "Apply when Python programming is a substantive part of the post, such as explaining Python code, solving a problem with it, or discussing its use and behavior. Code examples should make the language more than incidental. A post about a different topic that merely includes a short Python snippet or names a Python-based tool does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/advent-of-code-day-19-a-series-of-tubes",
+        "published": "2017-12-19"
+      },
+      {
+        "url": "https://swizec.com/blog/advent-of-code-day-14-disk-fragmentation",
+        "published": "2017-12-14"
+      }
+    ]
+  },
+  "Ruby": {
+    "description": "Apply when Ruby programming is a substantive part of the post, including explaining Ruby code, implementing a solution in Ruby, or discussing the language or its ecosystem. Ruby may appear alongside another language when its role matters to the technical explanation. A passing code fragment or a project’s Ruby implementation mentioned without discussion does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/more-messing-with-time-deduping-messages-between-ios-and-javascript",
+        "published": "2017-07-05"
+      }
+    ]
+  },
+  "Algorithm": {
+    "description": "Apply to posts that explain, implement, or reason about an algorithmic method: a defined procedure for solving a problem, its steps, or its computational behavior. This can include algorithmic puzzles and code whose core challenge is the procedure itself. Routine application logic, data visualization, or a sorting call incidental to a broader project does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/anythings-a-sorting-problem-if-you-squint-hard-enough",
+        "published": "2021-09-07"
+      }
+    ]
+  },
+  "Health": {
+    "description": "Apply to posts substantially about physical or mental health, wellbeing, exercise, sleep, nutrition, or how these affect daily life and work. The post may discuss evidence, personal practices, or uncertainty around health advice. A passing health metaphor or mention of a medical product without meaningful discussion does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/software-engineers-exercise-health-and-productivity",
+        "published": "2023-03-31"
+      }
+    ]
+  },
+  "sidehustle": {
+    "description": "Apply to posts about supplementary income-generating work pursued alongside a primary job or other commitments, including product sales, freelance work, and the time, costs, revenue, or cash-flow involved. Ongoing progress reports and practical reflections on maintaining the extra business fit. Full-time entrepreneurship without a side-work context is not the defining focus.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/2018-is-off-to-a-rocky-start",
+        "published": "2018-02-07"
+      },
+      {
+        "url": "https://swizec.com/blog/dollar9013-september-sidehustle-report-or-why-the-react-d3v4-launch-was-not-6-figures-or-even-5",
+        "published": "2017-10-04"
+      },
+      {
+        "url": "https://swizec.com/blog/dollar3875-february-sidehustle-report",
+        "published": "2017-03-07"
+      }
+    ]
+  },
+  "TypeScript": {
+    "description": "Apply when TypeScript itself is a meaningful technical subject: its type system, type inference, generics, tooling, or use in application code. Posts may explain a TypeScript-specific technique or discuss how typing affects development. The presence of TypeScript syntax in an otherwise unrelated example, or a passing mention of a TypeScript-compatible tool, does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/a-better-way-to-end-to-end-test-your-webapp",
+        "published": "2026-01-06"
+      },
+      {
+        "url": "https://swizec.com/blog/using-dynamodb-streams-with-the-serverless-framework",
+        "published": "2022-01-04"
+      },
+      {
+        "url": "https://swizec.com/blog/a-typescript-trick-for-reusable-hooks",
+        "published": "2021-02-19"
+      }
+    ]
+  },
+  "Gatsby": {
+    "description": "Apply to posts substantially about using, building with, migrating, or assessing Gatsby, including its framework behavior, plugins, content pipeline, or role in a website. The post should discuss Gatsby as a technology rather than merely mention a site built with it. A Gatsby-related link or incidental reference does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/using-vibes-to-rewrite-my-blog",
+        "published": "2026-06-27"
+      },
+      {
+        "url": "https://swizec.com/blog/hacking-the-react-ast-for-fun-and-profit-codewithswiz-ep34",
+        "published": "2021-06-29"
+      },
+      {
+        "url": "https://swizec.com/blog/lessons-from-migrating-a-14-year-old-blog-with-1500-posts-to-gatsby",
+        "published": "2020-08-24"
+      }
+    ]
+  },
+  "Complexity": {
+    "description": "Apply to posts about the difficulty of understanding, reasoning about, or changing code and software problems, including combinatorial logic, abstractions, and ways complexity affects development. The focus may be a local piece of code or a general engineering challenge. Use this for complexity as a broad concern, not only complexity arising from system architecture.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/say-no-to-abstract-code",
+        "published": "2025-04-24"
+      },
+      {
+        "url": "https://swizec.com/blog/solve-the-problem-not-a-different-more-difficult-problem",
+        "published": "2023-10-04"
+      },
+      {
+        "url": "https://swizec.com/blog/you-can-t-fix-the-wrong-abstraction",
+        "published": "2023-05-11"
+      }
+    ]
+  },
+  "Architectural Complexity": {
+    "description": "Apply to posts about complexity rooted in a software system’s architecture: its boundaries, dependencies, abstractions, modules, or interactions, and how those structures affect change, reliability, or teams. Discussion should address system-level organization rather than only a difficult algorithm or local conditional. Architecture is central when structural choices make the system harder to work with.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/a-pattern-for-composable-ui-in-flask",
+        "published": "2025-02-08"
+      },
+      {
+        "url": "https://swizec.com/blog/finding-modules-in-a-big-ball-of-mud",
+        "published": "2024-11-21"
+      },
+      {
+        "url": "https://swizec.com/blog/the-italian-foods-theory-of-bad-software-design",
+        "published": "2022-05-23"
+      }
+    ]
+  },
+  "NextJS": {
+    "description": "Apply when Next.js is substantively discussed or used, including its routing, rendering, server components, API routes, deployment model, or framework tradeoffs. A post may be a tutorial, implementation account, or assessment of the framework. Merely mentioning that a project uses Next.js, or linking to a Next.js resource, does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/people-like-me-are-why-you-shouldnt-run-a-hosting-company",
+        "published": "2023-12-22"
+      },
+      {
+        "url": "https://swizec.com/blog/react-bricks-visual-blocks-editor-for-nextjs-codewithswiz-22",
+        "published": "2021-02-09"
+      },
+      {
+        "url": "https://swizec.com/blog/why-nextjs-api-routes-are-fab-codewithswiz-6",
+        "published": "2020-09-13"
+      }
+    ]
+  },
+  "State machines": {
+    "description": "Apply to posts that explain or use state machines as a way to represent states, transitions, and behavior in software. This includes modeling complex UI flows, comparing state-machine approaches with conditionals, and discussing tools that help create or inspect machines. A generic mention of application state or a library name alone is insufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-stately-ai",
+        "published": "2022-11-08"
+      },
+      {
+        "url": "https://swizec.com/blog/react-context-without-context-using-xstate-codewithswiz-14-15",
+        "published": "2020-11-10"
+      },
+      {
+        "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-xstate",
+        "published": "2020-08-10"
+      }
+    ]
+  },
+  "NodeJS": {
+    "description": "Apply when Node.js as a JavaScript runtime or server-side environment is a meaningful subject, including its event loop, performance, backend execution, scripts, or ecosystem behavior. Posts may compare Node.js with other runtimes when its characteristics matter. Browser-side JavaScript, or a passing reference to running a Node command, does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/bun-first-impressions",
+        "published": "2023-10-20"
+      },
+      {
+        "url": "https://swizec.com/blog/my-biggest-react-app-performance-boost-was-a-backend-change",
+        "published": "2023-01-31"
+      },
+      {
+        "url": "https://swizec.com/blog/you-dont-need-a-big-team-to-automate-your-work",
+        "published": "2021-07-27"
+      }
+    ]
+  },
+  "Product development": {
+    "description": "Applies to building and evolving products around user needs and business outcomes: product ownership, discovery, prioritization, iteration, and collaboration between engineering and product roles. It includes distinguishing ongoing product work from finite projects. A feature or project mention alone is not enough when the post is primarily about an unrelated technical implementation.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/the-difference-between-a-product-and-a-project",
+        "published": "2025-04-03"
+      },
+      {
+        "url": "https://swizec.com/blog/yes-caviar-is-great-heres-a-ham-sandwich",
+        "published": "2024-10-22"
+      },
+      {
+        "url": "https://swizec.com/blog/get-us-over-the-water-not-build-us-a-bridge",
+        "published": "2024-05-14"
+      }
+    ]
+  },
+  "Tools": {
+    "description": "Applies when the post substantively discusses tools people use to do work, including software utilities, devices, peripherals, or ergonomic equipment, and how they help or hinder. It can cover choosing, configuring, or using such tools. A passing mention of a tool or library does not qualify when the real subject is a different programming or workplace topic.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/preventing-rsi-for-programmers",
+        "published": "2021-07-09"
+      }
+    ]
+  },
+  "Podcast": {
+    "description": "Applies to posts whose main purpose is to share, describe, or point readers to a podcast appearance or episode, often with guests, discussion topics, or listening links. It identifies the publication format, not every subject raised during an interview. A podcast link mentioned incidentally in a technical article is not sufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/good-software-gets-out-of-the-way",
+        "published": "2026-06-04"
+      },
+      {
+        "url": "https://swizec.com/blog/getting-from-junior-to-senior",
+        "published": "2021-11-19"
+      },
+      {
+        "url": "https://swizec.com/blog/silicon-valley-is-like-hollywood",
+        "published": "2021-01-29"
+      }
+    ]
+  },
+  "XState": {
+    "description": "Applies to substantive use, explanation, evaluation, or teaching of XState, the state-machine library, including its integration with application code and its trade-offs. Posts about state machines generally qualify only when XState is a meaningful focus. Mentioning XState or linking to it in passing does not make an unrelated post part of this category.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-stately-ai",
+        "published": "2022-11-08"
+      },
+      {
+        "url": "https://swizec.com/blog/react-context-without-context-using-xstate-codewithswiz-14-15",
+        "published": "2020-11-10"
+      },
+      {
+        "url": "https://swizec.com/blog/refactoring-a-usereducer-to-xstate-pt1-codewithswiz-11",
+        "published": "2020-10-08"
+      }
+    ]
+  },
+  "react+d3js": {
+    "description": "Applies to posts about combining React and D3.js to build or update visualizations, especially how their rendering models, state, lifecycle, and transitions work together. It is specifically about the integration, not simply React, D3, or data visualization in isolation. A passing reference to either library is not enough.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/declarative-d3-charts-with-react-163",
+        "published": "2018-04-27"
+      }
+    ]
+  },
+  "Refactoring": {
+    "description": "Use for improving the internal structure of existing software while preserving its intended behavior, and for decisions about carrying out such work. Topics include code organization, maintainability, incremental migrations, and comparisons with rewrites. Merely implementing a new feature or changing requirements is insufficient unless restructuring the existing system is a substantial concern.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/you-can-t-stop-the-business-or-why-rewrites-fail",
+        "published": "2023-07-11"
+      },
+      {
+        "url": "https://swizec.com/blog/why-others-code-is-hard-to-navigate",
+        "published": "2022-09-01"
+      },
+      {
+        "url": "https://swizec.com/blog/code-review-practices-for-refactoring-changes",
+        "published": "2022-04-20"
+      }
+    ]
+  },
+  "Programming Lessons": {
+    "description": "Applies to explanatory posts that teach practical programming concepts, techniques, or habits, using examples to help readers understand how or why code behaves. It includes guidance about code construction and language features. A post that merely contains code, reports a project’s progress, or discusses broader engineering management without teaching programming is not a programming lesson.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/usecallback-is-a-code-smell",
+        "published": "2022-09-16"
+      },
+      {
+        "url": "https://swizec.com/blog/your-code-doesnt-matter",
+        "published": "2022-08-16"
+      },
+      {
+        "url": "https://swizec.com/blog/stop-shouting-shouting",
+        "published": "2021-09-21"
+      }
+    ]
+  },
+  "Linux": {
+    "description": "Applies when Linux itself is a substantive subject, such as using or administering a Linux system, working with its services or command-line environment, or explaining Linux-related setup. A server tutorial can qualify when Linux operations are central. Mentioning a Linux-hosted machine or an operating system in passing does not make Linux the topic.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/how-to-setup-gocommerce-on-a-new-digital-ocean-droplet",
+        "published": "2018-01-23"
+      }
+    ]
+  },
+  "Velocity": {
+    "description": "Applies to improving the pace and flow of software delivery: reducing blockers, limiting work in progress, shortening review or release cycles, and helping teams finish and ship useful work. It concerns engineering throughput and the practices that affect it, not raw application performance or speed as a general metaphor.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/squash-merge-really",
+        "published": "2023-01-27"
+      },
+      {
+        "url": "https://swizec.com/blog/the-art-of-the-cowboy-merge",
+        "published": "2022-09-08"
+      },
+      {
+        "url": "https://swizec.com/blog/how-we-made-the-best-burndown-chart-youve-ever-seen",
+        "published": "2022-04-12"
+      }
+    ]
+  },
+  "Talks": {
+    "description": "Applies to posts sharing or discussing a talk as a presentation format, such as a recording, slides, conference appearance, or speaker notes. The talk’s subject may be technical or organizational, but the post must center on the presentation or its availability. Mentioning a conference or speech in passing is not sufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/make-sure-it-works-first",
+        "published": "2025-10-21"
+      },
+      {
+        "url": "https://swizec.com/blog/notes-for-my-scaling-fast-talk-next-week",
+        "published": "2024-06-08"
+      },
+      {
+        "url": "https://swizec.com/blog/why-im-excited-about-react-18-talk",
+        "published": "2021-11-01"
+      }
+    ]
+  },
+  "UX": {
+    "description": "Applies to the experience people have when using software: interaction design, workflows, usability, forms, feedback, and how interface decisions help users accomplish tasks. It includes changes to a product’s design that make use clearer or easier. Backend or implementation complexity alone does not qualify unless connected to user experience.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/clever-technical-hackery-can-t-solve-the-wrong-design",
+        "published": "2023-03-07"
+      }
+    ]
+  },
+  "OpenSource": {
+    "description": "Applies to creating, publishing, maintaining, contributing to, or coordinating openly available source-code projects and their communities. It includes practical concerns such as packaging, documentation, contributions, and project stewardship. Using an open-source dependency or linking to a public repository is not enough when the post is about something else.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/what-i-learned-making-my-first-open-source-react-component",
+        "published": "2018-02-21"
+      }
+    ]
+  },
+  "DevOps": {
+    "description": "Applies to the engineering practices and infrastructure involved in deploying, operating, and maintaining software services, including automation, cloud resources, production operations, and reliability work. It includes connecting development with running systems. A post about application code that happens to mention a cloud provider or deployment tool is not necessarily DevOps.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/the-future-of-software-engineering-is-sre",
+        "published": "2026-01-24"
+      },
+      {
+        "url": "https://swizec.com/blog/using-dynamodb-streams-with-the-serverless-framework",
+        "published": "2022-01-04"
+      },
+      {
+        "url": "https://swizec.com/blog/react-bricks-visual-blocks-editor-for-nextjs-codewithswiz-22",
+        "published": "2021-02-09"
+      }
+    ]
+  },
+  "React Query": {
+    "description": "Applies to substantive use, explanation, or evaluation of React Query, now part of TanStack Query, for fetching, caching, synchronizing, or managing server data in React applications. It can cover APIs such as queries, mutations, and Suspense behavior. General React data fetching qualifies only when React Query itself is a meaningful focus.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/why-use-suspense-query-works",
+        "published": "2024-05-30"
+      },
+      {
+        "url": "https://swizec.com/blog/a-few-thoughts-on-trpc",
+        "published": "2023-10-06"
+      },
+      {
+        "url": "https://swizec.com/blog/how-react-query-gives-you-almost-everything-you-thought-you-needed-graphql-for",
+        "published": "2020-09-07"
+      }
+    ]
+  },
+  "Experiment": {
+    "description": "Applies to a deliberate trial or prototype used to test an idea, technology, model, workflow, or implementation, with attention to what was tried and what was learned. It may include hands-on evaluation or measured results. A routine tutorial or finished-project announcement is not an experiment unless investigation and testing are central.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/i-tried-generative-ai-on-lots-of-data-and-we-re-not-quite-there-yet",
+        "published": "2023-10-31"
+      },
+      {
+        "url": "https://swizec.com/blog/build-semantic-search-in-an-afternoon-yep",
+        "published": "2023-03-15"
+      },
+      {
+        "url": "https://swizec.com/blog/stable-diffusion-on-an-ipad",
+        "published": "2022-11-22"
+      }
+    ]
+  },
+  "Rails": {
+    "description": "Applies to substantive discussion or use of Ruby on Rails, including its framework behavior, APIs, conventions, development, or assessment. Posts about Ruby alone do not automatically belong here; Rails should be a meaningful part of the subject. A passing reference to Rails in a broader career or programming story is insufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/time-is-funny-in-ruby",
+        "published": "2017-03-29"
+      }
+    ]
+  },
+  "Resume": {
+    "description": "Applies to preparing, presenting, or improving a résumé or CV for job seeking, including what experience and achievements to include and how to position them for employers. It may discuss the résumé’s role in hiring. Career advice that does not substantively concern résumé content or its use belongs elsewhere.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/quick-note-on-evals-and-putting-ai-in-your-resume",
+        "published": "2026-05-01"
+      },
+      {
+        "url": "https://swizec.com/blog/what-to-put-on-your-resume",
+        "published": "2023-11-10"
+      },
+      {
+        "url": "https://swizec.com/blog/your-background-won-t-get-you-the-job",
+        "published": "2023-04-18"
+      }
+    ]
+  },
+  "TanStack": {
+    "description": "Applies to substantive discussion, use, or evaluation of the TanStack project ecosystem and its named products, such as TanStack Router or TanStack Query, when the ecosystem or product is the focus. It is broader than any single TanStack library. A brief link or incidental mention of the project name is not enough.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/swizec-com-is-now-on-timber-js-a-new-react-framework",
+        "published": "2026-07-21"
+      },
+      {
+        "url": "https://swizec.com/blog/server-side-react-that-renders-as-png-pdf-or-interactive-webapp",
+        "published": "2025-01-23"
+      },
+      {
+        "url": "https://swizec.com/blog/tanstack-router-modern-react-for-the-rest-of-us",
+        "published": "2024-01-09"
+      }
+    ]
+  },
+  "Observability": {
+    "description": "Applies to making software behavior visible through logs, metrics, traces, events, dashboards, alerts, and the practices used to investigate production systems. It includes selecting useful signals and acting on them to detect or diagnose issues. Monitoring mentioned only as background, without discussion of visibility or operational insight, does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/these-3-alerts-catch-the-most-issues",
+        "published": "2025-07-26"
+      },
+      {
+        "url": "https://swizec.com/blog/why-you-need-observability-more-than-tests",
+        "published": "2024-11-16"
+      },
+      {
+        "url": "https://swizec.com/blog/90p-of-performance-is-data-access-patterns",
+        "published": "2024-07-26"
+      }
+    ]
+  },
+  "blockchain": {
+    "description": "Applies to blockchain concepts, designs, or implementations, including blocks, chains, validation, consensus, distributed nodes, and applications built around these mechanisms. Posts may explain or experimentally implement blockchain behavior. A project name containing “blockchain,” or a passing blockchain reference, does not qualify unless the technology is substantively discussed.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/learning-webrtc-peertopeer-communication-part-1",
+        "published": "2018-05-07"
+      },
+      {
+        "url": "https://swizec.com/blog/livecoding-recap-blockchainredux-now-shares-blocks-between-clients-in-realtime",
+        "published": "2018-04-10"
+      },
+      {
+        "url": "https://swizec.com/blog/a-blockchainbacked-redux-clone-in-105-lines-of-code",
+        "published": "2017-12-18"
+      }
+    ]
+  },
+  "redux": {
+    "description": "Applies to posts that explain, implement, or assess Redux as a JavaScript state-management library, including its store, actions, reducers, dispatching, and related patterns. The focus should be Redux itself or a system deliberately using its API or concepts. A passing mention of Redux among alternative tools, or a general discussion of state without Redux substance, is not sufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/livecoding-recap-blockchainredux-now-shares-blocks-between-clients-in-realtime",
+        "published": "2018-04-10"
+      },
+      {
+        "url": "https://swizec.com/blog/blockchainredux-becomes-useful-part-1",
+        "published": "2018-04-03"
+      },
+      {
+        "url": "https://swizec.com/blog/a-blockchainbacked-redux-clone-in-105-lines-of-code",
+        "published": "2017-12-18"
+      }
+    ]
+  },
+  "SVG": {
+    "description": "Applies to posts about Scalable Vector Graphics as a web format or technology: creating, styling, animating, laying out, or manipulating SVG elements. It includes practical discussion of SVG’s capabilities and limitations in browser interfaces and graphics. A post does not qualify merely because an image is embedded as SVG, or because it covers graphics or visualization without substantive SVG discussion.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/build-responsive-svg-layouts-with-reactsvgflexbox",
+        "published": "2018-08-17"
+      }
+    ]
+  },
+  "Data Visualization": {
+    "description": "Applies to posts about representing data visually to help people inspect, compare, understand, or communicate it. Look for discussion of charts, plots, visual encodings, or interactive visual displays, including how their data and visual forms are constructed. A designed graphic or illustration alone is not data visualization, nor is a post that only mentions charts without discussing their data-oriented purpose.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/anythings-a-sorting-problem-if-you-squint-hard-enough",
+        "published": "2021-09-07"
+      }
+    ]
+  },
+  "Philosophy": {
+    "description": "Applies to posts that examine foundational ideas, assumptions, or principles—such as what a program is, what matters in software work, or how concepts relate to their representations. The emphasis is on reasoning about meaning and underlying ideas, rather than primarily providing implementation instructions. A strong opinion or reflective tone alone does not make a post philosophical without that conceptual inquiry.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/your-code-doesnt-matter",
+        "published": "2022-08-16"
+      }
+    ]
+  },
+  "TechLetterApp": {
+    "description": "Applies to substantive posts about TechLetter.App, Swizec’s application for turning Markdown into formatted newsletters, including its purpose, construction, features, maintenance, or lessons from operating it. Treat this as a named project category, not as a general label for newsletter writing, email tools, Markdown conversion, or serverless software. Mentioning the app incidentally does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/dont-neglect-your-upgrades",
+        "published": "2023-11-07"
+      },
+      {
+        "url": "https://swizec.com/blog/are-you-annoyed-by-the-extra-space-after-your-name-name",
+        "published": "2023-03-21"
+      },
+      {
+        "url": "https://swizec.com/blog/oh-the-things-you-can-learn-with-a-fun-weekend-hack-project",
+        "published": "2018-11-19"
+      }
+    ]
+  },
+  "Psychology": {
+    "description": "Applies to posts that explain or explore human mental processes, behavior, interpersonal interpretation, or social patterns using psychological concepts. This can include how people communicate, form expectations, make decisions, or experience conflict. Personal anecdotes may illustrate the subject, but an account of experience alone is not psychology unless it substantively examines behavior or the mental and social dynamics behind it.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/askers-vs-guessers",
+        "published": "2023-11-29"
+      }
+    ]
+  },
+  "OpenAI": {
+    "description": "Applies to posts that substantively use, explain, or evaluate OpenAI’s products, APIs, or models, including applications built with its services. The discussion should make OpenAI technology central to the work or analysis. General coverage of artificial intelligence or language models without meaningful OpenAI-specific content does not qualify, and a link to OpenAI is not enough.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/how-i-turned-15-years-of-writing-into-a-chatbot",
+        "published": "2023-05-20"
+      },
+      {
+        "url": "https://swizec.com/blog/build-semantic-search-in-an-afternoon-yep",
+        "published": "2023-03-15"
+      },
+      {
+        "url": "https://swizec.com/blog/building-apps-with-openai-and-chatgpt",
+        "published": "2023-01-06"
+      }
+    ]
+  },
+  "Suspense": {
+    "description": "Applies to posts that explain or use React Suspense as a mechanism for handling pending work during rendering, including its interaction with promises, data loading, or Suspense-oriented libraries. The focus may be on the underlying behavior or practical integration. A loading indicator, router, or query library mention alone is not enough unless Suspense itself is substantively discussed.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/tips-from-8-months-of-tan-stack-router-in-production",
+        "published": "2024-08-14"
+      },
+      {
+        "url": "https://swizec.com/blog/why-use-suspense-query-works",
+        "published": "2024-05-30"
+      },
+      {
+        "url": "https://swizec.com/blog/tanstack-router-modern-react-for-the-rest-of-us",
+        "published": "2024-01-09"
+      }
+    ]
+  },
+  "Engineering Management": {
+    "description": "Applies to posts about leading and organizing software engineering work: shaping engineering systems, supporting engineers, setting technical direction, coordinating teams, and balancing quality with delivery. It includes the management responsibilities of technical leaders and senior engineers. Technical architecture alone is not sufficient; the post should address how engineering work or the people doing it are guided and enabled.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/how-to-be-useful-as-a-software-architect",
+        "published": "2026-07-25"
+      },
+      {
+        "url": "https://swizec.com/blog/the-one-thing-every-experienced-engineer-gets-wrong",
+        "published": "2026-07-11"
+      },
+      {
+        "url": "https://swizec.com/blog/engineering-levels-arent-about-skill-anymore",
+        "published": "2026-05-19"
+      }
+    ]
+  },
+  "Ubuntu": {
+    "description": "Applies to posts that substantively discuss Ubuntu as an operating system or Linux distribution, such as installing software, configuring a server, or administering an Ubuntu environment. The focus should include Ubuntu-specific setup or behavior, not merely a generic Linux or cloud-hosting task. Ubuntu appearing only as the base OS in passing does not make the post about Ubuntu.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/how-to-setup-gocommerce-on-a-new-digital-ocean-droplet",
+        "published": "2018-01-23"
+      }
+    ]
+  },
+  "Project Management": {
+    "description": "Applies to posts about planning and delivering projects: defining scope, breaking work into manageable units, sequencing dependencies, estimating, prioritizing, coordinating stakeholders, or adjusting plans as work proceeds. Software projects are common, but the category is about the project-delivery practices rather than the code itself. General leadership or product strategy without concrete project planning and execution is not enough.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/the-one-thing-every-experienced-engineer-gets-wrong",
+        "published": "2026-07-11"
+      },
+      {
+        "url": "https://swizec.com/blog/how-do-you-break-down-a-large-project",
+        "published": "2025-02-04"
+      },
+      {
+        "url": "https://swizec.com/blog/how-big-up-front-design-fails",
+        "published": "2024-09-10"
+      }
+    ]
+  },
+  "time": {
+    "description": "Applies to posts about time as a technical or practical domain, including timestamps, dates, durations, time zones, UTC, daylight-saving changes, and recurring or scheduled events. Look for substantive treatment of representing, calculating, storing, or communicating time correctly. A post that merely mentions when an event happened, or uses time as a general metaphor, does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/saving-time-in-utc-doesnt-work-and-offsets-arent-enough",
+        "published": "2022-03-25"
+      }
+    ]
+  },
+  "Git": {
+    "description": "Applies to posts that explain or use Git for version control, including repositories, commits, branches, merging, or Git-based workflows and configuration. The discussion should concern Git’s behavior or practical use. Mentioning GitHub as a hosting or collaboration service, linking to a repository, or discussing software development without Git-specific substance does not qualify.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/use-private-libraries-to-cleanup-your-codebase",
+        "published": "2020-11-16"
+      }
+    ]
+  },
+  "Webpack": {
+    "description": "Applies to posts about Webpack as a build tool and module bundler, including configuration, plugins, migration, code splitting, dependency handling, compilation, and bundle analysis or optimization. Webpack should be a substantive focus rather than a tool named in a list. General JavaScript performance or build-system discussion without meaningful Webpack detail is outside this category.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/a-dirty-webpack-trick-that-reduced-our-gzipped-bundle-size-by-55kb",
+        "published": "2017-06-15"
+      },
+      {
+        "url": "https://swizec.com/blog/how-we-used-webpack-to-reduce-our-js-footprint-by-50",
+        "published": "2017-02-10"
+      },
+      {
+        "url": "https://swizec.com/blog/migrating-to-webpack-2-some-tips-and-gotchas",
+        "published": "2017-01-11"
+      }
+    ]
+  },
+  "GraphQL": {
+    "description": "Applies to posts that substantively explain, build, use, or evaluate GraphQL, including schemas, queries, mutations, clients, or GraphQL APIs. It may compare GraphQL with REST when the comparison meaningfully examines GraphQL. A post about APIs generally, or one that only encounters GraphQL traffic incidentally, does not qualify without focused discussion of the technology.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/better-tooling-wont-fix-your-api",
+        "published": "2021-11-30"
+      },
+      {
+        "url": "https://swizec.com/blog/reverse-engineer-a-graphql-api-to-automate-love-notes-codewithswiz-24",
+        "published": "2021-02-23"
+      }
+    ]
+  },
+  "data modeling": {
+    "description": "Applies to posts about defining the concepts, relationships, constraints, and structures used to represent a domain as data. Look for discussion of entities, properties, relational models, schemas, or how modeling choices shape application behavior and complexity. Merely using a database or describing a data structure in passing is not enough; the model’s meaning and design must be examined.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/clever-technical-hackery-can-t-solve-the-wrong-design",
+        "published": "2023-03-07"
+      },
+      {
+        "url": "https://swizec.com/blog/how-better-data-modeling-fixes-your-code",
+        "published": "2022-09-27"
+      },
+      {
+        "url": "https://swizec.com/blog/notes-on-a-relational-model-of-data-for-large-shared-data-banks",
+        "published": "2022-09-20"
+      }
+    ]
+  },
+  "Research": {
+    "description": "Applies to posts that report, explain, or interpret systematic investigation, such as empirical studies, surveys, statistical findings, or evidence gathered from multiple sources. Look for attention to what was studied, how evidence was obtained, and what conclusions it supports. Citing a paper or including a few statistics does not by itself make a post research-focused.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/code-review-practices-for-refactoring-changes",
+        "published": "2022-04-20"
+      },
+      {
+        "url": "https://swizec.com/blog/software-engineering-best-job",
+        "published": "2021-05-18"
+      }
+    ]
+  },
+  "Growth": {
+    "description": "Applies to posts about growth in a company, product, team, audience, or professional capacity, especially the transitions and challenges that accompany expanding scale. This may include growth strategy, organizational development, or an individual’s increasing scope and opportunities. A passing reference to improvement or a project getting larger is not enough without growth as a meaningful subject.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/code-yourself-out-of-the-job-2",
+        "published": "2025-02-19"
+      },
+      {
+        "url": "https://swizec.com/blog/the-series-a-inflection-point",
+        "published": "2024-09-25"
+      },
+      {
+        "url": "https://swizec.com/blog/code-yourself-out-of-the-job",
+        "published": "2024-03-19"
+      }
+    ]
+  },
+  "Firebase": {
+    "description": "Applies to posts that substantively use, configure, explain, or evaluate Firebase services, including Firebase Authentication and its web tooling. The focus may be integration, behavior, setup, or practical limitations. Mentioning Firebase as a backend or storage provider in passing does not qualify; the post should contain meaningful Firebase-specific implementation or analysis.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/codewithswiz-21-useauth-beta-support-for-firebase",
+        "published": "2021-01-26"
+      },
+      {
+        "url": "https://swizec.com/blog/codewithswiz-20-adding-firebase-support-to-useauth-pt2",
+        "published": "2021-01-19"
+      },
+      {
+        "url": "https://swizec.com/blog/codewithswiz-19-firebase-auth-support-in-useauth-pt1",
+        "published": "2021-01-12"
+      }
+    ]
+  },
+  "useAuth": {
+    "description": "Apply when a post substantively covers the useAuth authentication library: building or changing its provider integrations, API, configuration, types, or developer experience. This includes implementation work that uses another authentication service to extend useAuth. Do not apply to posts about authentication in general or Firebase alone when useAuth is incidental.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/codewithswiz-21-useauth-beta-support-for-firebase",
+        "published": "2021-01-26"
+      },
+      {
+        "url": "https://swizec.com/blog/codewithswiz-20-adding-firebase-support-to-useauth-pt2",
+        "published": "2021-01-19"
+      },
+      {
+        "url": "https://swizec.com/blog/codewithswiz-19-firebase-auth-support-in-useauth-pt1",
+        "published": "2021-01-12"
+      }
+    ]
+  },
+  "Immigration": {
+    "description": "Apply to posts about immigration systems and processes, including visas, work authorization, residency, entry requirements, and the practical or legal conditions attached to them. The subject may be a personal case or general guidance. Do not use merely because a post mentions a country, international travel, or a person's nationality.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/how-i-sponsored-my-own-genius-visa",
+        "published": "2018-09-21"
+      }
+    ]
+  },
+  "Positioning": {
+    "description": "Apply when a post explains how a professional or business communicates the value it offers, to whom, and in what context—for example, defining a niche or presenting experience to prospective employers or clients. Focus on the deliberate message and intended audience. A resume or job-search topic alone is not positioning unless that message is central.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/what-makes-your-resume-stand-out",
+        "published": "2025-11-22"
+      },
+      {
+        "url": "https://swizec.com/blog/how-positioning-makes-you-stand-out-from-the-crowd",
+        "published": "2023-05-23"
+      }
+    ]
+  },
+  "Tutorial": {
+    "description": "Apply when the post is structured primarily to teach readers how to understand or do something, with explanatory steps, examples, or code that readers can follow. The subject may be a language, tool, or technique. Do not apply to an article that only reports an experience, gives high-level advice, or links to instructional material.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/learn-typescript-in-5-minutes",
+        "published": "2021-10-12"
+      }
+    ]
+  },
+  "Events": {
+    "description": "Apply to posts centered on attending, hosting, or reporting on a specific gathering such as a conference, meetup, or trade show, including observations and takeaways drawn from it. An event may be discussed alongside its talks or demonstrations. Do not apply just because a post promotes an event or mentions that a talk occurred.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/i-went-to-ai-woodstock-and-wow",
+        "published": "2023-04-04"
+      },
+      {
+        "url": "https://swizec.com/blog/the-audience-loved-my-talk-but-i-didnt",
+        "published": "2022-06-24"
+      },
+      {
+        "url": "https://swizec.com/blog/learnings-about-the-future-of-the-web-from-reactathon",
+        "published": "2022-05-07"
+      }
+    ]
+  },
+  "slack": {
+    "description": "Apply when Slack as a messaging and collaboration product is substantively used, configured, integrated, or assessed—for example, discussing its channels, notifications, clients, or workflow role. A passing reference to a Slack message or channel is not enough; classify the post by Slack only when the product or its use is a meaningful subject.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/using-dynamodb-streams-with-the-serverless-framework",
+        "published": "2022-01-04"
+      }
+    ]
+  },
+  "AWS": {
+    "description": "Apply when a post substantively explains, builds with, configures, or evaluates Amazon Web Services products or infrastructure, such as Lambda, DynamoDB, or related deployment services. AWS may be part of a larger implementation discussion. Do not apply merely because AWS is mentioned in passing or linked as background.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/using-dynamodb-streams-with-the-serverless-framework",
+        "published": "2022-01-04"
+      },
+      {
+        "url": "https://swizec.com/blog/reverse-engineer-a-graphql-api-to-automate-love-notes-codewithswiz-24",
+        "published": "2021-02-23"
+      }
+    ]
+  },
+  "Insights": {
+    "description": "Apply when a post develops a considered interpretation or generalizable understanding from a technical, professional, or other subject, rather than simply recounting events. Look for an explicit takeaway supported by explanation or reasoning. Practical instructions belong more centrally to Tips or Tutorial when the post's main purpose is to tell readers what to do.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/what-being-an-expert-looks-like",
+        "published": "2024-01-25"
+      },
+      {
+        "url": "https://swizec.com/blog/a-lesson-on-expertise-from-a-great-mafia-movie",
+        "published": "2022-06-16"
+      }
+    ]
+  },
+  "Tips": {
+    "description": "Apply when the post offers concise, practical advice readers can use to improve a task, habit, or decision. Recommendations should be a main part of the article, whether presented as a list or developed through examples. Do not apply just because an otherwise descriptive post ends with a general observation or lesson.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/a-work-ritual-that-keeps-me-sane",
+        "published": "2022-07-15"
+      },
+      {
+        "url": "https://swizec.com/blog/quick-tip-for-system-design-interviews",
+        "published": "2022-01-28"
+      }
+    ]
+  },
+  "Culture": {
+    "description": "Apply to posts about shared norms, expectations, trust, communication, and everyday behavior within a workplace or team, including how those patterns affect collaboration. The focus is the social environment and its practices, not just organizational structure. A technical process such as code review is a culture topic when the norms around it are central.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/approve-with-comment",
+        "published": "2024-04-09"
+      },
+      {
+        "url": "https://swizec.com/blog/how-to-give-and-receive-feedback",
+        "published": "2022-03-04"
+      }
+    ]
+  },
+  "Compensation": {
+    "description": "Apply to pay and employment rewards: salaries, bonuses, equity, benefits, pay negotiation, compensation ranges, and how employers or workers set, compare, or explain pay. The focus is what workers earn, why pay differs, or how compensation works. Broader career advice does not qualify unless pay is central; personal budgeting, saving, investing, or asset allocation belongs under Money when that is the main subject.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/are-you-the-engineer-who-scoffs-at-high-salary-numbers",
+        "published": "2022-03-07"
+      },
+      {
+        "url": "https://swizec.com/blog/why-experts-charge-more",
+        "published": "2022-03-07"
+      },
+      {
+        "url": "https://swizec.com/blog/if-you-re-so-good-why-aren-t-you-making-600k-at-bigtech",
+        "published": "2023-03-10"
+      }
+    ]
+  },
+  "ScholarStream": {
+    "description": "Apply when ScholarStream is a substantive subject, including building, designing, using, or discussing the named application and its features or implementation. The project may be covered alongside technologies used to create it. Do not apply to general AI, academic research, or paper discovery posts that mention ScholarStream only as an aside.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/async-react-with-nextjs-13",
+        "published": "2023-01-14"
+      },
+      {
+        "url": "https://swizec.com/blog/building-apps-with-openai-and-chatgpt",
+        "published": "2023-01-06"
+      }
+    ]
+  },
+  "Ownership": {
+    "description": "Apply to posts about taking responsibility for a system, product area, decision, or outcome, including the scope and initiative expected of engineers or leaders. Ownership here means accountability and stewardship in work, not simply owning a company or holding equity. General job duties belong here when responsibility for outcomes is the focus.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/the-role-of-a-senior-engineer",
+        "published": "2022-04-26"
+      }
+    ]
+  },
+  "REST": {
+    "description": "Apply when a post substantively explains or assesses REST-style APIs, their design conventions, HTTP behavior, or practical tradeoffs. The article may compare REST with other API approaches, but REST must be a meaningful subject. Do not apply just because a system makes HTTP requests or because a REST API is mentioned in passing.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/you-are-allowed-to-invent-http-status-codes",
+        "published": "2022-06-07"
+      },
+      {
+        "url": "https://swizec.com/blog/better-tooling-wont-fix-your-api",
+        "published": "2021-11-30"
+      }
+    ]
+  },
+  "Bun": {
+    "description": "Apply when Bun, the JavaScript runtime and toolkit, is substantively explained, used, evaluated, or discussed, including its compatibility, performance, TypeScript support, or developer workflow. A post may compare Bun with Node.js or other runtimes. Do not apply to general JavaScript or TypeScript coverage that only names Bun.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/typescript-runtime-vs-types-at-run-time",
+        "published": "2023-10-27"
+      },
+      {
+        "url": "https://swizec.com/blog/bun-first-impressions",
+        "published": "2023-10-20"
+      }
+    ]
+  },
+  "Product Management": {
+    "description": "Apply to posts about the practice of deciding what product to build and why: understanding user needs, defining requirements, prioritizing work, shaping features, and measuring product outcomes. Engineering may be part of the discussion, but the product decision-making process must be central. Do not use for project scheduling or team management alone.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/code-is-the-easy-part-or-how-we-refactored-half-the-business-to-fix-a-janky-script",
+        "published": "2026-06-17"
+      },
+      {
+        "url": "https://swizec.com/blog/watch-people-work",
+        "published": "2026-04-14"
+      }
+    ]
+  },
+  "theory of constraints": {
+    "description": "Apply when a post uses or explains the Theory of Constraints, especially identifying bottlenecks and managing work to improve the flow or throughput of a system. This may address software teams, work in progress, or organizational processes. A general productivity or teamwork discussion does not belong here unless constraint-based reasoning is substantive.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/dont-neglect-your-upgrades",
+        "published": "2023-11-07"
+      },
+      {
+        "url": "https://swizec.com/blog/workinprogress-kills-your-progress",
+        "published": "2021-08-21"
+      }
+    ]
+  },
+  "Social Media": {
+    "description": "Apply to posts centered on social media platforms, their use, design, communities, habits, or effects on communication and attention. The subject may be an individual platform or social media more broadly. Do not apply merely because a post embeds a social post, links to a platform, or uses it as a source.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/getting-off-twitter-an-experiment",
+        "published": "2022-12-03"
+      }
+    ]
+  },
+  "UTC": {
+    "description": "Apply when Coordinated Universal Time is a substantive part of a post's discussion of timestamps, time conversion, storage, scheduling, or timezone-related software behavior. Include explanations of when UTC works and where it falls short. Do not apply just because a date is formatted in UTC or a post mentions time without discussing its handling.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/saving-time-in-utc-doesnt-work-and-offsets-arent-enough",
+        "published": "2022-03-25"
+      }
+    ]
+  },
+  "Money": {
+    "description": "Apply to posts about personal or business finances, including cash flow, saving, investing, assets, spending, and financial planning or choices. The emphasis is managing or understanding money rather than the amount or structure of employment pay. Use Compensation when salaries or workplace rewards are the central topic; the categories may overlap when both are discussed substantively.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/pay-yourself-first",
+        "published": "2021-07-30"
+      }
+    ]
+  },
+  "SwizBot": {
+    "description": "Use for posts centered on SwizBot, Swizec’s chatbot built from his writing archive: its purpose, retrieval and response behavior, implementation, evaluation, or further development. The name denotes this particular project, not chatbots or AI assistants generally. Mentioning SwizBot in passing as an illustration of another topic is insufficient.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/similarity-search-with-pgvector-and-supabase",
+        "published": "2023-09-04"
+      },
+      {
+        "url": "https://swizec.com/blog/how-i-turned-15-years-of-writing-into-a-chatbot",
+        "published": "2023-05-20"
+      }
+    ]
+  },
+  "HTMX": {
+    "description": "Use when a post explains, builds with, or evaluates HTMX, especially its HTML-over-HTTP approach to server-rendered interactivity and incremental UI updates. The category covers HTMX’s attributes, workflows, tradeoffs, and use alongside other frameworks. A post about server rendering or web interfaces generally does not qualify solely because it links to or briefly names HTMX.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/react-htmx-and-tan-stack-start",
+        "published": "2025-10-06"
+      },
+      {
+        "url": "https://swizec.com/blog/htmx-server-components-without-react",
+        "published": "2025-08-19"
+      }
+    ]
+  },
+  "Code": {
+    "description": "Use when the subject is source code as a representation of a program: how code expresses an idea, how its structure or form affects understanding, or why code itself may be less important than the underlying model. Include discussion of code examples as artifacts. General programming advice or software design without a focus on code itself belongs elsewhere.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/your-code-doesnt-matter",
+        "published": "2022-08-16"
+      }
+    ]
+  },
+  "Performance": {
+    "description": "Use for posts about the speed, responsiveness, resource use, or throughput of software, and the investigation and changes that improve or explain those measures. Observable evidence may include latency, profiling, traces, CPU use, or user-perceived slowness. A technology’s performance is not the subject merely because it appears in a post about that technology.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/my-biggest-react-app-performance-boost-was-a-backend-change",
+        "published": "2023-01-31"
+      },
+      {
+        "url": "https://swizec.com/blog/immutability-isnt-free",
+        "published": "2022-02-04"
+      }
+    ]
+  },
+  "Stately.ai": {
+    "description": "Use when a post substantively discusses Stately.ai as a visual tool for creating, inspecting, or simulating state machines, including its workflow, usefulness, or limitations. This is the named product category, not a synonym for state machines or XState generally. Mentioning Stately.ai without examining or using the tool does not make it the topic.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-stately-ai",
+        "published": "2022-11-08"
+      }
+    ]
+  },
+  "AI Engineer": {
+    "description": "Use for substantive coverage of the named AI Engineer conference and community, including attending its events, meeting participants, or building projects for conference attendees. The archive uses this label for that event context. General discussion of engineering with AI, without a meaningful connection to the conference or community, belongs under the relevant technology subjects.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/using-ai-to-spark-connections-at-a-conference",
+        "published": "2024-06-12"
+      },
+      {
+        "url": "https://swizec.com/blog/similarity-search-with-pgvector-and-supabase",
+        "published": "2023-09-04"
+      }
+    ]
+  },
+  "Automation": {
+    "description": "Use for posts about replacing or streamlining recurring work through software, including deciding what is worth automating, designing the workflow, and managing its maintenance or risks. The focus is the automation of a task or process and its costs and benefits. A software feature or script is not automation as a subject simply because it performs work.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/the-dangers-of-spurious-automation-and-how-to-automate-anything",
+        "published": "2024-06-25"
+      }
+    ]
+  },
+  "TimberJS": {
+    "description": "Use when a post substantively presents TimberJS, the React framework: how it works, how to build with it, or how it performs in a site or migration. The category identifies this named framework, not React, static-site generation, or blog rewrites in general. A passing comparison or mention of TimberJS is not enough.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/swizec-com-is-now-on-timber-js-a-new-react-framework",
+        "published": "2026-07-21"
+      },
+      {
+        "url": "https://swizec.com/blog/using-vibes-to-rewrite-my-blog",
+        "published": "2026-06-27"
+      }
+    ]
+  },
+  "Mentoring": {
+    "description": "Use for posts about the practice and relationship of helping another person develop skills or judgment through guidance, explanation, feedback, and supported experience. This includes creating conditions for someone to learn tacit skills by doing. Teaching in general, self-directed learning, or tutorials without a mentoring relationship are not sufficient on their own.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/why-learning-and-teaching-the-good-stuff-is-hard",
+        "published": "2024-12-06"
+      },
+      {
+        "url": "https://swizec.com/blog/what-coding-tutorials-and-teachers-get-wrong",
+        "published": "2022-08-12"
+      }
+    ]
+  },
+  "Agile": {
+    "description": "Use for discussion of agile values and ways of working, including adaptability, iterative delivery, collaboration, retrospectives, and the difference between genuine agility and ritualized process. The subject should be how teams organize and improve work under agile principles. A post does not belong here just because it mentions sprints, meetings, or project management.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/what-i-learned-from-inspired",
+        "published": "2025-02-28"
+      },
+      {
+        "url": "https://swizec.com/blog/why-you-need-a-regular-retro",
+        "published": "2024-02-24"
+      }
+    ]
+  },
+  "Feedback": {
+    "description": "Use for posts about giving, receiving, or creating conditions for useful interpersonal feedback, especially in professional or team settings. Include how people respond to criticism, communicate concerns, and use feedback to improve performance or collaboration. Product or customer feedback is not the focus unless the post substantively concerns feedback between people at work.",
+    "sources": [
+      {
+        "url": "https://swizec.com/blog/how-to-give-and-receive-feedback",
+        "published": "2022-03-04"
+      }
+    ]
+  }
+}

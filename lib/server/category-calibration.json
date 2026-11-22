@@ -1,0 +1,59 @@
+{
+  "method": "smoothed archive-prior odds; constrained F0.5 grid search; article-level five-fold cross-validation",
+  "window": {
+    "start": "2021-11-14",
+    "end": "2026-11-14"
+  },
+  "trainingArticles": 133,
+  "developmentControls": 28,
+  "priorDenominator": 297,
+  "priorPseudocount": 1,
+  "probabilityClip": 0.0001,
+  "minimumEvidence": 0.9,
+  "maxCategories": 5,
+  "priorWeight": 0.25,
+  "threshold": 0.9,
+  "thresholdStep": 0,
+  "sampleWeightHalfLifeYears": 3,
+  "crossValidated": {
+    "precision": 0.6363636363636364,
+    "recall": 0.5259067357512953,
+    "f1": 0.5758865248226951,
+    "f05": 0.6107099879663056,
+    "meanCategories": 2.398496240601504
+  },
+  "crossValidatedFolds": [
+    {
+      "priorWeight": 0.25,
+      "threshold": 0.9,
+      "thresholdStep": 0
+    },
+    {
+      "priorWeight": 0.25,
+      "threshold": 0.9,
+      "thresholdStep": 0
+    },
+    {
+      "priorWeight": 0.25,
+      "threshold": 0.9,
+      "thresholdStep": 0
+    },
+    {
+      "priorWeight": 0.25,
+      "threshold": 0.9,
+      "thresholdStep": 0
+    },
+    {
+      "priorWeight": 0.25,
+      "threshold": 0.9,
+      "thresholdStep": 0
+    }
+  ],
+  "training": {
+    "precision": 0.6363636363636364,
+    "recall": 0.5259067357512953,
+    "f1": 0.5758865248226951,
+    "f05": 0.6107099879663056,
+    "meanCategories": 2.398496240601504
+  }
+}

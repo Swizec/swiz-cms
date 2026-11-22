@@ -1,0 +1,390 @@
+{
+  "date": "2026-11-21",
+  "model": "gpt-6-luna",
+  "evaluatedAt": "2026-11-22T05:58:00.938Z",
+  "methodology": "Live development controls after synchronizing the usage profile to the reviewed blog archive. No thresholds or definitions changed in this revision. This is not a historical backtest or an accuracy estimate.",
+  "blogPullRequest": "https://github.com/Swizec/swizec.com/pull/183",
+  "blogSourceCommit": "4b9eab12583e03eb3a4b5236eee364d2cfa93a7a",
+  "priorCommit": "2a5e7b06f47455a77d7dfce4808062f21684244d",
+  "profileChanges": {
+    "Leadership": {
+      "before": {
+        "count": 76,
+        "recentCount": 34
+      },
+      "after": {
+        "count": 33,
+        "recentCount": 13
+      }
+    },
+    "otherCountsAndExamplesUnchanged": true
+  },
+  "fingerprints": {
+    "lib/server/category-catalog.json": "f1c5fdd04d9227655eaff5e66a29c393a60998fe0e20c722feaeb9694a50d652",
+    "lib/server/category-profile.json": "d07e4f360fac9611245f50cbd221f35a3fd18274d2d667744fe0923748eac2ca",
+    "lib/server/category-calibration.json": "5e704d3913144b66e82a9909adbf9bf8e7e77f88dd62e9eb90151da788669e0d",
+    "lib/server/category-selection.ts": "2203aeeb2d5bfcbbcdbd638719682521cc2eb7c982cc71fc4e14902c9a2a143b",
+    "lib/server/classification-candidates.ts": "4242272b3ea099e0ba8844e693bba82f2b4ce1a1456367a5b194f34e44eca3ff",
+    "tests/fixtures/category-eval.json": "0d15d863b7a007c5547030ae6d07d579dc845483c3c3a0f700a9e9682517827d",
+    "tests/fixtures/category-eval-controls.json": "6ef90325f7275fd1f3d5274c0d9b2bd8cb79db0a255dcd6986965171747cad8e"
+  },
+  "categoryControls": {
+    "passed": 27,
+    "total": 28
+  },
+  "upgradeControls": {
+    "passed": 6,
+    "total": 6
+  },
+  "boundaryControls": [
+    {
+      "slug": "human-code-review",
+      "categories": [
+        "Teamwork",
+        "Culture",
+        "Software Engineering"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "teamwork-peer-handoffs",
+      "categories": [
+        "Teamwork",
+        "Culture"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "leadership-coaching-and-delegation",
+      "categories": [
+        "Leadership",
+        "Management",
+        "Mentoring",
+        "Engineering Management",
+        "Senior Mindset"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "leadership-without-manager-title",
+      "categories": [
+        "Senior Mindset",
+        "Leadership"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "leadership-and-teamwork",
+      "categories": [
+        "Teamwork",
+        "Engineering Management",
+        "Leadership",
+        "Management"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "technical-article-with-manager-context",
+      "categories": [
+        "Database",
+        "Performance",
+        "Backend"
+      ],
+      "missing": [],
+      "unexpected": []
+    }
+  ],
+  "knownFailures": [
+    {
+      "slug": "how-do-we-auto-approve-and-merge-60p-of-prs",
+      "categories": [
+        "Software Engineering",
+        "Scaling Fast Book",
+        "Senior Mindset"
+      ],
+      "missing": [
+        "AI"
+      ],
+      "unexpected": []
+    }
+  ],
+  "categoryResults": [
+    {
+      "slug": "how-do-we-auto-approve-and-merge-60p-of-prs",
+      "categories": [
+        "Software Engineering",
+        "Scaling Fast Book",
+        "Senior Mindset"
+      ],
+      "missing": [
+        "AI"
+      ],
+      "unexpected": []
+    },
+    {
+      "slug": "you-may-be-looking-for-a-useSyncExternalStore",
+      "categories": [
+        "React",
+        "Frontend",
+        "Performance"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "why-the-relational-data-model-is-so-good",
+      "categories": [
+        "Database",
+        "Backend",
+        "data modeling"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "wow-api-gateway-v2-is-fast",
+      "categories": [
+        "Serverless",
+        "AWS",
+        "Performance",
+        "Backend",
+        "Experiment"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "be-their-shit-umbrella",
+      "categories": [
+        "Ownership",
+        "Senior Mindset",
+        "Leadership"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "what-i-learned-from-accelerate",
+      "categories": [
+        "Books",
+        "Management",
+        "Velocity"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "2025-year-in-review",
+      "categories": [
+        "Year in review",
+        "Personal"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "2274-miles-in-9-days-on-a-cafe-racer",
+      "categories": [
+        "Personal",
+        "Travel + Events"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "im-tired-a-poem",
+      "categories": [
+        "Personal"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "put-scope-on-your-resume",
+      "categories": [
+        "Resume",
+        "Interviewing",
+        "Senior Mindset",
+        "Career"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "how-to-configure-jest-with-typescript",
+      "categories": [
+        "Testing",
+        "TypeScript"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "advent-of-code-day-24-the-a-algorithm-i-think",
+      "categories": [
+        "Algorithm",
+        "Haskell"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "how-i-used-indie-hacking-to-sponsor-my-own-greencard",
+      "categories": [
+        "Personal",
+        "Immigration",
+        "Career"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "why-write",
+      "categories": [
+        "Writing"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "dont-say-yes-when-youre-happy",
+      "categories": [
+        "Personal"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "reader-question-usereducer-or-xstate",
+      "categories": [
+        "Reader Question",
+        "State machines",
+        "React",
+        "Frontend"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "incidental-ai-tool",
+      "categories": [
+        "Testing",
+        "TypeScript",
+        "Software Engineering"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "human-code-review",
+      "categories": [
+        "Teamwork",
+        "Culture",
+        "Software Engineering"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "health-with-technical-audience",
+      "categories": [
+        "Health"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "freelance-contracts",
+      "categories": [
+        "Freelancing",
+        "Business"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "hiring-without-interview-tactics",
+      "categories": [
+        "Interviewing",
+        "Management"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "salary-and-total-compensation",
+      "categories": [
+        "Compensation",
+        "Career"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "career-growth-without-recruiting-or-pay",
+      "categories": [
+        "Career",
+        "Senior Mindset",
+        "Growth"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "teamwork-peer-handoffs",
+      "categories": [
+        "Teamwork",
+        "Culture"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "leadership-coaching-and-delegation",
+      "categories": [
+        "Leadership",
+        "Management",
+        "Mentoring",
+        "Engineering Management",
+        "Senior Mindset"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "leadership-without-manager-title",
+      "categories": [
+        "Senior Mindset",
+        "Leadership"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "leadership-and-teamwork",
+      "categories": [
+        "Teamwork",
+        "Engineering Management",
+        "Leadership",
+        "Management"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "technical-article-with-manager-context",
+      "categories": [
+        "Database",
+        "Performance",
+        "Backend"
+      ],
+      "missing": [],
+      "unexpected": []
+    }
+  ]
+}

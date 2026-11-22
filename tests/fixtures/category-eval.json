@@ -1,0 +1,84 @@
+[
+  {
+    "slug": "how-do-we-auto-approve-and-merge-60p-of-prs",
+    "required": ["AI", "Software Engineering"],
+    "excluded": ["review"]
+  },
+  {
+    "slug": "you-may-be-looking-for-a-useSyncExternalStore",
+    "required": ["React"],
+    "excluded": ["AI", "review"]
+  },
+  {
+    "slug": "why-the-relational-data-model-is-so-good",
+    "required": ["Database"],
+    "excluded": ["AI"]
+  },
+  {
+    "slug": "wow-api-gateway-v2-is-fast",
+    "required": ["Serverless", "AWS"],
+    "excluded": ["AI"]
+  },
+  {
+    "slug": "be-their-shit-umbrella",
+    "required": ["Leadership"],
+    "excluded": ["AI", "review"]
+  },
+  {
+    "slug": "what-i-learned-from-accelerate",
+    "required": ["Books"],
+    "excluded": ["AI"]
+  },
+  {
+    "slug": "2025-year-in-review",
+    "required": ["Year in review"],
+    "excluded": []
+  },
+  {
+    "slug": "2274-miles-in-9-days-on-a-cafe-racer",
+    "required": ["Travel + Events"],
+    "excluded": ["Software Engineering", "AI"]
+  },
+  {
+    "slug": "im-tired-a-poem",
+    "required": ["Personal"],
+    "excluded": ["Software Engineering", "AI"]
+  },
+  {
+    "slug": "put-scope-on-your-resume",
+    "required": ["Career"],
+    "excluded": ["AI", "review"]
+  },
+  {
+    "slug": "how-to-configure-jest-with-typescript",
+    "required": ["TypeScript", "Testing"],
+    "excluded": ["AI"]
+  },
+  {
+    "slug": "advent-of-code-day-24-the-a-algorithm-i-think",
+    "required": ["Haskell"],
+    "excluded": ["AI"]
+  },
+  {
+    "slug": "how-i-used-indie-hacking-to-sponsor-my-own-greencard",
+    "required": ["Immigration"],
+    "excluded": ["AI"]
+  },
+  {
+    "slug": "why-write",
+    "required": ["Writing"],
+    "excluded": ["AI"]
+  },
+  {
+    "slug": "dont-say-yes-when-youre-happy",
+    "required": ["Personal"],
+    "excluded": ["AI"],
+    "note": "A first-person account of overcommitting. Personal is a saved historical label; the earlier productivity requirement was inferred, never saved, and would force an optional lesson tag under the conservative policy."
+  },
+  {
+    "slug": "reader-question-usereducer-or-xstate",
+    "required": ["React", "State machines", "Reader Question"],
+    "excluded": ["AI"],
+    "note": "The body teaches useReducer. XState is a brief comparison and a follow-up link, not the implementation being taught."
+  }
+]

@@ -1,0 +1,2000 @@
+{
+  "window": {
+    "start": "2021-11-14",
+    "end": "2026-11-14"
+  },
+  "trainingPosts": 295,
+  "categories": {
+    "Personal": {
+      "count": 20,
+      "recentCount": 7,
+      "examples": [
+        {
+          "title": "What B2B SaaS taught me about having kids",
+          "url": "https://swizec.com/blog/what-b2-b-saa-s-taught-me-about-having-kids",
+          "published": "2026-09-05"
+        },
+        {
+          "title": "It made me $500k but I think content is a bad business",
+          "url": "https://swizec.com/blog/it-made-me-500k-but-i-think-content-is-a-bad-business",
+          "published": "2024-10-12"
+        },
+        {
+          "title": "How I used indie hacking to sponsor my own greencard",
+          "url": "https://swizec.com/blog/how-i-used-indie-hacking-to-sponsor-my-own-greencard",
+          "published": "2022-02-01"
+        }
+      ]
+    },
+    "Technical": {
+      "count": 11,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "A pattern for composable UI in Flask",
+          "url": "https://swizec.com/blog/a-pattern-for-composable-ui-in-flask",
+          "published": "2025-02-08"
+        },
+        {
+          "title": "When your brain is breaking, try Stately.ai",
+          "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-stately-ai",
+          "published": "2022-11-08"
+        },
+        {
+          "title": "Saving time in UTC doesn't work and offsets aren't enough",
+          "url": "https://swizec.com/blog/saving-time-in-utc-doesnt-work-and-offsets-arent-enough",
+          "published": "2022-03-25"
+        }
+      ]
+    },
+    "Senior Mindset": {
+      "count": 107,
+      "recentCount": 38,
+      "examples": [
+        {
+          "title": "Software has no value",
+          "url": "https://swizec.com/blog/software-has-no-value",
+          "published": "2026-11-14"
+        },
+        {
+          "title": "Why you need a regular retro",
+          "url": "https://swizec.com/blog/why-you-need-a-regular-retro",
+          "published": "2024-02-24"
+        },
+        {
+          "title": "Getting from junior to senior",
+          "url": "https://swizec.com/blog/getting-from-junior-to-senior",
+          "published": "2021-11-19"
+        }
+      ]
+    },
+    "Frontend": {
+      "count": 11,
+      "recentCount": 5,
+      "examples": [
+        {
+          "title": "Beware the spaceships",
+          "url": "https://swizec.com/blog/beware-the-spaceships",
+          "published": "2026-08-08"
+        },
+        {
+          "title": "The anatomy of a React Island",
+          "url": "https://swizec.com/blog/the-anatomy-of-a-react-island",
+          "published": "2024-11-23"
+        },
+        {
+          "title": "Datalist, the pure HTML typeahead you didn't know about",
+          "url": "https://swizec.com/blog/datalist-the-pure-html-typeahed-you-didnt-know-about",
+          "published": "2021-12-14"
+        }
+      ]
+    },
+    "Learning": {
+      "count": 12,
+      "recentCount": 6,
+      "examples": [
+        {
+          "title": "Just Read the Paper",
+          "url": "https://swizec.com/blog/just-read-the-paper",
+          "published": "2026-04-20"
+        },
+        {
+          "title": "3 sticky insights from 3 eng management books",
+          "url": "https://swizec.com/blog/3-sticky-insights-from-3-eng-management-books",
+          "published": "2025-06-03"
+        },
+        {
+          "title": "The audience loved my talk but I didn't",
+          "url": "https://swizec.com/blog/the-audience-loved-my-talk-but-i-didnt",
+          "published": "2022-06-24"
+        }
+      ]
+    },
+    "Software Engineering": {
+      "count": 98,
+      "recentCount": 48,
+      "examples": [
+        {
+          "title": "How do we auto-approve and merge 60% of PRs?",
+          "url": "https://swizec.com/blog/how-do-we-auto-approve-and-merge-60p-of-prs",
+          "published": "2026-11-07"
+        },
+        {
+          "title": "The anatomy of a React Island",
+          "url": "https://swizec.com/blog/the-anatomy-of-a-react-island",
+          "published": "2024-11-23"
+        },
+        {
+          "title": "pg-mem and jest for smooth integration testing",
+          "url": "https://swizec.com/blog/pg-mem-and-jest-for-smooth-integration-testing",
+          "published": "2021-12-21"
+        }
+      ]
+    },
+    "Uncategorized": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Travel + Events": {
+      "count": 5,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "AI Engineer Summit report",
+          "url": "https://swizec.com/blog/ai-engineer-summit-report",
+          "published": "2023-10-11"
+        },
+        {
+          "title": "I went to \"AI Woodstock\" and wow",
+          "url": "https://swizec.com/blog/i-went-to-ai-woodstock-and-wow",
+          "published": "2023-04-04"
+        },
+        {
+          "title": "Learnings about the future of the web from Reactathon",
+          "url": "https://swizec.com/blog/learnings-about-the-future-of-the-web-from-reactathon",
+          "published": "2022-05-07"
+        }
+      ]
+    },
+    "Backend": {
+      "count": 30,
+      "recentCount": 6,
+      "examples": [
+        {
+          "title": "The future of software engineering is SRE",
+          "url": "https://swizec.com/blog/the-future-of-software-engineering-is-sre",
+          "published": "2026-01-24"
+        },
+        {
+          "title": "Are you annoyed by the extra space after your name [name|]?",
+          "url": "https://swizec.com/blog/are-you-annoyed-by-the-extra-space-after-your-name-name",
+          "published": "2023-03-21"
+        },
+        {
+          "title": "Better tooling won't fix your API",
+          "url": "https://swizec.com/blog/better-tooling-wont-fix-your-api",
+          "published": "2021-11-30"
+        }
+      ]
+    },
+    "React": {
+      "count": 20,
+      "recentCount": 5,
+      "examples": [
+        {
+          "title": "swizec.com is now on TimberJS, a new React framework",
+          "url": "https://swizec.com/blog/swizec-com-is-now-on-timber-js-a-new-react-framework",
+          "published": "2026-07-21"
+        },
+        {
+          "title": "People like me are why you shouldn't run a hosting company",
+          "url": "https://swizec.com/blog/people-like-me-are-why-you-shouldnt-run-a-hosting-company",
+          "published": "2023-12-22"
+        },
+        {
+          "title": "How to add Typeform as a Gatsby source",
+          "url": "https://swizec.com/blog/how-to-add-typeform-as-a-gatsby-source",
+          "published": "2022-01-25"
+        }
+      ]
+    },
+    "Business": {
+      "count": 4,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "Software has no value",
+          "url": "https://swizec.com/blog/software-has-no-value",
+          "published": "2026-11-14"
+        },
+        {
+          "title": "It made me $500k but I think content is a bad business",
+          "url": "https://swizec.com/blog/it-made-me-500k-but-i-think-content-is-a-bad-business",
+          "published": "2024-10-12"
+        },
+        {
+          "title": "The market always wins",
+          "url": "https://swizec.com/blog/the-market-always-wins",
+          "published": "2024-02-27"
+        }
+      ]
+    },
+    "Opinion": {
+      "count": 7,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "What's your next mountain?",
+          "url": "https://swizec.com/blog/whats-your-next-mountain",
+          "published": "2024-12-21"
+        },
+        {
+          "title": "Software engineers, exercise, health, and productivity",
+          "url": "https://swizec.com/blog/software-engineers-exercise-health-and-productivity",
+          "published": "2023-03-31"
+        }
+      ]
+    },
+    "JavaScript": {
+      "count": 11,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "You may be looking for a useSyncExternalStore",
+          "url": "https://swizec.com/blog/you-may-be-looking-for-a-useSyncExternalStore",
+          "published": "2025-09-23"
+        },
+        {
+          "title": "Bun – first impressions",
+          "url": "https://swizec.com/blog/bun-first-impressions",
+          "published": "2023-10-20"
+        },
+        {
+          "title": "pg-mem and jest for smooth integration testing",
+          "url": "https://swizec.com/blog/pg-mem-and-jest-for-smooth-integration-testing",
+          "published": "2021-12-21"
+        }
+      ]
+    },
+    "Leadership": {
+      "count": 33,
+      "recentCount": 13,
+      "examples": [
+        {
+          "title": "3 sticky insights from 3 eng management books",
+          "url": "https://swizec.com/blog/3-sticky-insights-from-3-eng-management-books",
+          "published": "2025-06-03"
+        },
+        {
+          "title": "Let small fires burn",
+          "url": "https://swizec.com/blog/let-small-fires-burn",
+          "published": "2024-08-21"
+        },
+        {
+          "title": "How to go from Senior to Lead",
+          "url": "https://swizec.com/blog/how-to-go-from-senior-to-lead",
+          "published": "2023-11-03"
+        }
+      ]
+    },
+    "Programming": {
+      "count": 3,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "AI writes good tests, actually",
+          "url": "https://swizec.com/blog/ai-writes-good-tests-actually",
+          "published": "2025-03-18"
+        },
+        {
+          "title": "Coaching AI to write your code",
+          "url": "https://swizec.com/blog/coaching-ai-to-write-your-code",
+          "published": "2025-01-07"
+        },
+        {
+          "title": "Programming in Markdown",
+          "url": "https://swizec.com/blog/programming-in-markdown",
+          "published": "2023-08-01"
+        }
+      ]
+    },
+    "Livecoding": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Scaling Fast Book": {
+      "count": 56,
+      "recentCount": 24,
+      "examples": [
+        {
+          "title": "Taming chaos is a learnable skill",
+          "url": "https://swizec.com/blog/taming-chaos-is-a-learnable-skill",
+          "published": "2026-03-11"
+        },
+        {
+          "title": "The Series A inflection point",
+          "url": "https://swizec.com/blog/the-series-a-inflection-point",
+          "published": "2024-09-25"
+        },
+        {
+          "title": "You can't fix the wrong abstraction",
+          "url": "https://swizec.com/blog/you-can-t-fix-the-wrong-abstraction",
+          "published": "2023-05-11"
+        }
+      ]
+    },
+    "Side Project": {
+      "count": 4,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Don't neglect your upgrades",
+          "url": "https://swizec.com/blog/dont-neglect-your-upgrades",
+          "published": "2023-11-07"
+        },
+        {
+          "title": "Similarity search with pgvector and Supabase",
+          "url": "https://swizec.com/blog/similarity-search-with-pgvector-and-supabase",
+          "published": "2023-09-04"
+        },
+        {
+          "title": "Are you annoyed by the extra space after your name [name|]?",
+          "url": "https://swizec.com/blog/are-you-annoyed-by-the-extra-space-after-your-name-name",
+          "published": "2023-03-21"
+        }
+      ]
+    },
+    "Teamwork": {
+      "count": 54,
+      "recentCount": 32,
+      "examples": [
+        {
+          "title": "Approve with comment",
+          "url": "https://swizec.com/blog/approve-with-comment",
+          "published": "2024-04-09"
+        },
+        {
+          "title": "Why you need a regular retro",
+          "url": "https://swizec.com/blog/why-you-need-a-regular-retro",
+          "published": "2024-02-24"
+        },
+        {
+          "title": "Working with product",
+          "url": "https://swizec.com/blog/working-with-product",
+          "published": "2023-07-18"
+        }
+      ]
+    },
+    "Career": {
+      "count": 42,
+      "recentCount": 20,
+      "examples": [
+        {
+          "title": "How to be useful as a software architect",
+          "url": "https://swizec.com/blog/how-to-be-useful-as-a-software-architect",
+          "published": "2026-07-25"
+        },
+        {
+          "title": "Code yourself out of the job",
+          "url": "https://swizec.com/blog/code-yourself-out-of-the-job-2",
+          "published": "2025-02-19"
+        },
+        {
+          "title": "Getting from junior to senior",
+          "url": "https://swizec.com/blog/getting-from-junior-to-senior",
+          "published": "2021-11-19"
+        }
+      ]
+    },
+    "AI": {
+      "count": 34,
+      "recentCount": 19,
+      "examples": [
+        {
+          "title": "Software has no value",
+          "url": "https://swizec.com/blog/software-has-no-value",
+          "published": "2026-11-14"
+        },
+        {
+          "title": "Coaching AI to write your code",
+          "url": "https://swizec.com/blog/coaching-ai-to-write-your-code",
+          "published": "2025-01-07"
+        },
+        {
+          "title": "Stable Diffusion on an iPad 🤯",
+          "url": "https://swizec.com/blog/stable-diffusion-on-an-ipad",
+          "published": "2022-11-22"
+        }
+      ]
+    },
+    "Software Architecture": {
+      "count": 31,
+      "recentCount": 13,
+      "examples": [
+        {
+          "title": "Stop burning tokens on code review",
+          "url": "https://swizec.com/blog/stop-burning-tokens-on-code-review",
+          "published": "2026-08-15"
+        },
+        {
+          "title": "The Laws of Software Evolution",
+          "url": "https://swizec.com/blog/the-laws-of-software-evolution",
+          "published": "2024-09-30"
+        },
+        {
+          "title": "The Italian foods theory of bad software design 🍝",
+          "url": "https://swizec.com/blog/the-italian-foods-theory-of-bad-software-design",
+          "published": "2022-05-23"
+        }
+      ]
+    },
+    "Lesson": {
+      "count": 24,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "What being an expert looks like",
+          "url": "https://swizec.com/blog/what-being-an-expert-looks-like",
+          "published": "2024-01-25"
+        },
+        {
+          "title": "A lesson on expertise from a great mafia movie ",
+          "url": "https://swizec.com/blog/a-lesson-on-expertise-from-a-great-mafia-movie",
+          "published": "2022-06-16"
+        },
+        {
+          "title": "How I used indie hacking to sponsor my own greencard",
+          "url": "https://swizec.com/blog/how-i-used-indie-hacking-to-sponsor-my-own-greencard",
+          "published": "2022-02-01"
+        }
+      ]
+    },
+    "Reader Question": {
+      "count": 27,
+      "recentCount": 7,
+      "examples": [
+        {
+          "title": "\"But if AI does it all, what's *my* job?\"",
+          "url": "https://swizec.com/blog/but-if-ai-does-it-all-whats-my-job",
+          "published": "2026-05-09"
+        },
+        {
+          "title": "TypeScript runtime vs types at run-time",
+          "url": "https://swizec.com/blog/typescript-runtime-vs-types-at-run-time",
+          "published": "2023-10-27"
+        },
+        {
+          "title": "Reader question: useReducer or XState?",
+          "url": "https://swizec.com/blog/reader-question-usereducer-or-xstate",
+          "published": "2022-11-11"
+        }
+      ]
+    },
+    "Books": {
+      "count": 10,
+      "recentCount": 4,
+      "examples": [
+        {
+          "title": "3 sticky insights from 3 eng management books",
+          "url": "https://swizec.com/blog/3-sticky-insights-from-3-eng-management-books",
+          "published": "2025-06-03"
+        },
+        {
+          "title": "What I learned from Inspired",
+          "url": "https://swizec.com/blog/what-i-learned-from-inspired",
+          "published": "2025-02-28"
+        },
+        {
+          "title": "Insights for interviews from Kahneman's Noise",
+          "url": "https://swizec.com/blog/insights-for-interviews-from-kahneman-s-noise",
+          "published": "2023-04-14"
+        }
+      ]
+    },
+    "Twitter": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Papers": {
+      "count": 9,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "Just Read the Paper",
+          "url": "https://swizec.com/blog/just-read-the-paper",
+          "published": "2026-04-20"
+        },
+        {
+          "title": "Two types of complexity and their impact",
+          "url": "https://swizec.com/blog/two-types-of-complexity-and-their-impact",
+          "published": "2023-05-26"
+        },
+        {
+          "title": "Code Review Practices for Refactoring Changes",
+          "url": "https://swizec.com/blog/code-review-practices-for-refactoring-changes",
+          "published": "2022-04-20"
+        }
+      ]
+    },
+    "Writing": {
+      "count": 2,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "How to be witty and off-the-cuff as a slow deep thinker",
+          "url": "https://swizec.com/blog/how-to-be-witty-and-off-the-cuff-as-a-slow-deep-thinker",
+          "published": "2025-09-16"
+        },
+        {
+          "title": "Why write",
+          "url": "https://swizec.com/blog/why-write",
+          "published": "2023-08-30"
+        }
+      ]
+    },
+    "productivity": {
+      "count": 20,
+      "recentCount": 7,
+      "examples": [
+        {
+          "title": "When code is cheap, judgement becomes the job",
+          "url": "https://swizec.com/blog/when-code-is-cheap-judgement-becomes-the-job",
+          "published": "2026-10-08"
+        },
+        {
+          "title": "Outputs are not outcomes",
+          "url": "https://swizec.com/blog/outputs-are-not-outcomes",
+          "published": "2024-04-26"
+        },
+        {
+          "title": "How we made the best burndown chart you've ever seen",
+          "url": "https://swizec.com/blog/how-we-made-the-best-burndown-chart-youve-ever-seen",
+          "published": "2022-04-12"
+        }
+      ]
+    },
+    "Thoughts": {
+      "count": 3,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "Are you playing games you want to win?",
+          "url": "https://swizec.com/blog/are-you-playing-games-you-want-to-win",
+          "published": "2025-12-25"
+        }
+      ]
+    },
+    "Fullstack": {
+      "count": 11,
+      "recentCount": 5,
+      "examples": [
+        {
+          "title": "React, HTMX, and TanStack/Start",
+          "url": "https://swizec.com/blog/react-htmx-and-tan-stack-start",
+          "published": "2025-10-06"
+        },
+        {
+          "title": "The anatomy of a React Island",
+          "url": "https://swizec.com/blog/the-anatomy-of-a-react-island",
+          "published": "2024-11-23"
+        },
+        {
+          "title": "Better tooling won't fix your API",
+          "url": "https://swizec.com/blog/better-tooling-wont-fix-your-api",
+          "published": "2021-11-30"
+        }
+      ]
+    },
+    "Startup": {
+      "count": 5,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "A tough job market is the best time to start something",
+          "url": "https://swizec.com/blog/a-tough-job-market-is-the-best-time-to-start-something",
+          "published": "2026-01-17"
+        },
+        {
+          "title": "The Series A inflection point",
+          "url": "https://swizec.com/blog/the-series-a-inflection-point",
+          "published": "2024-09-25"
+        },
+        {
+          "title": "The market always wins",
+          "url": "https://swizec.com/blog/the-market-always-wins",
+          "published": "2024-02-27"
+        }
+      ]
+    },
+    "d3js": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "CodeWithSwiz": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Freelancing": {
+      "count": 1,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "A tough job market is the best time to start something",
+          "url": "https://swizec.com/blog/a-tough-job-market-is-the-best-time-to-start-something",
+          "published": "2026-01-17"
+        }
+      ]
+    },
+    "Serverless": {
+      "count": 6,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "People like me are why you shouldn't run a hosting company",
+          "url": "https://swizec.com/blog/people-like-me-are-why-you-shouldnt-run-a-hosting-company",
+          "published": "2023-12-22"
+        },
+        {
+          "title": "Async React with NextJS 13",
+          "url": "https://swizec.com/blog/async-react-with-nextjs-13",
+          "published": "2023-01-14"
+        },
+        {
+          "title": "Using DynamoDB Streams with the Serverless Framework",
+          "url": "https://swizec.com/blog/using-dynamodb-streams-with-the-serverless-framework",
+          "published": "2022-01-04"
+        }
+      ]
+    },
+    "Haskell": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Computer Science": {
+      "count": 3,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Reader question: useReducer or XState?",
+          "url": "https://swizec.com/blog/reader-question-usereducer-or-xstate",
+          "published": "2022-11-11"
+        },
+        {
+          "title": "When your brain is breaking, try Stately.ai",
+          "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-stately-ai",
+          "published": "2022-11-08"
+        },
+        {
+          "title": "Notes on A Relational Model of Data for Large Shared Data Banks",
+          "url": "https://swizec.com/blog/notes-on-a-relational-model-of-data-for-large-shared-data-banks",
+          "published": "2022-09-20"
+        }
+      ]
+    },
+    "HTML": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Datalist, the pure HTML typeahead you didn't know about",
+          "url": "https://swizec.com/blog/datalist-the-pure-html-typeahed-you-didnt-know-about",
+          "published": "2021-12-14"
+        }
+      ]
+    },
+    "Management": {
+      "count": 16,
+      "recentCount": 8,
+      "examples": [
+        {
+          "title": "When code is cheap, judgement becomes the job",
+          "url": "https://swizec.com/blog/when-code-is-cheap-judgement-becomes-the-job",
+          "published": "2026-10-08"
+        },
+        {
+          "title": "What I learned from Accelerate",
+          "url": "https://swizec.com/blog/what-i-learned-from-accelerate",
+          "published": "2025-01-14"
+        },
+        {
+          "title": "How we made the best burndown chart you've ever seen",
+          "url": "https://swizec.com/blog/how-we-made-the-best-burndown-chart-youve-ever-seen",
+          "published": "2022-04-12"
+        }
+      ]
+    },
+    "video": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "You do have time to build it twice",
+          "url": "https://swizec.com/blog/you-do-have-time-to-build-it-twice",
+          "published": "2022-07-26"
+        }
+      ]
+    },
+    "Testing": {
+      "count": 5,
+      "recentCount": 3,
+      "examples": [
+        {
+          "title": "A better way to end-to-end test your webapp",
+          "url": "https://swizec.com/blog/a-better-way-to-end-to-end-test-your-webapp",
+          "published": "2026-01-06"
+        },
+        {
+          "title": "AI writes good tests, actually",
+          "url": "https://swizec.com/blog/ai-writes-good-tests-actually",
+          "published": "2025-03-18"
+        },
+        {
+          "title": "pg-mem and jest for smooth integration testing",
+          "url": "https://swizec.com/blog/pg-mem-and-jest-for-smooth-integration-testing",
+          "published": "2021-12-21"
+        }
+      ]
+    },
+    "Interviewing": {
+      "count": 11,
+      "recentCount": 4,
+      "examples": [
+        {
+          "title": "Engineering levels aren't about skill anymore",
+          "url": "https://swizec.com/blog/engineering-levels-arent-about-skill-anymore",
+          "published": "2026-05-19"
+        },
+        {
+          "title": "Your background won't get you the job",
+          "url": "https://swizec.com/blog/your-background-won-t-get-you-the-job",
+          "published": "2023-04-18"
+        },
+        {
+          "title": "Quick tip for system design interviews",
+          "url": "https://swizec.com/blog/quick-tip-for-system-design-interviews",
+          "published": "2022-01-28"
+        }
+      ]
+    },
+    "Indie Hacking": {
+      "count": 6,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "It made me $500k but I think content is a bad business",
+          "url": "https://swizec.com/blog/it-made-me-500k-but-i-think-content-is-a-bad-business",
+          "published": "2024-10-12"
+        },
+        {
+          "title": "Don't neglect your upgrades",
+          "url": "https://swizec.com/blog/dont-neglect-your-upgrades",
+          "published": "2023-11-07"
+        },
+        {
+          "title": "How to add Typeform as a Gatsby source",
+          "url": "https://swizec.com/blog/how-to-add-typeform-as-a-gatsby-source",
+          "published": "2022-01-25"
+        }
+      ]
+    },
+    "API": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Clever technical hackery can't solve the wrong design",
+          "url": "https://swizec.com/blog/clever-technical-hackery-can-t-solve-the-wrong-design",
+          "published": "2023-03-07"
+        },
+        {
+          "title": "How to add Typeform as a Gatsby source",
+          "url": "https://swizec.com/blog/how-to-add-typeform-as-a-gatsby-source",
+          "published": "2022-01-25"
+        }
+      ]
+    },
+    "Database": {
+      "count": 8,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "I was wrong about databases",
+          "url": "https://swizec.com/blog/i-was-wrong-about-databases",
+          "published": "2025-02-13"
+        },
+        {
+          "title": "How I Added a Related Articles Feature on Swizec.com Using GPT-4 Embeddings",
+          "url": "https://swizec.com/blog/how-i-added-a-related-articles-feature-on-swizec-com-using-gpt-4-embeddings",
+          "published": "2024-01-04"
+        },
+        {
+          "title": "Notes on A Relational Model of Data for Large Shared Data Banks",
+          "url": "https://swizec.com/blog/notes-on-a-relational-model-of-data-for-large-shared-data-banks",
+          "published": "2022-09-20"
+        }
+      ]
+    },
+    "linkages": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "JavaScript games and Wonderful tools",
+          "url": "https://swizec.com/blog/javascript-games-and-wonderful-tools",
+          "published": "2023-06-16"
+        }
+      ]
+    },
+    "Year in review": {
+      "count": 4,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "2025 Year in Review",
+          "url": "https://swizec.com/blog/2025-year-in-review",
+          "published": "2026-01-02"
+        },
+        {
+          "title": "Are you playing games you want to win?",
+          "url": "https://swizec.com/blog/are-you-playing-games-you-want-to-win",
+          "published": "2025-12-25"
+        }
+      ]
+    },
+    "python": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Ruby": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Algorithm": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Health": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Software engineers, exercise, health, and productivity",
+          "url": "https://swizec.com/blog/software-engineers-exercise-health-and-productivity",
+          "published": "2023-03-31"
+        }
+      ]
+    },
+    "sidehustle": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "TypeScript": {
+      "count": 6,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "A better way to end-to-end test your webapp",
+          "url": "https://swizec.com/blog/a-better-way-to-end-to-end-test-your-webapp",
+          "published": "2026-01-06"
+        },
+        {
+          "title": "Bun – first impressions",
+          "url": "https://swizec.com/blog/bun-first-impressions",
+          "published": "2023-10-20"
+        },
+        {
+          "title": "pg-mem and jest for smooth integration testing",
+          "url": "https://swizec.com/blog/pg-mem-and-jest-for-smooth-integration-testing",
+          "published": "2021-12-21"
+        }
+      ]
+    },
+    "Gatsby": {
+      "count": 4,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "Using vibes to rewrite my blog",
+          "url": "https://swizec.com/blog/using-vibes-to-rewrite-my-blog",
+          "published": "2026-06-27"
+        },
+        {
+          "title": "Don't neglect your upgrades",
+          "url": "https://swizec.com/blog/dont-neglect-your-upgrades",
+          "published": "2023-11-07"
+        },
+        {
+          "title": "How to add Typeform as a Gatsby source",
+          "url": "https://swizec.com/blog/how-to-add-typeform-as-a-gatsby-source",
+          "published": "2022-01-25"
+        }
+      ]
+    },
+    "Complexity": {
+      "count": 10,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "Say no to abstract code",
+          "url": "https://swizec.com/blog/say-no-to-abstract-code",
+          "published": "2025-04-24"
+        },
+        {
+          "title": "Solve the problem, not a different more difficult problem",
+          "url": "https://swizec.com/blog/solve-the-problem-not-a-different-more-difficult-problem",
+          "published": "2023-10-04"
+        },
+        {
+          "title": "You can't fix the wrong abstraction",
+          "url": "https://swizec.com/blog/you-can-t-fix-the-wrong-abstraction",
+          "published": "2023-05-11"
+        }
+      ]
+    },
+    "Architectural Complexity": {
+      "count": 8,
+      "recentCount": 4,
+      "examples": [
+        {
+          "title": "A pattern for composable UI in Flask",
+          "url": "https://swizec.com/blog/a-pattern-for-composable-ui-in-flask",
+          "published": "2025-02-08"
+        },
+        {
+          "title": "Finding modules in a big ball of mud",
+          "url": "https://swizec.com/blog/finding-modules-in-a-big-ball-of-mud",
+          "published": "2024-11-21"
+        },
+        {
+          "title": "The Italian foods theory of bad software design 🍝",
+          "url": "https://swizec.com/blog/the-italian-foods-theory-of-bad-software-design",
+          "published": "2022-05-23"
+        }
+      ]
+    },
+    "NextJS": {
+      "count": 3,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "People like me are why you shouldn't run a hosting company",
+          "url": "https://swizec.com/blog/people-like-me-are-why-you-shouldnt-run-a-hosting-company",
+          "published": "2023-12-22"
+        },
+        {
+          "title": "A few thoughts on tRPC",
+          "url": "https://swizec.com/blog/a-few-thoughts-on-trpc",
+          "published": "2023-10-06"
+        },
+        {
+          "title": "Async React with NextJS 13",
+          "url": "https://swizec.com/blog/async-react-with-nextjs-13",
+          "published": "2023-01-14"
+        }
+      ]
+    },
+    "State machines": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Reader question: useReducer or XState?",
+          "url": "https://swizec.com/blog/reader-question-usereducer-or-xstate",
+          "published": "2022-11-11"
+        },
+        {
+          "title": "When your brain is breaking, try Stately.ai",
+          "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-stately-ai",
+          "published": "2022-11-08"
+        }
+      ]
+    },
+    "NodeJS": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Bun – first impressions",
+          "url": "https://swizec.com/blog/bun-first-impressions",
+          "published": "2023-10-20"
+        },
+        {
+          "title": "My biggest React App performance boost was a backend change",
+          "url": "https://swizec.com/blog/my-biggest-react-app-performance-boost-was-a-backend-change",
+          "published": "2023-01-31"
+        }
+      ]
+    },
+    "Product development": {
+      "count": 7,
+      "recentCount": 3,
+      "examples": [
+        {
+          "title": "The difference between a product and a project",
+          "url": "https://swizec.com/blog/the-difference-between-a-product-and-a-project",
+          "published": "2025-04-03"
+        },
+        {
+          "title": "What I learned from Inspired",
+          "url": "https://swizec.com/blog/what-i-learned-from-inspired",
+          "published": "2025-02-28"
+        },
+        {
+          "title": "Get us over the water, not build us a bridge",
+          "url": "https://swizec.com/blog/get-us-over-the-water-not-build-us-a-bridge",
+          "published": "2024-05-14"
+        }
+      ]
+    },
+    "Tools": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Podcast": {
+      "count": 4,
+      "recentCount": 3,
+      "examples": [
+        {
+          "title": "Good software gets out of the way",
+          "url": "https://swizec.com/blog/good-software-gets-out-of-the-way",
+          "published": "2026-06-04"
+        },
+        {
+          "title": "Make sure it works first",
+          "url": "https://swizec.com/blog/make-sure-it-works-first",
+          "published": "2025-10-21"
+        },
+        {
+          "title": "Getting from junior to senior",
+          "url": "https://swizec.com/blog/getting-from-junior-to-senior",
+          "published": "2021-11-19"
+        }
+      ]
+    },
+    "XState": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Reader question: useReducer or XState?",
+          "url": "https://swizec.com/blog/reader-question-usereducer-or-xstate",
+          "published": "2022-11-11"
+        },
+        {
+          "title": "When your brain is breaking, try Stately.ai",
+          "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-stately-ai",
+          "published": "2022-11-08"
+        }
+      ]
+    },
+    "react+d3js": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Refactoring": {
+      "count": 4,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "You can't stop the business, or why rewrites fail",
+          "url": "https://swizec.com/blog/you-can-t-stop-the-business-or-why-rewrites-fail",
+          "published": "2023-07-11"
+        },
+        {
+          "title": "Why others' code is hard to navigate",
+          "url": "https://swizec.com/blog/why-others-code-is-hard-to-navigate",
+          "published": "2022-09-01"
+        },
+        {
+          "title": "Code Review Practices for Refactoring Changes",
+          "url": "https://swizec.com/blog/code-review-practices-for-refactoring-changes",
+          "published": "2022-04-20"
+        }
+      ]
+    },
+    "Programming Lessons": {
+      "count": 5,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "useCallback is a code smell",
+          "url": "https://swizec.com/blog/usecallback-is-a-code-smell",
+          "published": "2022-09-16"
+        },
+        {
+          "title": "Why others' code is hard to navigate",
+          "url": "https://swizec.com/blog/why-others-code-is-hard-to-navigate",
+          "published": "2022-09-01"
+        },
+        {
+          "title": "Move your business logic into data",
+          "url": "https://swizec.com/blog/move-your-business-logic-into-data",
+          "published": "2022-08-03"
+        }
+      ]
+    },
+    "Linux": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Velocity": {
+      "count": 5,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Squash merge? Really!?",
+          "url": "https://swizec.com/blog/squash-merge-really",
+          "published": "2023-01-27"
+        },
+        {
+          "title": "The art of the cowboy merge 🤠",
+          "url": "https://swizec.com/blog/the-art-of-the-cowboy-merge",
+          "published": "2022-09-08"
+        },
+        {
+          "title": "How we made the best burndown chart you've ever seen",
+          "url": "https://swizec.com/blog/how-we-made-the-best-burndown-chart-youve-ever-seen",
+          "published": "2022-04-12"
+        }
+      ]
+    },
+    "Talks": {
+      "count": 5,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "Make sure it works first",
+          "url": "https://swizec.com/blog/make-sure-it-works-first",
+          "published": "2025-10-21"
+        },
+        {
+          "title": "Notes for my Scaling Fast talk next week",
+          "url": "https://swizec.com/blog/notes-for-my-scaling-fast-talk-next-week",
+          "published": "2024-06-08"
+        },
+        {
+          "title": "The audience loved my talk but I didn't",
+          "url": "https://swizec.com/blog/the-audience-loved-my-talk-but-i-didnt",
+          "published": "2022-06-24"
+        }
+      ]
+    },
+    "UX": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Clever technical hackery can't solve the wrong design",
+          "url": "https://swizec.com/blog/clever-technical-hackery-can-t-solve-the-wrong-design",
+          "published": "2023-03-07"
+        }
+      ]
+    },
+    "OpenSource": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "DevOps": {
+      "count": 4,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "The future of software engineering is SRE",
+          "url": "https://swizec.com/blog/the-future-of-software-engineering-is-sre",
+          "published": "2026-01-24"
+        },
+        {
+          "title": "How I Added a Related Articles Feature on Swizec.com Using GPT-4 Embeddings",
+          "url": "https://swizec.com/blog/how-i-added-a-related-articles-feature-on-swizec-com-using-gpt-4-embeddings",
+          "published": "2024-01-04"
+        },
+        {
+          "title": "Using DynamoDB Streams with the Serverless Framework",
+          "url": "https://swizec.com/blog/using-dynamodb-streams-with-the-serverless-framework",
+          "published": "2022-01-04"
+        }
+      ]
+    },
+    "React Query": {
+      "count": 3,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Why useSuspenseQuery works",
+          "url": "https://swizec.com/blog/why-use-suspense-query-works",
+          "published": "2024-05-30"
+        },
+        {
+          "title": "A few thoughts on tRPC",
+          "url": "https://swizec.com/blog/a-few-thoughts-on-trpc",
+          "published": "2023-10-06"
+        }
+      ]
+    },
+    "Experiment": {
+      "count": 5,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "I tried generative AI on lots of data and we're not quite there yet",
+          "url": "https://swizec.com/blog/i-tried-generative-ai-on-lots-of-data-and-we-re-not-quite-there-yet",
+          "published": "2023-10-31"
+        },
+        {
+          "title": "Build semantic search in an afternoon? Yep 🤯",
+          "url": "https://swizec.com/blog/build-semantic-search-in-an-afternoon-yep",
+          "published": "2023-03-15"
+        },
+        {
+          "title": "Stable Diffusion on an iPad 🤯",
+          "url": "https://swizec.com/blog/stable-diffusion-on-an-ipad",
+          "published": "2022-11-22"
+        }
+      ]
+    },
+    "Rails": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Resume": {
+      "count": 5,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "Quick note on evals and putting AI in your resume",
+          "url": "https://swizec.com/blog/quick-note-on-evals-and-putting-ai-in-your-resume",
+          "published": "2026-05-01"
+        },
+        {
+          "title": "What to put on your resumé",
+          "url": "https://swizec.com/blog/what-to-put-on-your-resume",
+          "published": "2023-11-10"
+        },
+        {
+          "title": "Your background won't get you the job",
+          "url": "https://swizec.com/blog/your-background-won-t-get-you-the-job",
+          "published": "2023-04-18"
+        }
+      ]
+    },
+    "TanStack": {
+      "count": 5,
+      "recentCount": 3,
+      "examples": [
+        {
+          "title": "swizec.com is now on TimberJS, a new React framework",
+          "url": "https://swizec.com/blog/swizec-com-is-now-on-timber-js-a-new-react-framework",
+          "published": "2026-07-21"
+        },
+        {
+          "title": "Server-side React that renders as png, pdf, or interactive webapp",
+          "url": "https://swizec.com/blog/server-side-react-that-renders-as-png-pdf-or-interactive-webapp",
+          "published": "2025-01-23"
+        },
+        {
+          "title": "TanStack Router – modern React for the rest of us",
+          "url": "https://swizec.com/blog/tanstack-router-modern-react-for-the-rest-of-us",
+          "published": "2024-01-09"
+        }
+      ]
+    },
+    "Observability": {
+      "count": 4,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "These 3 alerts catch the most issues",
+          "url": "https://swizec.com/blog/these-3-alerts-catch-the-most-issues",
+          "published": "2025-07-26"
+        },
+        {
+          "title": "Why you need observability more than tests",
+          "url": "https://swizec.com/blog/why-you-need-observability-more-than-tests",
+          "published": "2024-11-16"
+        },
+        {
+          "title": "90% of performance is data access patterns",
+          "url": "https://swizec.com/blog/90p-of-performance-is-data-access-patterns",
+          "published": "2024-07-26"
+        }
+      ]
+    },
+    "blockchain": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "redux": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "SVG": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Data Visualization": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Philosophy": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Your code doesn't matter",
+          "url": "https://swizec.com/blog/your-code-doesnt-matter",
+          "published": "2022-08-16"
+        }
+      ]
+    },
+    "TechLetterApp": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Don't neglect your upgrades",
+          "url": "https://swizec.com/blog/dont-neglect-your-upgrades",
+          "published": "2023-11-07"
+        },
+        {
+          "title": "Are you annoyed by the extra space after your name [name|]?",
+          "url": "https://swizec.com/blog/are-you-annoyed-by-the-extra-space-after-your-name-name",
+          "published": "2023-03-21"
+        }
+      ]
+    },
+    "Psychology": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Askers vs. Guessers",
+          "url": "https://swizec.com/blog/askers-vs-guessers",
+          "published": "2023-11-29"
+        }
+      ]
+    },
+    "OpenAI": {
+      "count": 3,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "How I turned 15 years of writing into a chatbot",
+          "url": "https://swizec.com/blog/how-i-turned-15-years-of-writing-into-a-chatbot",
+          "published": "2023-05-20"
+        },
+        {
+          "title": "Build semantic search in an afternoon? Yep 🤯",
+          "url": "https://swizec.com/blog/build-semantic-search-in-an-afternoon-yep",
+          "published": "2023-03-15"
+        },
+        {
+          "title": "Building apps with OpenAI and ChatGPT",
+          "url": "https://swizec.com/blog/building-apps-with-openai-and-chatgpt",
+          "published": "2023-01-06"
+        }
+      ]
+    },
+    "Suspense": {
+      "count": 4,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Tips from 8 months of TanStack/Router in production",
+          "url": "https://swizec.com/blog/tips-from-8-months-of-tan-stack-router-in-production",
+          "published": "2024-08-14"
+        },
+        {
+          "title": "Why useSuspenseQuery works",
+          "url": "https://swizec.com/blog/why-use-suspense-query-works",
+          "published": "2024-05-30"
+        },
+        {
+          "title": "TanStack Router – modern React for the rest of us",
+          "url": "https://swizec.com/blog/tanstack-router-modern-react-for-the-rest-of-us",
+          "published": "2024-01-09"
+        }
+      ]
+    },
+    "Engineering Management": {
+      "count": 4,
+      "recentCount": 4,
+      "examples": [
+        {
+          "title": "How to be useful as a software architect",
+          "url": "https://swizec.com/blog/how-to-be-useful-as-a-software-architect",
+          "published": "2026-07-25"
+        },
+        {
+          "title": "The one thing every experienced engineer gets wrong",
+          "url": "https://swizec.com/blog/the-one-thing-every-experienced-engineer-gets-wrong",
+          "published": "2026-07-11"
+        },
+        {
+          "title": "Engineering levels aren't about skill anymore",
+          "url": "https://swizec.com/blog/engineering-levels-arent-about-skill-anymore",
+          "published": "2026-05-19"
+        }
+      ]
+    },
+    "Ubuntu": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Project Management": {
+      "count": 3,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "The one thing every experienced engineer gets wrong",
+          "url": "https://swizec.com/blog/the-one-thing-every-experienced-engineer-gets-wrong",
+          "published": "2026-07-11"
+        },
+        {
+          "title": "How *do* you break down a large project? INVEST",
+          "url": "https://swizec.com/blog/how-do-you-break-down-a-large-project",
+          "published": "2025-02-04"
+        },
+        {
+          "title": "How big up-front design fails",
+          "url": "https://swizec.com/blog/how-big-up-front-design-fails",
+          "published": "2024-09-10"
+        }
+      ]
+    },
+    "time": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Saving time in UTC doesn't work and offsets aren't enough",
+          "url": "https://swizec.com/blog/saving-time-in-utc-doesnt-work-and-offsets-arent-enough",
+          "published": "2022-03-25"
+        }
+      ]
+    },
+    "Git": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Webpack": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "GraphQL": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Wow API Gateway v2 is fast",
+          "url": "https://swizec.com/blog/wow-api-gateway-v2-is-fast",
+          "published": "2022-01-17"
+        },
+        {
+          "title": "Better tooling won't fix your API",
+          "url": "https://swizec.com/blog/better-tooling-wont-fix-your-api",
+          "published": "2021-11-30"
+        }
+      ]
+    },
+    "data modeling": {
+      "count": 3,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Clever technical hackery can't solve the wrong design",
+          "url": "https://swizec.com/blog/clever-technical-hackery-can-t-solve-the-wrong-design",
+          "published": "2023-03-07"
+        },
+        {
+          "title": "How better data modeling fixes your code",
+          "url": "https://swizec.com/blog/how-better-data-modeling-fixes-your-code",
+          "published": "2022-09-27"
+        },
+        {
+          "title": "Notes on A Relational Model of Data for Large Shared Data Banks",
+          "url": "https://swizec.com/blog/notes-on-a-relational-model-of-data-for-large-shared-data-banks",
+          "published": "2022-09-20"
+        }
+      ]
+    },
+    "Research": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Code Review Practices for Refactoring Changes",
+          "url": "https://swizec.com/blog/code-review-practices-for-refactoring-changes",
+          "published": "2022-04-20"
+        }
+      ]
+    },
+    "Growth": {
+      "count": 3,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "Code yourself out of the job",
+          "url": "https://swizec.com/blog/code-yourself-out-of-the-job-2",
+          "published": "2025-02-19"
+        },
+        {
+          "title": "The Series A inflection point",
+          "url": "https://swizec.com/blog/the-series-a-inflection-point",
+          "published": "2024-09-25"
+        },
+        {
+          "title": "Code yourself out of the job",
+          "url": "https://swizec.com/blog/code-yourself-out-of-the-job",
+          "published": "2024-03-19"
+        }
+      ]
+    },
+    "Firebase": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "useAuth": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Immigration": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "How I used indie hacking to sponsor my own greencard",
+          "url": "https://swizec.com/blog/how-i-used-indie-hacking-to-sponsor-my-own-greencard",
+          "published": "2022-02-01"
+        }
+      ]
+    },
+    "Positioning": {
+      "count": 3,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "Put scope on your resume",
+          "url": "https://swizec.com/blog/put-scope-on-your-resume",
+          "published": "2026-03-04"
+        },
+        {
+          "title": "What makes your resume stand out",
+          "url": "https://swizec.com/blog/what-makes-your-resume-stand-out",
+          "published": "2025-11-22"
+        },
+        {
+          "title": "How positioning makes you stand out from the crowd",
+          "url": "https://swizec.com/blog/how-positioning-makes-you-stand-out-from-the-crowd",
+          "published": "2023-05-23"
+        }
+      ]
+    },
+    "Tutorial": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "Events": {
+      "count": 3,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "I went to \"AI Woodstock\" and wow",
+          "url": "https://swizec.com/blog/i-went-to-ai-woodstock-and-wow",
+          "published": "2023-04-04"
+        },
+        {
+          "title": "The audience loved my talk but I didn't",
+          "url": "https://swizec.com/blog/the-audience-loved-my-talk-but-i-didnt",
+          "published": "2022-06-24"
+        },
+        {
+          "title": "Learnings about the future of the web from Reactathon",
+          "url": "https://swizec.com/blog/learnings-about-the-future-of-the-web-from-reactathon",
+          "published": "2022-05-07"
+        }
+      ]
+    },
+    "slack": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Using DynamoDB Streams with the Serverless Framework",
+          "url": "https://swizec.com/blog/using-dynamodb-streams-with-the-serverless-framework",
+          "published": "2022-01-04"
+        }
+      ]
+    },
+    "AWS": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Wow API Gateway v2 is fast",
+          "url": "https://swizec.com/blog/wow-api-gateway-v2-is-fast",
+          "published": "2022-01-17"
+        },
+        {
+          "title": "Using DynamoDB Streams with the Serverless Framework",
+          "url": "https://swizec.com/blog/using-dynamodb-streams-with-the-serverless-framework",
+          "published": "2022-01-04"
+        }
+      ]
+    },
+    "Insights": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "What being an expert looks like",
+          "url": "https://swizec.com/blog/what-being-an-expert-looks-like",
+          "published": "2024-01-25"
+        },
+        {
+          "title": "A lesson on expertise from a great mafia movie ",
+          "url": "https://swizec.com/blog/a-lesson-on-expertise-from-a-great-mafia-movie",
+          "published": "2022-06-16"
+        }
+      ]
+    },
+    "Tips": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "A work ritual that keeps me sane",
+          "url": "https://swizec.com/blog/a-work-ritual-that-keeps-me-sane",
+          "published": "2022-07-15"
+        },
+        {
+          "title": "Quick tip for system design interviews",
+          "url": "https://swizec.com/blog/quick-tip-for-system-design-interviews",
+          "published": "2022-01-28"
+        }
+      ]
+    },
+    "Culture": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Approve with comment",
+          "url": "https://swizec.com/blog/approve-with-comment",
+          "published": "2024-04-09"
+        },
+        {
+          "title": "How to give and receive feedback",
+          "url": "https://swizec.com/blog/how-to-give-and-receive-feedback",
+          "published": "2022-03-04"
+        }
+      ]
+    },
+    "Compensation": {
+      "count": 3,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "\"If you're so good, why aren't you making 600k at BigTech?\"",
+          "url": "https://swizec.com/blog/if-you-re-so-good-why-aren-t-you-making-600k-at-bigtech",
+          "published": "2023-03-10"
+        },
+        {
+          "title": "Are you the engineer who scoffs at high salary numbers?",
+          "url": "https://swizec.com/blog/are-you-the-engineer-who-scoffs-at-high-salary-numbers",
+          "published": "2022-03-07"
+        },
+        {
+          "title": "Why experts charge more",
+          "url": "https://swizec.com/blog/why-experts-charge-more",
+          "published": "2022-03-07"
+        }
+      ]
+    },
+    "ScholarStream": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Async React with NextJS 13",
+          "url": "https://swizec.com/blog/async-react-with-nextjs-13",
+          "published": "2023-01-14"
+        },
+        {
+          "title": "Building apps with OpenAI and ChatGPT",
+          "url": "https://swizec.com/blog/building-apps-with-openai-and-chatgpt",
+          "published": "2023-01-06"
+        }
+      ]
+    },
+    "Ownership": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "The role of a senior+ engineer",
+          "url": "https://swizec.com/blog/the-role-of-a-senior-engineer",
+          "published": "2022-04-26"
+        },
+        {
+          "title": "Be their shit umbrella",
+          "url": "https://swizec.com/blog/be-their-shit-umbrella",
+          "published": "2022-02-16"
+        }
+      ]
+    },
+    "REST": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "You are allowed to invent HTTP status codes",
+          "url": "https://swizec.com/blog/you-are-allowed-to-invent-http-status-codes",
+          "published": "2022-06-07"
+        },
+        {
+          "title": "Better tooling won't fix your API",
+          "url": "https://swizec.com/blog/better-tooling-wont-fix-your-api",
+          "published": "2021-11-30"
+        }
+      ]
+    },
+    "Bun": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "TypeScript runtime vs types at run-time",
+          "url": "https://swizec.com/blog/typescript-runtime-vs-types-at-run-time",
+          "published": "2023-10-27"
+        },
+        {
+          "title": "Bun – first impressions",
+          "url": "https://swizec.com/blog/bun-first-impressions",
+          "published": "2023-10-20"
+        }
+      ]
+    },
+    "Product Management": {
+      "count": 2,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "Code is the easy part, or how we refactored half the business to fix a janky script",
+          "url": "https://swizec.com/blog/code-is-the-easy-part-or-how-we-refactored-half-the-business-to-fix-a-janky-script",
+          "published": "2026-06-17"
+        },
+        {
+          "title": "Watch people work",
+          "url": "https://swizec.com/blog/watch-people-work",
+          "published": "2026-04-14"
+        }
+      ]
+    },
+    "theory of constraints": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Don't neglect your upgrades",
+          "url": "https://swizec.com/blog/dont-neglect-your-upgrades",
+          "published": "2023-11-07"
+        }
+      ]
+    },
+    "Social Media": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Getting off twitter, an experiment",
+          "url": "https://swizec.com/blog/getting-off-twitter-an-experiment",
+          "published": "2022-12-03"
+        }
+      ]
+    },
+    "UTC": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Saving time in UTC doesn't work and offsets aren't enough",
+          "url": "https://swizec.com/blog/saving-time-in-utc-doesnt-work-and-offsets-arent-enough",
+          "published": "2022-03-25"
+        }
+      ]
+    },
+    "Money": {
+      "count": 0,
+      "recentCount": 0,
+      "examples": []
+    },
+    "SwizBot": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Similarity search with pgvector and Supabase",
+          "url": "https://swizec.com/blog/similarity-search-with-pgvector-and-supabase",
+          "published": "2023-09-04"
+        },
+        {
+          "title": "How I turned 15 years of writing into a chatbot",
+          "url": "https://swizec.com/blog/how-i-turned-15-years-of-writing-into-a-chatbot",
+          "published": "2023-05-20"
+        }
+      ]
+    },
+    "HTMX": {
+      "count": 2,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "React, HTMX, and TanStack/Start",
+          "url": "https://swizec.com/blog/react-htmx-and-tan-stack-start",
+          "published": "2025-10-06"
+        },
+        {
+          "title": "HTMX – Server Components without React",
+          "url": "https://swizec.com/blog/htmx-server-components-without-react",
+          "published": "2025-08-19"
+        }
+      ]
+    },
+    "Code": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Your code doesn't matter",
+          "url": "https://swizec.com/blog/your-code-doesnt-matter",
+          "published": "2022-08-16"
+        }
+      ]
+    },
+    "Performance": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "My biggest React App performance boost was a backend change",
+          "url": "https://swizec.com/blog/my-biggest-react-app-performance-boost-was-a-backend-change",
+          "published": "2023-01-31"
+        },
+        {
+          "title": "Immutability isn't free",
+          "url": "https://swizec.com/blog/immutability-isnt-free",
+          "published": "2022-02-04"
+        }
+      ]
+    },
+    "Stately.ai": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Reader question: useReducer or XState?",
+          "url": "https://swizec.com/blog/reader-question-usereducer-or-xstate",
+          "published": "2022-11-11"
+        },
+        {
+          "title": "When your brain is breaking, try Stately.ai",
+          "url": "https://swizec.com/blog/when-your-brain-is-breaking-try-stately-ai",
+          "published": "2022-11-08"
+        }
+      ]
+    },
+    "AI Engineer": {
+      "count": 2,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "Using AI to spark connections at a conference",
+          "url": "https://swizec.com/blog/using-ai-to-spark-connections-at-a-conference",
+          "published": "2024-06-12"
+        },
+        {
+          "title": "Similarity search with pgvector and Supabase",
+          "url": "https://swizec.com/blog/similarity-search-with-pgvector-and-supabase",
+          "published": "2023-09-04"
+        }
+      ]
+    },
+    "Automation": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "The dangers of spurious automation and how to automate anything",
+          "url": "https://swizec.com/blog/the-dangers-of-spurious-automation-and-how-to-automate-anything",
+          "published": "2024-06-25"
+        }
+      ]
+    },
+    "TimberJS": {
+      "count": 2,
+      "recentCount": 2,
+      "examples": [
+        {
+          "title": "swizec.com is now on TimberJS, a new React framework",
+          "url": "https://swizec.com/blog/swizec-com-is-now-on-timber-js-a-new-react-framework",
+          "published": "2026-07-21"
+        },
+        {
+          "title": "Using vibes to rewrite my blog",
+          "url": "https://swizec.com/blog/using-vibes-to-rewrite-my-blog",
+          "published": "2026-06-27"
+        }
+      ]
+    },
+    "Mentoring": {
+      "count": 2,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "Why learning and teaching the good stuff is hard",
+          "url": "https://swizec.com/blog/why-learning-and-teaching-the-good-stuff-is-hard",
+          "published": "2024-12-06"
+        },
+        {
+          "title": "What coding tutorials and teachers get wrong",
+          "url": "https://swizec.com/blog/what-coding-tutorials-and-teachers-get-wrong",
+          "published": "2022-08-12"
+        }
+      ]
+    },
+    "Agile": {
+      "count": 2,
+      "recentCount": 1,
+      "examples": [
+        {
+          "title": "What I learned from Inspired",
+          "url": "https://swizec.com/blog/what-i-learned-from-inspired",
+          "published": "2025-02-28"
+        },
+        {
+          "title": "Why you need a regular retro",
+          "url": "https://swizec.com/blog/why-you-need-a-regular-retro",
+          "published": "2024-02-24"
+        }
+      ]
+    },
+    "Feedback": {
+      "count": 1,
+      "recentCount": 0,
+      "examples": [
+        {
+          "title": "How to give and receive feedback",
+          "url": "https://swizec.com/blog/how-to-give-and-receive-feedback",
+          "published": "2022-03-04"
+        }
+      ]
+    }
+  },
+  "recentWindowStart": "2024-11-14",
+  "recentTrainingPosts": 104
+}
