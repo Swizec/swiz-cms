@@ -37,13 +37,23 @@ for (const name of Object.keys(catalog)) {
       available.length - 1,
     ]),
   ].filter((i) => i >= 0 && i < available.length);
+  // A curated definition can pin representative examples so a historical
+  // parent-tag backfill does not silently broaden its meaning on regeneration.
+  const examples = catalog[name].exampleSlugs
+    ? catalog[name].exampleSlugs.map((slug) => {
+        const post = available.find((p) => p.slug === slug);
+        if (!post || split.previousDevelopment.includes(slug))
+          throw new Error(`Ineligible prompt example for ${name}: ${slug}`);
+        return post;
+      })
+    : indexes.map((i) => available[i]);
   categories[name] = {
     count: tagged.length,
     recentCount: tagged.filter((p) => p.published >= recentWindowStart).length,
-    examples: indexes.map((i) => ({
-      title: available[i].title,
-      url: available[i].url,
-      published: available[i].published,
+    examples: examples.map((post) => ({
+      title: post.title,
+      url: post.url,
+      published: post.published,
     })),
   };
 }

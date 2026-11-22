@@ -11,7 +11,7 @@
     "title": "Pair reviews that teach the whole team",
     "body": "Our engineers now review difficult pull requests in pairs. A junior engineer and a senior engineer read the change together, discuss why the design works, and leave a shared set of comments. We rotate the pair so knowledge spreads beyond the original author. The author joins when they can explain context that is missing from the diff. Nobody is expected to defend every line: we agree on the outcome, separate preferences from problems, and let the author make the final small decisions. Review time is reserved on the team calendar so nobody spends a day waiting for a colleague to respond. After a month, people understood more of the codebase and felt more comfortable asking each other for help.",
     "required": ["Teamwork"],
-    "excluded": ["AI", "Automation", "review"]
+    "excluded": ["AI", "Automation", "review", "Leadership"]
   },
   {
     "id": "health-with-technical-audience",
@@ -31,38 +31,56 @@
     "id": "hiring-without-interview-tactics",
     "title": "Hire for the job you actually need done",
     "body": "Recruiting starts with deciding what work the next engineer will own. Before opening a role, write down the responsibilities, scope, and outcomes that would make the hire successful. Use that scorecard to decide where to source candidates and which applications to advance. A prestigious employer on a resume is not evidence that someone can do this job. Compare candidates against the same requirements instead of changing the bar for whoever applied most recently. When choosing between applicants, look for evidence of doing similar work and the ability to learn what is missing. Level the role based on responsibility, and make the selection decision from the evidence gathered. A clear hiring bar helps the team recruit the person it needs.",
-    "required": [
-      "Interviewing"
-    ],
-    "excluded": [
-      "Hiring",
-      "Salary",
-      "Compensation"
-    ]
+    "required": ["Interviewing"],
+    "excluded": ["Hiring", "Salary", "Compensation"]
   },
   {
     "id": "salary-and-total-compensation",
     "title": "Compare the whole offer before you negotiate",
     "body": "Two engineering offers can advertise the same total compensation and pay very differently. Compare the guaranteed base salary, bonus targets, equity grant, vesting schedule, and benefits separately. A private company equity estimate is not the same as cash in your paycheck. Ask what assumptions produced the headline number and what happens if the company never exits. Before negotiating, decide which parts of the package matter to you and ask about the salary band for the role. A higher base salary and a larger equity grant have different tradeoffs. Negotiate the actual package rather than accepting an impressive total with unclear terms.",
-    "required": [
-      "Compensation"
-    ],
-    "excluded": [
-      "Salary",
-      "Hiring",
-      "Interviewing"
-    ]
+    "required": ["Compensation"],
+    "excluded": ["Salary", "Hiring", "Interviewing"]
   },
   {
     "id": "career-growth-without-recruiting-or-pay",
     "title": "Choose growth before another title",
     "body": "I stayed at the same company and changed the shape of my role. Instead of collecting more tickets, I took responsibility for a product area and learned to explain its tradeoffs to the business. The useful question for my next career step was what I wanted to be trusted with a year from now. I wrote down the experience I was missing and found projects that would let me gain it. A salary increase or a successful interview would not fill those gaps by itself. I reviewed my progress with my manager, asked for broader responsibility, and kept a record of the outcomes. Professional growth comes from choosing challenges that build the capabilities you want, then reflecting on what changed.",
-    "required": [
-      "Career"
-    ],
-    "excluded": [
-      "Interviewing",
-      "Compensation"
-    ]
+    "required": ["Career"],
+    "excluded": ["Interviewing", "Compensation"]
+  },
+  {
+    "id": "teamwork-peer-handoffs",
+    "title": "A handoff is a conversation",
+    "body": "Our frontend and backend engineers kept finishing work that did not fit together. We now pair up before implementation to write a concrete request and response example. Each side explains what it needs and what assumptions might change. When either side discovers a mismatch, the two engineers update the example together and tell the other people using it. We keep a short shared note of unresolved questions so nobody has to reconstruct a long chat thread. At the handoff, the receiving engineer runs the example while the author is still available. This makes gaps visible before anyone moves on. The useful change is how colleagues exchange context and coordinate dependent work.",
+    "required": ["Teamwork"],
+    "excluded": ["Leadership"]
+  },
+  {
+    "id": "leadership-coaching-and-delegation",
+    "title": "Delegation includes the authority to decide",
+    "body": "A new manager kept asking why her engineers waited for permission before making decisions. In every one-on-one she had been correcting their choices and taking over whenever she saw a better approach. We worked on defining the outcome she expected, the boundaries that mattered, and which decisions belonged to each person. She began asking her reports to explain their reasoning instead of giving them the answer. When someone struggled, she gave specific feedback and agreed on a development goal. She remained accountable for results and protected their decisions when stakeholders pushed back. Her responsibility was to develop judgment and give people the authority to use it.",
+    "required": ["Leadership"],
+    "excluded": ["Teamwork"]
+  },
+  {
+    "id": "leadership-without-manager-title",
+    "title": "You can set direction without direct reports",
+    "body": "A staff engineer noticed that three product roadmaps assumed different answers to the same strategic question. She had no direct reports and could not assign anyone work. She interviewed the decision makers, laid out the tradeoffs, and proposed one goal that served the business. When the groups disagreed, she helped them choose which outcome mattered most and persuaded the sponsors to back that direction. She made the difficult recommendation to stop one attractive project and accepted responsibility for explaining the decision. Her influence came from sound judgment, a clear argument, and earning trust. The important contribution was giving other people a direction they could commit to.",
+    "required": ["Leadership"],
+    "excluded": ["Teamwork"]
+  },
+  {
+    "id": "leadership-and-teamwork",
+    "title": "Give people direction and a way to collaborate",
+    "body": "As our team grew, I had to stop making every decision. I set a clear outcome for the quarter, delegated responsibility for each product area, and coached the new leads through their first difficult decisions. I protected their authority when stakeholders tried to bypass them and used one-on-ones to help them develop judgment. That was one part of the change. The engineers also needed a better way to work with each other. They paired across specialties before implementing changes, wrote down assumptions in shared design notes, and agreed on interface examples together. Reviewers and authors discussed blockers directly instead of exchanging disconnected comments. They rotated pairing partners to spread knowledge and held retrospectives to improve their handoffs. Developing leaders and improving collaboration solved different problems, and both were necessary.",
+    "required": ["Leadership", "Teamwork"],
+    "excluded": []
+  },
+  {
+    "id": "technical-article-with-manager-context",
+    "title": "Why the query stopped using its index",
+    "body": "I manage an engineering team, and a colleague mentioned a slow query during our morning meeting. The query compared a timestamp column with a string after wrapping the indexed column in a conversion function. The database could not use the existing index for that expression. I changed the predicate to compare the original column with a correctly typed parameter. The execution plan then showed an index scan and the number of rows examined fell sharply. I verified the result set before and after the change and checked the boundary timestamps. The general lesson is to inspect the execution plan and avoid transformations that prevent an index from matching a query predicate.",
+    "required": ["Database"],
+    "excluded": ["Leadership", "Teamwork"]
   }
 ]

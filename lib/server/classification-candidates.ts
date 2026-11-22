@@ -13,7 +13,11 @@ import profile from "./category-profile.json";
 
 export const categoryCatalog: Record<
   Category,
-  { description: string; sources: { url: string; published: string }[] }
+  {
+    description: string;
+    sources: { url: string; published: string }[];
+    exampleSlugs?: string[];
+  }
 > = catalog;
 export const AUTO_CATEGORIES = CATEGORIES.filter(
   (category) => !MANUAL_CATEGORIES.includes(category),

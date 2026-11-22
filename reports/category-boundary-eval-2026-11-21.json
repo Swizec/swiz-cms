@@ -1,0 +1,250 @@
+{
+  "date": "2026-11-21",
+  "model": "gpt-6-luna",
+  "methodology": "Development controls on the live classifier, not an accuracy estimate or a rerun of the historical backtest. The old/new probe holds the input, model, common instructions, and selection policy constant; it replaces only the two category definitions and example lists. Three paired calls per prompt version.",
+  "priorCommit": "85ae65324499f00ec005b0414207cf241129e2e5",
+  "fingerprints": {
+    "lib/server/category-catalog.json": "f1c5fdd04d9227655eaff5e66a29c393a60998fe0e20c722feaeb9694a50d652",
+    "lib/server/category-profile.json": "1b23b77ea8a57d52b2916169b1429627f8b5874fde6b291151e6137f3abbd48b",
+    "lib/server/category-calibration.json": "5e704d3913144b66e82a9909adbf9bf8e7e77f88dd62e9eb90151da788669e0d",
+    "lib/server/classification-candidates.ts": "4242272b3ea099e0ba8844e693bba82f2b4ce1a1456367a5b194f34e44eca3ff",
+    "tests/fixtures/category-eval-controls.json": "6ef90325f7275fd1f3d5274c0d9b2bd8cb79db0a255dcd6986965171747cad8e"
+  },
+  "categoryControls": {
+    "passed": 27,
+    "total": 28
+  },
+  "upgradeControls": {
+    "passed": 6,
+    "total": 6
+  },
+  "boundaryControls": [
+    {
+      "slug": "human-code-review",
+      "categories": [
+        "Teamwork",
+        "Culture",
+        "Software Engineering"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "teamwork-peer-handoffs",
+      "categories": [
+        "Teamwork",
+        "Culture"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "leadership-coaching-and-delegation",
+      "categories": [
+        "Leadership",
+        "Management",
+        "Mentoring",
+        "Engineering Management",
+        "Senior Mindset"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "leadership-without-manager-title",
+      "categories": [
+        "Senior Mindset",
+        "Leadership"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "leadership-and-teamwork",
+      "categories": [
+        "Teamwork",
+        "Engineering Management",
+        "Leadership",
+        "Management"
+      ],
+      "missing": [],
+      "unexpected": []
+    },
+    {
+      "slug": "technical-article-with-manager-context",
+      "categories": [
+        "Database",
+        "Performance",
+        "Backend"
+      ],
+      "missing": [],
+      "unexpected": []
+    }
+  ],
+  "existingFailure": {
+    "slug": "how-do-we-auto-approve-and-merge-60p-of-prs",
+    "requiredCategory": "AI",
+    "finding": "AI is omitted with both the previous and revised prompts. Its native probability and adjusted relevance are identical in all six probe calls; it falls below the increasing selection cutoff. The issue predates the Teamwork/Leadership revision.",
+    "pairedResults": [
+      {
+        "version": "before",
+        "round": 0,
+        "selected": [
+          "Software Engineering",
+          "Teamwork",
+          "Scaling Fast Book",
+          "Leadership"
+        ],
+        "scores": [
+          {
+            "category": "Teamwork",
+            "probability": 0.99,
+            "relevance": 0.9888378250065364
+          },
+          {
+            "category": "Leadership",
+            "probability": 0.95,
+            "relevance": 0.9461247029633763
+          },
+          {
+            "category": "AI",
+            "probability": 0.94,
+            "relevance": 0.9308976489109042
+          }
+        ]
+      },
+      {
+        "version": "after",
+        "round": 0,
+        "selected": [
+          "Software Engineering",
+          "Scaling Fast Book",
+          "Senior Mindset"
+        ],
+        "scores": [
+          {
+            "category": "Teamwork",
+            "probability": 0.94,
+            "relevance": 0.9334177592071888
+          },
+          {
+            "category": "AI",
+            "probability": 0.94,
+            "relevance": 0.9308976489109042
+          },
+          {
+            "category": "Leadership",
+            "probability": 0.73,
+            "relevance": 0.7142030915956517
+          }
+        ]
+      },
+      {
+        "version": "before",
+        "round": 1,
+        "selected": [
+          "Software Engineering",
+          "Teamwork",
+          "Scaling Fast Book",
+          "Leadership"
+        ],
+        "scores": [
+          {
+            "category": "Teamwork",
+            "probability": 0.99,
+            "relevance": 0.9888378250065364
+          },
+          {
+            "category": "Leadership",
+            "probability": 0.95,
+            "relevance": 0.9461247029633763
+          },
+          {
+            "category": "AI",
+            "probability": 0.94,
+            "relevance": 0.9308976489109042
+          }
+        ]
+      },
+      {
+        "version": "after",
+        "round": 1,
+        "selected": [
+          "Software Engineering",
+          "Scaling Fast Book",
+          "Senior Mindset"
+        ],
+        "scores": [
+          {
+            "category": "Teamwork",
+            "probability": 0.94,
+            "relevance": 0.9334177592071888
+          },
+          {
+            "category": "AI",
+            "probability": 0.94,
+            "relevance": 0.9308976489109042
+          },
+          {
+            "category": "Leadership",
+            "probability": 0.73,
+            "relevance": 0.7142030915956517
+          }
+        ]
+      },
+      {
+        "version": "before",
+        "round": 2,
+        "selected": [
+          "Software Engineering",
+          "Teamwork",
+          "Scaling Fast Book",
+          "Leadership"
+        ],
+        "scores": [
+          {
+            "category": "Teamwork",
+            "probability": 0.99,
+            "relevance": 0.9888378250065364
+          },
+          {
+            "category": "Leadership",
+            "probability": 0.95,
+            "relevance": 0.9461247029633763
+          },
+          {
+            "category": "AI",
+            "probability": 0.94,
+            "relevance": 0.9308976489109042
+          }
+        ]
+      },
+      {
+        "version": "after",
+        "round": 2,
+        "selected": [
+          "Software Engineering",
+          "Scaling Fast Book",
+          "Senior Mindset"
+        ],
+        "scores": [
+          {
+            "category": "Teamwork",
+            "probability": 0.94,
+            "relevance": 0.9334177592071888
+          },
+          {
+            "category": "AI",
+            "probability": 0.94,
+            "relevance": 0.9308976489109042
+          },
+          {
+            "category": "Leadership",
+            "probability": 0.73,
+            "relevance": 0.7142030915956517
+          }
+        ]
+      }
+    ]
+  }
+}

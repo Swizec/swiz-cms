@@ -125,6 +125,22 @@ describe("category evidence", () => {
     expect(CATEGORIES).not.toContain("Salary");
     expect(CATEGORIES).not.toContain("Hiring");
   });
+  it("preserves curated examples without leaking evaluation articles into prompts", () => {
+    const evaluated = new Set([
+      ...evalCases.map((p) => p.slug),
+      ...split.previousDevelopment,
+      ...split.tuning,
+      ...split.holdout,
+    ]);
+    for (const category of CATEGORIES) {
+      const curated = categoryCatalog[category].exampleSlugs;
+      if (!curated) continue;
+      expect(
+        profile.categories[category].examples.map((p) => p.url.split("/").at(-1)),
+      ).toEqual(curated);
+      for (const slug of curated) expect(evaluated.has(slug)).toBe(false);
+    }
+  });
   it("asks one membership predicate per automatic category with its rubric", () => {
     expect(topicQuestions.length + 1).toBeLessThanOrEqual(400);
     expect(topicQuestions.map((q) => q.name)).toEqual(
