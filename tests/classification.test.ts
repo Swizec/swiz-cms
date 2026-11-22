@@ -188,7 +188,8 @@ describe("selection", () => {
     expect(selected).toEqual([
       "Senior Mindset",
       "Software Engineering",
-      "Leadership",
+      // The reviewed archive uses Teamwork more often than Leadership.
+      "Teamwork",
     ]);
   });
   it("still allows a rare specific subject with decisive evidence", () => {
