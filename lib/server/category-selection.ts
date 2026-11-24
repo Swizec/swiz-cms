@@ -40,12 +40,16 @@ export function categoryRelevance({ category, probability }: CategoryScore) {
   );
 }
 
+export function categoryCutoff(bestRelevance: number) {
+  // An exact upper boundary belongs to the lower band: 90% -> 80%.
+  return Math.min(0.9, Math.max(0.7, (Math.ceil(bestRelevance * 10) - 1) / 10));
+}
+
 export function selectCategories(scores: CategoryScore[]): Category[] {
   const ranked = scores
     .filter(
       ({ category, probability }) =>
-        !MANUAL_CATEGORIES.includes(category) &&
-        probability >= calibration.minimumEvidence,
+        !MANUAL_CATEGORIES.includes(category) && probability >= 0.7,
     )
     .map((score) => ({
       category: score.category,
@@ -56,16 +60,13 @@ export function selectCategories(scores: CategoryScore[]): Category[] {
         b.relevance - a.relevance ||
         (a.category < b.category ? -1 : a.category > b.category ? 1 : 0),
     );
+  const cutoff = categoryCutoff(ranked[0]?.relevance ?? 0);
   const selected: Category[] = [];
   for (const { category, relevance } of ranked) {
     if (selected.includes(category)) continue;
-    // The cutoff and optional per-label increment are fitted together. Five is
-    // a cap, not a target: never pad the result with a barely fitting label.
-    if (
-      relevance <
-      calibration.threshold + selected.length * calibration.thresholdStep
-    )
-      break;
+    // Apply the band to the existing adjusted scores, retaining calibration
+    // when a strong match exists and relaxing it when all scores are lower.
+    if (relevance < cutoff) break;
     selected.push(category);
     if (selected.length === calibration.maxCategories) break;
   }

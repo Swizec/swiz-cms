@@ -1,7 +1,9 @@
-"""Fit conservative selection thresholds without tuning on reserved articles.
+"""Reproduce the historical fixed-cutoff calibration without reserved articles.
 
 python scripts/fit-category-calibration.py TUNING.jsonl DEVELOPMENT.jsonl OUTPUT.json
-The app uses the exported constants; Python/sklearn are offline tools only.
+The app retains its fitted ranking parameters but now selects with adaptive
+score bands. Fixed cutoffs and their metrics here describe the old policy.
+Python/sklearn are offline tools only.
 """
 import datetime
 import json
