@@ -8,6 +8,7 @@ import { ArrowUp, ArrowUpRight, RotateCcw } from "lucide-react";
 import {
   articleSchema,
   feedbackPrompt,
+  feedbackRevisionPrompt,
   sameArticle,
   type Article,
 } from "../lib/article";
@@ -34,7 +35,6 @@ export function FeedbackPanel({ article }: { article: Article }) {
     regenerate,
     stop,
   } = useChat<FeedbackMessage>({ transport });
-  const [reviewedDraft, setReviewedDraft] = useState<Article | null>(null);
   const [question, setQuestion] = useState("");
   const scrollArea = useRef<HTMLDivElement>(null);
   const followLatest = useRef(true);
@@ -54,27 +54,43 @@ export function FeedbackPanel({ article }: { article: Article }) {
     latestMessage.parts.some(
       (part) => part.type === "text" && part.text.trim().length > 0,
     );
+  const reviewedDraft = messages.findLast(
+    (message) => message.role === "user" && message.metadata?.draft,
+  )?.metadata?.draft;
+  const parsedArticle = articleSchema.safeParse(article);
   const changed =
-    reviewedDraft !== null && !sameArticle(reviewedDraft, article);
+    reviewedDraft !== undefined &&
+    !sameArticle(
+      reviewedDraft,
+      parsedArticle.success ? parsedArticle.data : article,
+    );
+  const canSend = changed ? parsedArticle.success : Boolean(question.trim());
 
   function startReview() {
-    const parsed = articleSchema.safeParse(article);
-    if (!parsed.success || busy) return;
+    if (!parsedArticle.success || busy) return;
     followLatest.current = true;
     setMessages([]);
     clearError();
     setQuestion("");
-    setReviewedDraft({ ...article });
     void sendMessage({
-      text: feedbackPrompt(parsed.data),
-      metadata: { draft: parsed.data },
+      text: feedbackPrompt(parsedArticle.data),
+      metadata: { draft: parsedArticle.data },
     });
   }
 
   function sendFollowUp() {
-    if (!question.trim() || busy) return;
+    if (!canSend || busy) return;
     followLatest.current = true;
-    void sendMessage({ text: question.trim() });
+    clearError();
+    if (changed && parsedArticle.success) {
+      const followUp = question.trim() || "how about now";
+      void sendMessage({
+        text: feedbackRevisionPrompt(parsedArticle.data, followUp),
+        metadata: { draft: parsedArticle.data, question: followUp },
+      });
+    } else {
+      void sendMessage({ text: question.trim() });
+    }
     setQuestion("");
   }
 
@@ -100,7 +116,7 @@ export function FeedbackPanel({ article }: { article: Article }) {
           <button
             type="button"
             className="button"
-            disabled={!articleSchema.safeParse(article).success || busy}
+            disabled={!parsedArticle.success || busy}
             onClick={startReview}
           >
             Get feedback <ArrowUpRight size={16} aria-hidden="true" />
@@ -115,7 +131,7 @@ export function FeedbackPanel({ article }: { article: Article }) {
             <button
               type="button"
               className="text-button"
-              disabled={busy || !articleSchema.safeParse(article).success}
+              disabled={busy || !parsedArticle.success}
               onClick={startReview}
             >
               <RotateCcw size={12} aria-hidden="true" />
@@ -134,12 +150,6 @@ export function FeedbackPanel({ article }: { article: Article }) {
                 40;
             }}
           >
-            {changed && (
-              <p className="notice">
-                Your draft has changed. Start a new review to include your
-                latest edits. Follow-ups here use the previous draft.
-              </p>
-            )}
             {context && (
               <details className="archive-context">
                 <summary>
@@ -182,29 +192,41 @@ export function FeedbackPanel({ article }: { article: Article }) {
               aria-label="Feedback conversation"
               aria-busy={busy}
             >
-              {messages.slice(1).map((message) => (
-                <div key={message.id} className={`message ${message.role}`}>
-                  <p className="message-author">
-                    {message.role === "user" ? "You" : "Astra"}
-                  </p>
-                  <div className="prose">
-                    {message.parts.map((part, index) =>
-                      part.type === "text" ? (
-                        <Markdown
-                          key={index}
-                          components={{
-                            a: (props) => (
-                              <a {...props} target="_blank" rel="noreferrer" />
-                            ),
-                          }}
-                        >
-                          {part.text}
-                        </Markdown>
-                      ) : null,
+              {messages.slice(1).map((message) => {
+                const revision =
+                  message.role === "user" && message.metadata?.question
+                    ? message.metadata.draft
+                    : undefined;
+                return (
+                  <div key={message.id} className={`message ${message.role}`}>
+                    <p className="message-author">
+                      {message.role === "user" ? "You" : "Astra"}
+                    </p>
+                    <div className="prose">
+                      <Markdown
+                        components={{
+                          a: (props) => (
+                            <a {...props} target="_blank" rel="noreferrer" />
+                          ),
+                        }}
+                      >
+                        {revision
+                          ? message.metadata?.question
+                          : message.parts
+                              .filter((part) => part.type === "text")
+                              .map((part) => part.text)
+                              .join("\n\n")}
+                      </Markdown>
+                    </div>
+                    {revision && (
+                      <details className="draft-revision">
+                        <summary>Updated draft · {revision.title}</summary>
+                        <pre>{revision.body}</pre>
+                      </details>
                     )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
               {busy && !hasResponseText && (
                 <p className="loading" role="status">
                   {status === "submitted" && !context
@@ -233,6 +255,13 @@ export function FeedbackPanel({ article }: { article: Article }) {
               sendFollowUp();
             }}
           >
+            {changed && (
+              <p className="revision-notice" id="revision-hint" role="status">
+                {parsedArticle.success
+                  ? "Draft updated. Your next message includes these edits and keeps the conversation."
+                  : "Add a title and body to send your updated draft."}
+              </p>
+            )}
             <label htmlFor="follow-up" className="sr-only">
               Keep the conversation going
             </label>
@@ -240,8 +269,14 @@ export function FeedbackPanel({ article }: { article: Article }) {
               id="follow-up"
               rows={2}
               maxLength={20_000}
-              placeholder="Ask a follow-up…"
-              aria-describedby="follow-up-hint"
+              placeholder={
+                changed
+                  ? "How about now? Or ask a specific question…"
+                  : "Ask a follow-up…"
+              }
+              aria-describedby={
+                changed ? "revision-hint follow-up-hint" : "follow-up-hint"
+              }
               value={question}
               onChange={(event) => setQuestion(event.target.value)}
               onKeyDown={(event) => {
@@ -271,9 +306,14 @@ export function FeedbackPanel({ article }: { article: Article }) {
                 <button
                   className="button"
                   type="submit"
-                  disabled={!question.trim()}
+                  disabled={!canSend}
                 >
-                  Ask Astra <ArrowUp size={15} aria-hidden="true" />
+                  {changed
+                    ? question.trim()
+                      ? "Send updated draft"
+                      : "How about now?"
+                    : "Ask Astra"}{" "}
+                  <ArrowUp size={15} aria-hidden="true" />
                 </button>
               )}
             </div>

@@ -23,3 +23,7 @@ export const sameArticle = (a: Article | null, b: Article) =>
   a?.title === b.title && a.body === b.body;
 export const feedbackPrompt = ({ title, body }: Article) =>
   `what do you think about this\n\n${title}\n\n${body}`;
+export const feedbackRevisionPrompt = (
+  { title, body }: Article,
+  question: string,
+) => `${question}\n\nUpdated draft:\n\n${title}\n\n${body}`;

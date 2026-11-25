@@ -6,7 +6,11 @@ import {
   feedbackMetadataSchema,
   type FeedbackMessage,
 } from "../../../lib/feedback";
-import { feedbackPrompt } from "../../../lib/article";
+import {
+  MAX_BODY_LENGTH,
+  feedbackPrompt,
+  feedbackRevisionPrompt,
+} from "../../../lib/article";
 import {
   FEEDBACK_GUIDANCE,
   loadFeedbackContext,
@@ -32,7 +36,7 @@ const requestSchema = z.object({
             z.discriminatedUnion("type", [
               z.object({
                 type: z.literal("text"),
-                text: z.string().max(120_000),
+                text: z.string().max(MAX_BODY_LENGTH + 20_000 + 500),
               }),
               z.object({ type: z.literal("step-start") }),
             ]),
@@ -65,6 +69,22 @@ export async function POST(request: Request) {
       throw new RequestError(
         "Start a new review to include your draft and blog context.",
       );
+    for (const message of messages.slice(1)) {
+      const { draft: revision, question } = message.metadata ?? {};
+      if (!revision && !question) continue;
+      if (
+        message.role !== "user" ||
+        !revision ||
+        !question ||
+        message.parts
+          .filter((part) => part.type === "text")
+          .map((part) => part.text)
+          .join("") !== feedbackRevisionPrompt(revision, question)
+      )
+        throw new RequestError(
+          "Resend your updated draft with your question.",
+        );
+    }
     const validated = await validateUIMessages({ messages });
     // Reuse the first response's context so follow-ups stay grounded in the
     // same posts, without another embedding/search/fetch round trip.
