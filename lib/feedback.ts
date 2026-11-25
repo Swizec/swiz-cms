@@ -25,6 +25,7 @@ export const feedbackContextSchema = z.object({
 });
 export const feedbackMetadataSchema = z.object({
   draft: articleSchema.optional(),
+  question: z.string().trim().min(1).max(20_000).optional(),
   context: feedbackContextSchema.optional(),
 });
 export type FeedbackContext = z.infer<typeof feedbackContextSchema>;

@@ -218,16 +218,21 @@ describe("writing workspace", () => {
     expect(fetch).not.toHaveBeenCalled();
     expect(window.location.search).toBe("");
   });
-  it("streams feedback, sends follow-ups with context, and resets to the latest draft", async () => {
+  it("keeps feedback when pasting revisions, sends the latest draft, and can still start over", async () => {
     const fetch = vi
       .fn()
       .mockResolvedValueOnce(
         reply("Give the ownership idea an example.", "first"),
       )
       .mockResolvedValueOnce(reply("Show one ambiguous handoff.", "second"))
-      .mockResolvedValueOnce(reply("This example is clearer.", "third"));
+      .mockResolvedValueOnce(reply("This example is clearer.", "third"))
+      .mockResolvedValueOnce(
+        reply("The ending now supports the point.", "fourth"),
+      )
+      .mockResolvedValueOnce(reply("Here is a fresh review.", "fifth"));
     vi.stubGlobal("fetch", fetch);
-    const { rerender } = render(<FeedbackPanel article={article} />);
+    localStorage.setItem("swiz-cms:draft:v1", JSON.stringify(article));
+    render(<Workspace />);
     fireEvent.click(screen.getByRole("button", { name: /Get feedback/ }));
     await screen.findByText("Give the ownership idea an example.");
     fireEvent.change(screen.getByLabelText("Keep the conversation going"), {
@@ -254,12 +259,54 @@ describe("writing workspace", () => {
       ),
     ).toBe(true);
     expect(request.messages[2].parts[0].text).toBe("Which example?");
-    rerender(
-      <FeedbackPanel
-        article={{ ...article, body: "A specific handoff example." }}
-      />,
+    const revised = {
+      title: "Ownership in practice",
+      body: "A specific handoff example.",
+    };
+    fireEvent.paste(screen.getByLabelText("Body"), {
+      clipboardData: { getData: () => `# ${revised.title}\n\n${revised.body}` },
+    });
+    expect(screen.getByText(/Draft updated/)).toBeTruthy();
+    expect(fetch).toHaveBeenCalledTimes(2);
+    fireEvent.click(screen.getByRole("button", { name: "How about now?" }));
+    await screen.findByText("This example is clearer.");
+    const revision = JSON.parse(fetch.mock.calls[2][1].body);
+    expect(revision.messages).toHaveLength(5);
+    expect(revision.messages.slice(0, 3)).toEqual(request.messages);
+    expect(revision.messages[4].metadata).toEqual({
+      draft: revised,
+      question: "how about now",
+    });
+    expect(revision.messages[4].parts[0].text).toBe(
+      "how about now\n\nUpdated draft:\n\nOwnership in practice\n\nA specific handoff example.",
     );
-    expect(screen.getByText(/Your draft has changed/)).toBeTruthy();
+    expect(
+      screen.getByText("Give the ownership idea an example."),
+    ).toBeTruthy();
+    expect(screen.queryByText(/Draft updated/)).toBeNull();
+    const snapshot = screen
+      .getByText(`Updated draft · ${revised.title}`)
+      .closest("details")!;
+    expect(snapshot.open).toBe(false);
+    expect(snapshot.querySelector("pre")?.textContent).toBe(revised.body);
+
+    const latestBody = `${revised.body}\n\nAn ending about shared responsibility.`;
+    fireEvent.change(screen.getByLabelText("Body"), {
+      target: { value: latestBody },
+    });
+    fireEvent.change(followUp, {
+      target: { value: "Does the ending work now?" },
+    });
+    fireEvent.keyDown(followUp, { key: "Enter", ctrlKey: true });
+    await screen.findByText("The ending now supports the point.");
+    const nextRevision = JSON.parse(fetch.mock.calls[3][1].body);
+    expect(nextRevision.messages).toHaveLength(7);
+    expect(nextRevision.messages[6].metadata).toEqual({
+      draft: { ...revised, body: latestBody },
+      question: "Does the ending work now?",
+    });
+    expect(nextRevision.messages[6].parts[0].text).toContain(latestBody);
+    expect(snapshot.querySelector("pre")?.textContent).toBe(revised.body);
     await waitFor(() =>
       expect(
         (
@@ -270,12 +317,68 @@ describe("writing workspace", () => {
       ).toBe(false),
     );
     fireEvent.click(screen.getByRole("button", { name: "New review" }));
-    await screen.findByText("This example is clearer.");
-    const fresh = JSON.parse(fetch.mock.calls[2][1].body);
+    await screen.findByText("Here is a fresh review.");
+    const fresh = JSON.parse(fetch.mock.calls[4][1].body);
     expect(fresh.messages).toHaveLength(1);
-    expect(fresh.messages[0].parts[0].text).toContain(
-      "A specific handoff example.",
+    expect(fresh.messages[0].parts[0].text).toContain(latestBody);
+    expect(
+      screen.queryByText("Give the ownership idea an example."),
+    ).toBeNull();
+  });
+  it("retries the submitted revision while keeping newer edits ready for the next message", async () => {
+    let failRevision!: (response: Response) => void;
+    const fetch = vi
+      .fn()
+      .mockResolvedValueOnce(reply("Add a concrete example.", "first"))
+      .mockImplementationOnce(
+        () =>
+          new Promise<Response>((resolve) => {
+            failRevision = resolve;
+          }),
+      )
+      .mockResolvedValueOnce(reply("The example helps.", "retry"))
+      .mockResolvedValueOnce(reply("The new ending helps too.", "latest"))
+      .mockResolvedValueOnce(reply("Yes, keep it.", "follow-up"));
+    vi.stubGlobal("fetch", fetch);
+    const { rerender } = render(<FeedbackPanel article={article} />);
+    fireEvent.click(screen.getByRole("button", { name: /Get feedback/ }));
+    await screen.findByText("Add a concrete example.");
+    const submitted = { ...article, body: "An example of shared ownership." };
+    rerender(<FeedbackPanel article={submitted} />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "How about now?" }),
     );
+    await waitFor(() => expect(fetch).toHaveBeenCalledTimes(2));
+    const latest = { ...submitted, body: "An example with a better ending." };
+    rerender(<FeedbackPanel article={latest} />);
+    expect(screen.getByRole("button", { name: "Stop response" })).toBeTruthy();
+    expect(screen.getByText(/Draft updated/)).toBeTruthy();
+    failRevision(Response.json({ error: "Please retry." }, { status: 502 }));
+    await screen.findByRole("alert");
+    fireEvent.click(screen.getByRole("button", { name: "Retry response" }));
+    await screen.findByText("The example helps.");
+    expect(JSON.parse(fetch.mock.calls[2][1].body).messages).toEqual(
+      JSON.parse(fetch.mock.calls[1][1].body).messages,
+    );
+    expect(screen.getByText(/Draft updated/)).toBeTruthy();
+    fireEvent.click(
+      await screen.findByRole("button", { name: "How about now?" }),
+    );
+    await screen.findByText("The new ending helps too.");
+    const sent = JSON.parse(fetch.mock.calls[3][1].body).messages;
+    expect(sent.at(-1).metadata.draft).toEqual(latest);
+    expect(sent[2].metadata.draft).toEqual(submitted);
+    expect(screen.queryByText(/Draft updated/)).toBeNull();
+    fireEvent.change(screen.getByLabelText("Keep the conversation going"), {
+      target: { value: "Should I keep the ending?" },
+    });
+    fireEvent.click(await screen.findByRole("button", { name: /Ask Astra/ }));
+    await screen.findByText("Yes, keep it.");
+    const followUp = JSON.parse(fetch.mock.calls[4][1].body).messages.at(-1);
+    expect(followUp.metadata).toBeUndefined();
+    expect(followUp.parts).toEqual([
+      { type: "text", text: "Should I keep the ending?" },
+    ]);
   });
   it("keeps late metadata tied to its original draft and requires review before copying", async () => {
     let resolve!: (response: Response) => void;

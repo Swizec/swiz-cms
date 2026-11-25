@@ -554,6 +554,20 @@ pre {
 .message.user .message-author {
   color: var(--muted);
 }
+.draft-revision {
+  margin-top: 8px;
+  font-size: 12px;
+}
+.draft-revision summary {
+  cursor: pointer;
+  color: var(--accent);
+}
+.draft-revision pre {
+  max-height: 240px;
+  overflow: auto;
+  white-space: pre-wrap;
+  margin-bottom: 0;
+}
 .prose {
   font-size: 14px;
   line-height: 1.65;
@@ -600,6 +614,11 @@ pre {
   min-height: 62px;
   max-height: 160px;
   background: #fafbfc;
+}
+.revision-notice {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 12px;
 }
 .action-row {
   display: flex;
