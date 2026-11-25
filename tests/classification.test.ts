@@ -18,6 +18,7 @@ import {
 } from "../lib/server/classification-candidates";
 import {
   MANUAL_CATEGORIES,
+  categoryCutoff,
   selectCategories,
 } from "../lib/server/category-selection";
 import profile from "../lib/server/category-profile.json";
@@ -160,7 +161,7 @@ describe("selection", () => {
   it("abstains when every subject is marginal, even for common categories", () => {
     expect(
       selectCategories(
-        AUTO_CATEGORIES.map((category) => ({ category, probability: 0.89 })),
+        AUTO_CATEGORIES.map((category) => ({ category, probability: 0.69 })),
       ),
     ).toEqual([]);
     expect(selectCategories([])).toEqual([]);
@@ -174,7 +175,28 @@ describe("selection", () => {
       ]),
     ).toEqual(["AI"]);
   });
-  it("still allows a rare specific subject with decisive evidence", () => {
+  it("selects the highest ten-point score band with a seventy-percent floor", () => {
+    for (const [best, cutoff] of [
+      [1, 0.9],
+      [0.95, 0.9],
+      [0.9, 0.8],
+      [0.85, 0.8],
+      [0.8, 0.7],
+      [0.7, 0.7],
+      [0, 0.7],
+    ]) {
+      expect(categoryCutoff(best)).toBe(cutoff);
+    }
+  });
+  it("keeps lower-scoring topics and ignores manual labels when choosing the band", () => {
+    expect(
+      selectCategories([
+        { category: "AI", probability: 0.86 },
+        { category: "Experiment", probability: 0.88 },
+        { category: "Algorithm", probability: 0.79 },
+        ...MANUAL_CATEGORIES.map((category) => ({ category, probability: 1 })),
+      ]),
+    ).toEqual(["AI", "Experiment"]);
     expect(selectCategories([{ category: "Haskell", probability: 1 }])).toEqual(
       ["Haskell"],
     );

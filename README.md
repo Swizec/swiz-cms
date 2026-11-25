@@ -51,7 +51,7 @@ Run `npm test` for request validation and conversation regression checks.
 **Suggest metadata** runs two tasks in parallel with GPT-6 Luna:
 
 - The Responses API selects indexes of one or two representative sentences. The server copies those sentences from the Markdown's plain text.
-- One [Decisions API](https://developers.openai.com/api/docs/guides/decisions) request selects the content upgrade (`SeniorMindset`, `ScalingFast`, or none) and evaluates category membership with native predicates. Each category has an applicability rubric and recent examples. Selection requires strong evidence and applies a fitted historical-usage adjustment. Zero categories is allowed; five is a cap. All suggestions remain editable.
+- One [Decisions API](https://developers.openai.com/api/docs/guides/decisions) request selects the content upgrade (`SeniorMindset`, `ScalingFast`, or none) and evaluates category membership with native predicates. Each category has an applicability rubric and recent examples. Selection applies a fitted historical-usage adjustment, then uses the highest occupied ten-point score band, with a 70% floor. Zero categories is allowed; five is a cap. All suggestions remain editable.
 
 The manual picker contains 130 categories from the snapshot of 823 posts published **November 14, 2016 through November 14, 2026**. On November 21, `Hiring` merged into `Interviewing` and `Salary` into `Compensation`, matching the blog migration. `Interviewing` covers recruiting and candidate selection as well as interviews; `Compensation` covers salary, negotiation, and other employment rewards. `Career`, `Teamwork`, and `Leadership` remain separate. Older tags such as `review` are excluded. Ten broad labels remain manual-only: `Uncategorized`, `Lesson`, `Insights`, `Tips`, `Tutorial`, `Programming Lessons`, `Thoughts`, `Opinion`, `Technical`, and `Programming`.
 
@@ -59,13 +59,32 @@ Teamwork describes how people collaborate and coordinate shared work. Leadership
 
 [Companion blog PR #183](https://github.com/Swizec/swizec.com/pull/183) reviews the 72 Leadership additions from July's parent-tag backfill, removes 48, and retains 24 with substantive leadership content. Every Teamwork tag and pre-existing Leadership tag is preserved. The profile now reflects that reviewed archive: Leadership has 33 training posts (13 recent), down from 76 (34 recent); other category counts and all examples stay the same. In the last five years of the archive, overlap falls from 60 to 25 of 65 Teamwork posts. This is an editorial correction, not a new accuracy estimate; dated audits and backtests retain their original labels.
 
-`lib/server/category-catalog.json` supplies definitions and dated source URLs. `category-profile.json` supplies five-year usage and example titles; `category-calibration.json` stores the fitted cutoffs. The automatic selector evaluates 120 categories in one request. It does not use native choice confidence as a membership score. Its adjusted ranking scores are not measured probabilities of historical agreement. Invalid, missing, refused, or repeated decisions fail the request instead of returning partial metadata.
+`lib/server/category-catalog.json` supplies definitions and dated source URLs. `category-profile.json` supplies five-year usage and example titles; `category-calibration.json` supplies the fitted ranking parameters. Its fixed cutoff fields and metrics are retained as the November 21 calibration snapshot, not the current selection policy. The automatic selector evaluates 120 categories in one request. It does not use native choice confidence as a membership score. Its adjusted ranking scores are not measured probabilities of historical agreement. Invalid, missing, refused, or repeated decisions fail the request instead of returning partial metadata.
 
-Calibration gives recent articles more weight, with a three-year half-life. It fits the archive-frequency weight and selection cutoffs together, constrained by separate checks for central subjects such as AI and rarely discussed technologies. The current fit uses a 0.25 prior weight and a 0.90 relevance cutoff, with no extra cutoff increase for later suggestions. Native evidence must still reach 0.90. The runtime needs no Python, training service, extra model call, or taxonomy lookup. Refresh the static taxonomy, profile, model decisions, calibration, and validation together.
+The ranking calibration gives recent articles more weight, with a three-year half-life, and uses a 0.25 archive-frequency weight. Selection now adapts to the best adjusted score: above 0.90 uses a 0.90 cutoff; above 0.80 through 0.90 uses 0.80; otherwise it uses 0.70. Exact boundaries use the lower band, so a best score of 0.90 allows scores from 0.80. Both native evidence and adjusted relevance must reach 0.70. Manual-only labels cannot affect the band, and five remains a cap. The runtime needs no Python, training service, extra model call, or taxonomy lookup.
 
-The final November 21 refit passes all 28 live category controls and all six upgrade controls. These include peer collaboration, handoffs, managing/developing reports, leadership without a manager title, both subjects together, and technical content that merely mentions a manager. The auto-merge article now receives `AI`. The earlier [archive-sync results](reports/category-archive-sync-eval-2026-11-21.json) and [boundary results](reports/category-boundary-eval-2026-11-21.json) describe the superseded cutoffs and retain their original results.
+The November 21 refit passed all 28 live category controls and all six upgrade controls. Replaying those 28 category controls through the November 24 adaptive selector also passes; book selection is unchanged. These include peer collaboration, handoffs, managing/developing reports, leadership without a manager title, both subjects together, and technical content that merely mentions a manager. The auto-merge article receives `AI`. The earlier [archive-sync results](reports/category-archive-sync-eval-2026-11-21.json) and [boundary results](reports/category-boundary-eval-2026-11-21.json) retain their original results.
 
 The book rubrics distinguish individual career growth (`SeniorMindset`) from engineering teams, business growth, and evolving production systems (`ScalingFast`). Current drafts can use either book. Historical replay offers Scaling Fast only from **December 7, 2025**, when blog commit `8557ae475bea49eddcf416f1fb8b9a1d4cb2aaae` introduced its standard article content upgrade. The book announcement followed on December 8; a separate landing-page signup existed from September 17.
+
+## Adaptive cutoff validation — November 24
+
+The fixed cutoff could return no categories for a clearly topical article. The adaptive policy uses the existing adjusted scores so articles with strong matches retain the calibrated behavior, while lower-scoring articles can use the 80% or 70% band. This changes only selection, not model questions, category definitions, historical usage, or content upgrades.
+
+Replaying the same saved native scores on the 66 reserved articles (63 labelled) gives:
+
+| Historical category agreement | Fixed cutoff | Adaptive bands |
+| --- | ---: | ---: |
+| Precision | 70.6% | 68.3% |
+| Recall | 47.3% | 50.5% |
+| F1 | 56.7% | 58.1% |
+| F0.5 (precision weighted) | 64.3% | 63.8% |
+| Extra labels | 37 | 44 |
+| Missed labels | 99 | 93 |
+| Labelled posts with no suggestions | 7 | 1 |
+| Mean suggested categories | 2.00 | 2.21 |
+
+This is an intentional tradeoff toward useful suggestions, with a small precision loss. It is reused retrospective validation, with identical input scores and labels, not a new model run or a fitted threshold search. All 28 stored category controls still pass. A fresh API check of the reported 373-word prompt-engineering draft now suggests `AI` and `Experiment`. Detailed replay artifacts remain local.
 
 ## Validation after the archive cleanup
 
@@ -89,7 +108,7 @@ This is reused retrospective validation, not an untouched test: the earlier back
 
 ## Historical calibration
 
-The scores below and the dated reports describe the November 15 classifier, before the category merges, Teamwork/Leadership distinction, archive cleanup, and subsequent refit above. `lib/category-aliases.json` maps retired labels when generating profiles and collecting new backtests, deduplicating posts tagged with both names. Old reports remain unchanged. For a new comparison, normalize both runs' reference labels and predictions with the same mapping and report that taxonomy-only effect separately from new model results; do not interpret the old scores as a validation of the revised rubrics.
+The scores below and the dated reports describe the November 15 classifier, before the category merges, Teamwork/Leadership distinction, archive cleanup, refit, and adaptive selection above. `lib/category-aliases.json` maps retired labels when generating profiles and collecting new backtests, deduplicating posts tagged with both names. Old reports remain unchanged. For a new comparison, normalize both runs' reference labels and predictions with the same mapping and report that taxonomy-only effect separately from new model results; do not interpret the old scores as a validation of the current selector.
 
 The comparison uses content published **November 14, 2021–November 14, 2026**. Of 361 posts, 148 were used for tuning (133 category-labelled), 66 were reserved from fitting (63 category-labelled), and 147 were existing definition/development sources. Usage counts use the 295 non-reserved posts. Prompt example titles exclude both tuning and reserved articles. A seeded split is checked in at `tests/fixtures/classifier-calibration-split.json`.
 
@@ -134,7 +153,7 @@ node --experimental-strip-types scripts/backtest-metrics.ts --compare /tmp/origi
 
 The runner defaults to `BACKTEST_PARTITION=holdout`; use `tuning` for the calibration partition. It checkpoints with four workers and refuses to resume after input or source fingerprints change. Keep the JSONL and its `.meta.json` together. The comparison refuses changed reference labels. API errors remain errors, not negative predictions.
 
-To reproduce offline fitting, first collect tuning probabilities and the separate development controls. Fit only on the tuning partition and create a new reserved set before further iterative tuning:
+To reproduce the historical fixed-cutoff fitting procedure, first collect tuning probabilities and the separate development controls. Its cutoff metrics do not describe the current adaptive selector. Fit only on the tuning partition and create a new reserved set before further iterative tuning:
 
 ```sh
 BACKTEST_PARTITION=tuning BACKTEST_CORPUS=/path/to/archive.json BACKTEST_OUTPUT=/tmp/tuning.jsonl npm run backtest:classifier
